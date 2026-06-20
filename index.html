@@ -254,27 +254,24 @@ h1,h2,h3{font-family:var(--head);font-weight:600;letter-spacing:-.02em;line-heig
 /* =========================================================
    SKILLS / STATS
    ========================================================= */
-.stats{background:#fff;}
-.stats-split{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.12fr);gap:clamp(36px,5vw,84px);align-items:center;}
-.stats-media{position:relative;border-radius:20px;overflow:hidden;align-self:stretch;}
-.stats-media img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .7s cubic-bezier(.25,.46,.45,.94);will-change:transform;}
+.stats{background:#fff;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);min-height:clamp(520px,70vh,860px);}
+.stats-media{position:relative;overflow:hidden;}
+.stats-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .7s cubic-bezier(.25,.46,.45,.94);will-change:transform;}
 .stats-media:hover img{transform:scale(1.07);}
-.stats-badge{position:absolute;bottom:clamp(16px,2vw,28px);left:clamp(16px,2vw,28px);background:var(--ink);border-radius:16px;padding:clamp(16px,1.8vw,22px) clamp(18px,2vw,26px);min-width:clamp(140px,13vw,176px);}
-.stats-badge-icon{display:flex;justify-content:flex-end;margin-bottom:clamp(10px,1.2vw,16px);}
-.stats-badge-icon svg{width:18px;height:18px;stroke:#fff;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
-.stats-badge-num{display:block;font-family:var(--head);font-weight:700;font-size:clamp(1.8rem,3vw,2.6rem);line-height:1;color:#fff;letter-spacing:-.02em;}
-.stats-badge-label{display:block;margin:6px 0 0;font-family:var(--body);font-size:clamp(12px,.9vw,14px);color:rgba(255,255,255,.55);}
+.stats-content{display:flex;flex-direction:column;justify-content:center;padding:clamp(60px,8vw,120px) clamp(48px,6.5vw,104px);}
 .stats-title{font-family:var(--head);font-weight:600;color:var(--ink);font-size:clamp(1.7rem,2.7vw,2.5rem);line-height:1.12;letter-spacing:-.02em;max-width:26ch;margin:0;}
 .stats-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(30px,3.6vw,52px) clamp(24px,3vw,44px);margin-top:clamp(34px,4.4vw,56px);}
 .stat-num{display:block;font-family:var(--display);font-weight:400;font-size:88px;line-height:1;letter-spacing:0;color:#7548FF;}
 .stat-label{margin:14px 0 0;color:var(--ink);opacity:.6;font-family:var(--body);font-size:clamp(14px,1.05vw,16px);line-height:1.5;max-width:26ch;}
 @media (max-width:860px){
-  .stats-split{grid-template-columns:1fr;gap:clamp(28px,5vw,40px);}
-  .stats-media img{max-height:60vh;}
+  .stats{grid-template-columns:1fr;min-height:auto;}
+  .stats-media{height:60vw;min-height:280px;}
+  .stats-content{padding:clamp(40px,7vw,64px) clamp(20px,5vw,40px);}
 }
 @media (max-width:480px){
   .stats-grid{grid-template-columns:1fr;gap:30px;}
   .stat-label{max-width:34ch;}
+  .stat-num{font-size:72px;}
 }
 
 /* =========================================================
@@ -621,30 +618,28 @@ html.js .rise,html.js .reveal{opacity:1 !important;transform:none !important;}
   </section>
 
   <!-- SKILLS / STATS -->
-  <section class="section stats" aria-label="Our expertise in numbers">
-    <div class="container stats-split">
-      <div class="stats-media reveal">
-        <img src="assets/img_skills_stats.webp" alt="Designer workspace with code, web design and mobile mockups across multiple screens" loading="lazy" />
-      </div>
-      <div class="stats-content">
-        <h2 class="stats-title reveal">The breadth of our skilled expertise and knowledge</h2>
-        <div class="stats-grid">
-          <div class="stat reveal">
-            <span class="stat-num" data-count="460" data-prefix="$" data-suffix="M+">$460M+</span>
-            <p class="stat-label">Worth of programs led, including acquisition integration</p>
-          </div>
-          <div class="stat reveal">
-            <span class="stat-num" data-count="100" data-suffix="+">100+</span>
-            <p class="stat-label">Web and app product solutions delivered</p>
-          </div>
-          <div class="stat reveal">
-            <span class="stat-num" data-count="100" data-suffix="+">100+</span>
-            <p class="stat-label">Web and app product solutions delivered</p>
-          </div>
-          <div class="stat reveal">
-            <span class="stat-num" data-count="100" data-suffix="+">100+</span>
-            <p class="stat-label">Web and app product solutions delivered</p>
-          </div>
+  <section class="stats" aria-label="Our expertise in numbers">
+    <div class="stats-media reveal">
+      <img src="assets/img_skills_stats.webp" alt="Designer workspace with code, web design and mobile mockups across multiple screens" loading="lazy" />
+    </div>
+    <div class="stats-content">
+      <h2 class="stats-title reveal">The breadth of our skilled expertise and knowledge</h2>
+      <div class="stats-grid">
+        <div class="stat reveal">
+          <span class="stat-num" data-count="460" data-prefix="$" data-suffix="M+">$460M+</span>
+          <p class="stat-label">Worth of programs led, including acquisition integration</p>
+        </div>
+        <div class="stat reveal">
+          <span class="stat-num" data-count="100" data-suffix="+">100+</span>
+          <p class="stat-label">Web and app product solutions delivered</p>
+        </div>
+        <div class="stat reveal">
+          <span class="stat-num" data-count="100" data-suffix="+">100+</span>
+          <p class="stat-label">Web and app product solutions delivered</p>
+        </div>
+        <div class="stat reveal">
+          <span class="stat-num" data-count="100" data-suffix="+">100+</span>
+          <p class="stat-label">Web and app product solutions delivered</p>
         </div>
       </div>
     </div>
