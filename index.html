@@ -218,7 +218,7 @@ h1,h2,h3{font-family:var(--head);font-weight:600;letter-spacing:-.02em;line-heig
 .hero-row-top{justify-content:flex-start;}
 .hero-row-band{justify-content:center;background:var(--violet);padding-top:28px;padding-bottom:4px;}
 .hero-row-bottom{align-items:stretch;margin-top:32px;}
-.hero-bottom-group{display:flex;width:100%;justify-content:space-between;align-items:flex-end;gap:clamp(16px,3vw,40px);}
+.hero-bottom-group{display:flex;width:100%;justify-content:flex-end;align-items:flex-end;gap:48px;}
 .hero-word{
   font-family:var(--display);font-weight:400;
   font-size:clamp(58px,19vh,260px);
@@ -238,6 +238,12 @@ h1,h2,h3{font-family:var(--head);font-weight:600;letter-spacing:-.02em;line-heig
   .hero-bottom-group{flex-direction:column-reverse;align-items:flex-start;gap:clamp(18px,4vw,28px);}
   .hero-lede{max-width:40ch;}
 }
+@keyframes hero-wipe{from{opacity:0;transform:translateY(52px);}to{opacity:1;transform:none;}}
+.hero-row-top .hero-word{animation:hero-wipe .9s cubic-bezier(.22,1,.36,1) .06s both;}
+.hero-row-band .hero-word{animation:hero-wipe .9s cubic-bezier(.22,1,.36,1) .24s both;}
+.hero-word-end{animation:hero-wipe .9s cubic-bezier(.22,1,.36,1) .44s both;}
+.hero-lede{animation:hero-wipe .9s cubic-bezier(.22,1,.36,1) .58s both;}
+@media(prefers-reduced-motion:reduce){.hero-row-top .hero-word,.hero-row-band .hero-word,.hero-word-end,.hero-lede{animation:none;}}
 
 /* =========================================================
    LOGO MARQUEE
