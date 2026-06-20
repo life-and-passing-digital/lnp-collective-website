@@ -351,6 +351,10 @@ h1,h2,h3{font-family:var(--head);font-weight:600;letter-spacing:-.02em;line-heig
 .project-dots span{width:12px;height:12px;border-radius:50%;background:rgba(255,255,255,.4);}
 .project-dots span.on{background:#fff;}
 .project-title{justify-self:start;align-self:end;margin:0;font-family:var(--display);font-weight:400;text-transform:uppercase;color:#fff;font-size:clamp(2.4rem,6.8vw,6rem);line-height:.92;letter-spacing:.01em;max-width:15ch;}
+.project--light .project-scrim{display:none;}
+.project--light .project-title{color:var(--ink);}
+.project--light .project-dots span{background:rgba(24,0,38,.28);}
+.project--light .project-dots span.on{background:var(--ink);}
 @media (max-width:620px){
   .project-title{font-size:clamp(2.1rem,10vw,3.2rem);max-width:18ch;}
   .project-dots span{width:10px;height:10px;}
@@ -659,7 +663,7 @@ html.js .rise,html.js .reveal{opacity:1 !important;transform:none !important;}
   <section class="projects" id="work" aria-label="Selected work">
 
     <article class="project">
-      <div class="project-bg art art-1"></div>
+      <div class="project-bg" style="background-image:url(assets/img_westpac.png)"></div>
       <div class="project-scrim"></div>
       <div class="project-inner container">
         <div class="project-tags"><span class="ptag">UX / UI</span><span class="ptag">Design systems &amp; accessibility</span><span class="ptag">Product strategy</span><span class="ptag">Market research &amp; positioning</span></div>
@@ -668,8 +672,8 @@ html.js .rise,html.js .reveal{opacity:1 !important;transform:none !important;}
       </div>
     </article>
 
-    <article class="project">
-      <div class="project-bg art art-2"></div>
+    <article class="project project--light">
+      <div class="project-bg" style="background-image:url(assets/img_taste_news.png)"></div>
       <div class="project-scrim"></div>
       <div class="project-inner container">
         <div class="project-tags"><span class="ptag">Web design</span><span class="ptag">Rapid prototyping &amp; testing</span><span class="ptag">SEO &amp; AEO</span></div>
@@ -679,7 +683,7 @@ html.js .rise,html.js .reveal{opacity:1 !important;transform:none !important;}
     </article>
 
     <article class="project">
-      <div class="project-bg art art-3"></div>
+      <div class="project-bg" style="background-image:url(assets/img_orox.png)"></div>
       <div class="project-scrim"></div>
       <div class="project-inner container">
         <div class="project-tags"><span class="ptag">UX / UI</span><span class="ptag">Content creation</span><span class="ptag">Web &amp; app development</span></div>
@@ -689,7 +693,7 @@ html.js .rise,html.js .reveal{opacity:1 !important;transform:none !important;}
     </article>
 
     <article class="project">
-      <div class="project-bg art art-4"></div>
+      <div class="project-bg" style="background-image:url(assets/img_dehancer.png)"></div>
       <div class="project-scrim"></div>
       <div class="project-inner container">
         <div class="project-tags"><span class="ptag">UX / UI</span><span class="ptag">Design systems</span><span class="ptag">Product strategy</span></div>
@@ -699,7 +703,7 @@ html.js .rise,html.js .reveal{opacity:1 !important;transform:none !important;}
     </article>
 
     <article class="project">
-      <div class="project-bg art art-5"></div>
+      <div class="project-bg" style="background-image:url(assets/img_buysecure.png)"></div>
       <div class="project-scrim"></div>
       <div class="project-inner container">
         <div class="project-tags"><span class="ptag">UX / UI &amp; Branding</span><span class="ptag">AI automation</span></div>
