@@ -256,8 +256,14 @@ h1,h2,h3{font-family:var(--head);font-weight:600;letter-spacing:-.02em;line-heig
    ========================================================= */
 .stats{background:#fff;}
 .stats-split{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.12fr);gap:clamp(36px,5vw,84px);align-items:center;}
-.stats-media{border-radius:20px;overflow:hidden;align-self:stretch;}
-.stats-media img{display:block;width:100%;height:100%;object-fit:cover;}
+.stats-media{position:relative;border-radius:20px;overflow:hidden;align-self:stretch;}
+.stats-media img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .7s cubic-bezier(.25,.46,.45,.94);will-change:transform;}
+.stats-media:hover img{transform:scale(1.07);}
+.stats-badge{position:absolute;bottom:clamp(16px,2vw,28px);left:clamp(16px,2vw,28px);background:var(--ink);border-radius:16px;padding:clamp(16px,1.8vw,22px) clamp(18px,2vw,26px);min-width:clamp(140px,13vw,176px);}
+.stats-badge-icon{display:flex;justify-content:flex-end;margin-bottom:clamp(10px,1.2vw,16px);}
+.stats-badge-icon svg{width:18px;height:18px;stroke:#fff;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
+.stats-badge-num{display:block;font-family:var(--head);font-weight:700;font-size:clamp(1.8rem,3vw,2.6rem);line-height:1;color:#fff;letter-spacing:-.02em;}
+.stats-badge-label{display:block;margin:6px 0 0;font-family:var(--body);font-size:clamp(12px,.9vw,14px);color:rgba(255,255,255,.55);}
 .stats-title{font-family:var(--head);font-weight:600;color:var(--ink);font-size:clamp(1.7rem,2.7vw,2.5rem);line-height:1.12;letter-spacing:-.02em;max-width:18ch;margin:0;}
 .stats-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(30px,3.6vw,52px) clamp(24px,3vw,44px);margin-top:clamp(34px,4.4vw,56px);}
 .stat-num{display:block;font-family:var(--head);font-weight:700;font-size:clamp(2.7rem,4.6vw,4rem);line-height:1;letter-spacing:-.03em;font-variant-numeric:tabular-nums;
@@ -620,6 +626,13 @@ html.js .rise,html.js .reveal{opacity:1 !important;transform:none !important;}
     <div class="container stats-split">
       <div class="stats-media reveal">
         <img src="assets/img_skills_stats.webp" alt="Designer workspace with code, web design and mobile mockups across multiple screens" loading="lazy" />
+        <div class="stats-badge" aria-hidden="true">
+          <div class="stats-badge-icon">
+            <svg viewBox="0 0 24 24"><path d="M7 17L17 7M7 7h10v10"/></svg>
+          </div>
+          <span class="stats-badge-num">$460M+</span>
+          <span class="stats-badge-label">In programs led</span>
+        </div>
       </div>
       <div class="stats-content">
         <h2 class="stats-title reveal">The breadth of our skilled expertise and knowledge</h2>
