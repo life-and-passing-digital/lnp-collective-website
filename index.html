@@ -240,6 +240,17 @@ h1,h2,h3{font-family:var(--head);font-weight:600;letter-spacing:-.02em;line-heig
 }
 
 /* =========================================================
+   LOGO MARQUEE
+   ========================================================= */
+.logos{background:var(--paper);padding-block:clamp(40px,6vw,72px);position:relative;z-index:2;}
+.logos-viewport{overflow:hidden;-webkit-mask:linear-gradient(90deg,transparent 0,#000 7%,#000 93%,transparent 100%);mask:linear-gradient(90deg,transparent 0,#000 7%,#000 93%,transparent 100%);}
+.logos-track{display:flex;align-items:center;width:max-content;animation:logoscroll 70s linear infinite;}
+.logos-track img{height:clamp(22px,2.4vw,30px);width:auto;flex:none;margin-right:clamp(44px,6vw,90px);}
+.logos:hover .logos-track{animation-play-state:paused;}
+@keyframes logoscroll{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+@media (prefers-reduced-motion:reduce){.logos-track{animation:none;}}
+
+/* =========================================================
    SCROLL TEXT
    ========================================================= */
 .stext-outer{position:relative;z-index:2;background:var(--ink);padding-block:clamp(72px,11vw,148px);}
@@ -492,6 +503,72 @@ html.js .rise,html.js .reveal{opacity:1 !important;transform:none !important;}
             </span></span>
           </div>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LOGO MARQUEE -->
+  <section class="logos" aria-label="Organisations we have built for">
+    <div class="logos-viewport">
+      <div class="logos-track">
+        <img src="assets/Logo-AvantMutual.svg" alt="Avant Mutual" loading="lazy" />
+        <img src="assets/Logo-Baker%27sDelight.svg" alt="Baker's Delight" loading="lazy" />
+        <img src="assets/Logo-CSIRO.svg" alt="CSIRO" loading="lazy" />
+        <img src="assets/Logo-Clover.svg" alt="Clover" loading="lazy" />
+        <img src="assets/Logo-Cohort-Global.svg" alt="Cohort Global" loading="lazy" />
+        <img src="assets/Logo-CoverMore.svg" alt="Cover-More" loading="lazy" />
+        <img src="assets/Logo-Dehancer.svg" alt="Dehancer" loading="lazy" />
+        <img src="assets/Logo-Home-in.svg" alt="Home-in" loading="lazy" />
+        <img src="assets/Logo-InvoCare.svg" alt="InvoCare" loading="lazy" />
+        <img src="assets/Logo-JXT.svg" alt="JXT" loading="lazy" />
+        <img src="assets/Logo-Kelly.svg" alt="Kelly" loading="lazy" />
+        <img src="assets/Logo-LesMills.svg" alt="Les Mills" loading="lazy" />
+        <img src="assets/Logo-Mestudent.svg" alt="Mestudent" loading="lazy" />
+        <img src="assets/Logo-NZME.svg" alt="NZME" loading="lazy" />
+        <img src="assets/Logo-News-Corp-Australia.svg" alt="News Corp Australia" loading="lazy" />
+        <img src="assets/Logo-OROX.svg" alt="OROX" loading="lazy" />
+        <img src="assets/Logo-Pawmates.svg" alt="Pawmates" loading="lazy" />
+        <img src="assets/Logo-PhysioInq.svg" alt="Physio Inq" loading="lazy" />
+        <img src="assets/Logo-QuesteMoney.svg" alt="Queste Money" loading="lazy" />
+        <img src="assets/Logo-QuietGrowth.svg" alt="QuietGrowth" loading="lazy" />
+        <img src="assets/Logo-Semco.svg" alt="Semco" loading="lazy" />
+        <img src="assets/Logo-Star.svg" alt="Star" loading="lazy" />
+        <img src="assets/Logo-Ubank.svg" alt="Ubank" loading="lazy" />
+        <img src="assets/Logo-Westpac.svg" alt="Westpac" loading="lazy" />
+        <img src="assets/Logo-Woolworths.svg" alt="Woolworths" loading="lazy" />
+        <img src="assets/Logo-iungo.svg" alt="iungo" loading="lazy" />
+        <img src="assets/Logo-lawlab.svg" alt="Lawlab" loading="lazy" />
+        <img src="assets/Logo-myBeepr.svg" alt="myBeepr" loading="lazy" />
+        <img src="assets/Logo-xtend.svg" alt="Xtend" loading="lazy" />
+        <img src="assets/Logo-AvantMutual.svg" alt="" aria-hidden="true" loading="lazy" />
+        <img src="assets/Logo-Baker%27sDelight.svg" alt="" aria-hidden="true" loading="lazy" />
+        <img src="assets/Logo-CSIRO.svg" alt="" aria-hidden="true" loading="lazy" />
+        <img src="assets/Logo-Clover.svg" alt="" aria-hidden="true" loading="lazy" />
+        <img src="assets/Logo-Cohort-Global.svg" alt="" aria-hidden="true" loading="lazy" />
+        <img src="assets/Logo-CoverMore.svg" alt="" aria-hidden="true" loading="lazy" />
+        <img src="assets/Logo-Dehancer.svg" alt="" aria-hidden="true" loading="lazy" />
+        <img src="assets/Logo-Home-in.svg" alt="" aria-hidden="true" loading="lazy" />
+        <img src="assets/Logo-InvoCare.svg" alt="" aria-hidden="true" loading="lazy" />
+        <img src="assets/Logo-JXT.svg" alt="" aria-hidden="true" loading="lazy" />
+        <img src="assets/Logo-Kelly.svg" alt="" aria-hidden="true" loading="lazy" />
+        <img src="assets/Logo-LesMills.svg" alt="" aria-hidden="true" loading="lazy" />
+        <img src="assets/Logo-Mestudent.svg" alt="" aria-hidden="true" loading="lazy" />
+        <img src="assets/Logo-NZME.svg" alt="" aria-hidden="true" loading="lazy" />
+        <img src="assets/Logo-News-Corp-Australia.svg" alt="" aria-hidden="true" loading="lazy" />
+        <img src="assets/Logo-OROX.svg" alt="" aria-hidden="true" loading="lazy" />
+        <img src="assets/Logo-Pawmates.svg" alt="" aria-hidden="true" loading="lazy" />
+        <img src="assets/Logo-PhysioInq.svg" alt="" aria-hidden="true" loading="lazy" />
+        <img src="assets/Logo-QuesteMoney.svg" alt="" aria-hidden="true" loading="lazy" />
+        <img src="assets/Logo-QuietGrowth.svg" alt="" aria-hidden="true" loading="lazy" />
+        <img src="assets/Logo-Semco.svg" alt="" aria-hidden="true" loading="lazy" />
+        <img src="assets/Logo-Star.svg" alt="" aria-hidden="true" loading="lazy" />
+        <img src="assets/Logo-Ubank.svg" alt="" aria-hidden="true" loading="lazy" />
+        <img src="assets/Logo-Westpac.svg" alt="" aria-hidden="true" loading="lazy" />
+        <img src="assets/Logo-Woolworths.svg" alt="" aria-hidden="true" loading="lazy" />
+        <img src="assets/Logo-iungo.svg" alt="" aria-hidden="true" loading="lazy" />
+        <img src="assets/Logo-lawlab.svg" alt="" aria-hidden="true" loading="lazy" />
+        <img src="assets/Logo-myBeepr.svg" alt="" aria-hidden="true" loading="lazy" />
+        <img src="assets/Logo-xtend.svg" alt="" aria-hidden="true" loading="lazy" />
       </div>
     </div>
   </section>
