@@ -338,6 +338,23 @@ h1,h2,h3{font-family:var(--head);font-weight:600;letter-spacing:-.02em;line-heig
   linear-gradient(160deg,#1b1d22,#2a2d35);}
 
 /* =========================================================
+   SELECTED WORK — stacked scroll panels
+   ========================================================= */
+.projects{position:relative;z-index:2;background:var(--ink);}
+.project{position:sticky;top:0;height:100vh;overflow:hidden;display:flex;}
+.project-bg{position:absolute;inset:0;background-size:cover;background-position:center;transform:scale(1.04);}
+.project-scrim{position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,0,12,.28) 0%,rgba(8,0,12,0) 26%,rgba(8,0,12,0) 52%,rgba(8,0,12,.62) 100%);}
+.project-inner{position:relative;z-index:2;width:100%;display:grid;grid-template-rows:auto 1fr auto;padding-block:clamp(92px,12vh,132px);}
+.project-tags{justify-self:start;display:flex;flex-direction:column;align-items:flex-start;gap:10px;}
+.ptag{background:#12001b;color:#fff;font-family:var(--body);font-weight:500;font-size:clamp(13px,1vw,15px);letter-spacing:-.01em;padding:11px 22px;border-radius:100px;}
+.project-scroll{justify-self:end;align-self:center;font-family:var(--display);font-weight:400;letter-spacing:.06em;font-size:clamp(18px,2.1vw,30px);color:#fff;opacity:.9;}
+.project-title{justify-self:start;align-self:end;margin:0;font-family:var(--display);font-weight:400;text-transform:uppercase;color:#fff;font-size:clamp(2.4rem,6.8vw,6rem);line-height:.92;letter-spacing:.01em;max-width:15ch;}
+@media (max-width:620px){
+  .project-title{font-size:clamp(2.1rem,10vw,3.2rem);max-width:18ch;}
+  .project-scroll{font-size:15px;}
+}
+
+/* =========================================================
    APPROACH
    ========================================================= */
 .approach .work-head{margin-bottom:clamp(32px,5vw,52px);}
@@ -638,62 +655,59 @@ html.js .rise,html.js .reveal{opacity:1 !important;transform:none !important;}
     </div>
   </section>
 
-  <!-- WORK -->
-  <section class="section work" id="work">
-    <div class="container">
-      <div class="work-head">
-        <div>
-          <span class="eyebrow reveal">Selected work</span>
-          <h2 class="h-section reveal" style="margin-top:18px;">Products people open every day.</h2>
-        </div>
-        <a class="btn btn-ghost-ink reveal" href="#contact">Start yours <span class="arrow" aria-hidden="true">→</span></a>
+  <!-- SELECTED WORK — stacked scroll panels -->
+  <section class="projects" id="work" aria-label="Selected work">
+
+    <article class="project">
+      <div class="project-bg art art-1"></div>
+      <div class="project-scrim"></div>
+      <div class="project-inner container">
+        <div class="project-tags"><span class="ptag">Product Design</span><span class="ptag">iOS &amp; Android</span></div>
+        <span class="project-scroll" aria-hidden="true">(Scroll)</span>
+        <h3 class="project-title">Ledger — Consumer Banking Rebuild</h3>
       </div>
-      <div class="work-grid">
+    </article>
 
-        <article class="card reveal">
-          <div class="thumb"><div class="art art-1"></div><div class="blend"></div>
-            <span class="ix">01</span><span class="yr">2025</span></div>
-          <div class="card-body"><div class="ind">Fintech</div><h3>Ledger</h3>
-            <p>A consumer banking app rebuilt around clarity — onboarding cut from 9 steps to 3.</p></div>
-        </article>
-
-        <article class="card reveal">
-          <div class="thumb"><div class="art art-2"></div><div class="blend"></div>
-            <span class="ix">02</span><span class="yr">2025</span></div>
-          <div class="card-body"><div class="ind">Healthcare</div><h3>Vitals</h3>
-            <p>A patient platform connecting 40 clinics, designed for calm under real clinical load.</p></div>
-        </article>
-
-        <article class="card reveal">
-          <div class="thumb"><div class="art art-3"></div><div class="blend"></div>
-            <span class="ix">03</span><span class="yr">2024</span></div>
-          <div class="card-body"><div class="ind">Retail</div><h3>Marketplace</h3>
-            <p>A commerce rebuild that moved a 12-year-old catalogue onto a modern, fast storefront.</p></div>
-        </article>
-
-        <article class="card reveal">
-          <div class="thumb"><div class="art art-4"></div><div class="blend"></div>
-            <span class="ix">04</span><span class="yr">2024</span></div>
-          <div class="card-body"><div class="ind">Media</div><h3>Frame</h3>
-            <p>A streaming product and design system shipped across web, TV, and mobile in one language.</p></div>
-        </article>
-
-        <article class="card reveal">
-          <div class="thumb"><div class="art art-5"></div><div class="blend"></div>
-            <span class="ix">05</span><span class="yr">2023</span></div>
-          <div class="card-body"><div class="ind">Climate</div><h3>Terra</h3>
-            <p>A carbon dashboard that turns messy supplier data into decisions teams actually make.</p></div>
-        </article>
-
-        <article class="card reveal">
-          <div class="thumb"><div class="art art-6"></div><div class="blend"></div>
-            <span class="ix">06</span><span class="yr">2023</span></div>
-          <div class="card-body"><div class="ind">Logistics</div><h3>Depot</h3>
-            <p>An operations platform that gave dispatchers one screen instead of seven spreadsheets.</p></div>
-        </article>
-
+    <article class="project">
+      <div class="project-bg art art-2"></div>
+      <div class="project-scrim"></div>
+      <div class="project-inner container">
+        <div class="project-tags"><span class="ptag">UX / UI</span><span class="ptag">Web Development</span></div>
+        <span class="project-scroll" aria-hidden="true">(Scroll)</span>
+        <h3 class="project-title">Vitals — Connected Care Platform</h3>
       </div>
-    </div>
+    </article>
+
+    <article class="project">
+      <div class="project-bg art art-3"></div>
+      <div class="project-scrim"></div>
+      <div class="project-inner container">
+        <div class="project-tags"><span class="ptag">Product Strategy</span><span class="ptag">Engineering</span></div>
+        <span class="project-scroll" aria-hidden="true">(Scroll)</span>
+        <h3 class="project-title">Marketplace — Commerce Replatform</h3>
+      </div>
+    </article>
+
+    <article class="project">
+      <div class="project-bg art art-4"></div>
+      <div class="project-scrim"></div>
+      <div class="project-inner container">
+        <div class="project-tags"><span class="ptag">Design Systems</span><span class="ptag">Multi-platform</span></div>
+        <span class="project-scroll" aria-hidden="true">(Scroll)</span>
+        <h3 class="project-title">Frame — Multi-Screen Streaming</h3>
+      </div>
+    </article>
+
+    <article class="project">
+      <div class="project-bg art art-5"></div>
+      <div class="project-scrim"></div>
+      <div class="project-inner container">
+        <div class="project-tags"><span class="ptag">AI &amp; Data</span><span class="ptag">Web Development</span></div>
+        <span class="project-scroll" aria-hidden="true">(Scroll)</span>
+        <h3 class="project-title">Terra — Carbon Intelligence Dashboard</h3>
+      </div>
+    </article>
+
   </section>
 
   <!-- APPROACH -->
