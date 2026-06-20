@@ -980,27 +980,23 @@ html.js .rise,html.js .reveal{opacity:1 !important;transform:none !important;}
       }).join('');
     });
     var words = Array.from(document.querySelectorAll('.stext-word'));
-    /* assign per-word stagger delay within each line */
-    var prevTop = -1, idx = 0;
+    var vh = window.innerHeight;
+    /* each word gets a unique scroll trigger — words on the same line are spread
+       14px apart so they appear one at a time rather than all at once */
+    var prevTop = -1, lineIdx = 0;
     words.forEach(function(w){
-      var top = Math.round(w.getBoundingClientRect().top);
-      if(top !== prevTop){ idx = 0; prevTop = top; } else { idx++; }
-      w.dataset.stagger = (idx * 0.06).toFixed(2);
+      var r = w.getBoundingClientRect();
+      var docTop = r.top + window.scrollY;
+      var roundedTop = Math.round(r.top);
+      if(roundedTop !== prevTop){ lineIdx = 0; prevTop = roundedTop; } else { lineIdx++; }
+      w.dataset.trigger = docTop + r.height * 0.5 - vh * 0.62 + lineIdx * 14;
     });
     var raf = null;
     function update(){
       raf = null;
-      var line = window.innerHeight * 0.62;
+      var sy = window.scrollY;
       words.forEach(function(w){
-        var r = w.getBoundingClientRect();
-        var lit = r.top + r.height * 0.5 < line;
-        if(lit && !w.classList.contains('lit')){
-          w.style.transitionDelay = w.dataset.stagger + 's';
-          w.classList.add('lit');
-        } else if(!lit && w.classList.contains('lit')){
-          w.style.transitionDelay = '0s';
-          w.classList.remove('lit');
-        }
+        w.classList.toggle('lit', sy >= +w.dataset.trigger);
       });
     }
     window.addEventListener('scroll', function(){ if(!raf) raf = requestAnimationFrame(update); }, {passive:true});
