@@ -258,6 +258,10 @@ h1,h2,h3{font-family:var(--head);font-weight:600;letter-spacing:-.02em;line-heig
 .logos-viewport{overflow:hidden;-webkit-mask:linear-gradient(90deg,transparent 0,#000 7%,#000 93%,transparent 100%);mask:linear-gradient(90deg,transparent 0,#000 7%,#000 93%,transparent 100%);}
 .logos-track{display:flex;align-items:center;width:max-content;animation:logoscroll 110s linear infinite;}
 .logos-track img{height:clamp(22px,2.4vw,30px);width:auto;flex:none;margin-right:clamp(44px,6vw,90px);}
+.logos-track img[src*="iungo"]{height:clamp(38px,3.6vw,46px);}
+.logos-track img[src*="CSIRO"]{height:clamp(34px,3.2vw,42px);}
+.logos-track img[src*="JXT"]{height:clamp(30px,2.8vw,38px);}
+.logos-track img[src*="lawlab"]{height:clamp(34px,3.2vw,42px);}
 .logos:hover .logos-track{animation-play-state:paused;}
 @keyframes logoscroll{from{transform:translateX(0);}to{transform:translateX(-50%);}}
 @media (prefers-reduced-motion:reduce){.logos-track{animation:none;}}
