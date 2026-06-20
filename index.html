@@ -463,8 +463,7 @@ h1,h2,h3{font-family:var(--head);font-weight:600;letter-spacing:-.02em;line-heig
 .foot-grid{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:clamp(28px,4vw,48px);}
 .footer .brand{color:var(--paper);}
 .foot-brand{gap:12px;}
-.foot-brand .logo{width:42px;height:42px;}
-.foot-wordmark{font-family:var(--head);font-weight:600;font-size:18px;letter-spacing:-.01em;}
+.foot-full-logo{display:block;width:clamp(140px,14vw,200px);height:auto;}
 .foot-blurb{margin-top:18px;max-width:34ch;font-size:14.5px;line-height:1.6;}
 .foot-col h4{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--mist-ink);font-weight:600;margin:0 0 14px;}
 .foot-col a{display:block;color:rgba(244,236,251,.82);font-size:14.5px;padding:5px 0;width:max-content;transition:color .3s var(--ease);}
@@ -854,10 +853,7 @@ html.js .rise,html.js .reveal{opacity:1 !important;transform:none !important;}
     <div class="foot-grid">
       <div class="brand-cell">
         <a class="brand foot-brand" href="#top" aria-label="Life and Passing Digital — home">
-          <span class="logo" aria-hidden="true">
-            <img src="assets/LNP%20Logo%20Beacon.svg" alt="" width="42" height="42" />
-          </span>
-          <span class="foot-wordmark">Life and Passing Digital</span>
+          <img src="assets/LNP%20Full%20Logo%20Light.svg" alt="Life and Passing Digital" class="foot-full-logo" width="954" height="408" />
         </a>
         <p class="foot-blurb">A technology company that innovates and creates digital products which touch every human, every day.</p>
       </div>
