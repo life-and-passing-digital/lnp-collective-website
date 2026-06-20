@@ -292,9 +292,9 @@ h1,h2,h3{font-family:var(--head);font-weight:600;letter-spacing:-.02em;line-heig
 .stext-wrap{width:100%;}
 .stext-body{font-family:var(--body);font-size:clamp(22px,3.2vw,48px);font-weight:500;line-height:1.38;letter-spacing:-.025em;margin:0;color:#fff;}
 .stext-body+.stext-body{margin-top:1.1em;}
-.stext-word{display:inline;opacity:0;transition:opacity .35s ease;}
-.stext-word.lit{opacity:1;}
-@media(prefers-reduced-motion:reduce){.stext-word{opacity:1;transition:none;}}
+.stext-word{display:inline;opacity:0;filter:blur(8px);transition:opacity .5s ease,filter .5s ease;}
+.stext-word.lit{opacity:1;filter:blur(0);}
+@media(prefers-reduced-motion:reduce){.stext-word{opacity:1;filter:none;transition:none;}}
 
 /* =========================================================
    CAPABILITIES INDEX
