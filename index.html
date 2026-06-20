@@ -828,18 +828,18 @@ html.js .rise,html.js .reveal{opacity:1 !important;transform:none !important;}
     });
   }
 
-  /* hero parallax — each word drifts at a different speed on scroll */
+  /* hero parallax — each word lags behind scroll at a different depth */
   if(!reduce){
     var heroRows = [
-      { el: document.querySelector('.hero-row-top .hero-word'),  speed: 0.28 },
-      { el: document.querySelector('.hero-row-band .hero-word'), speed: 0.16 },
-      { el: document.querySelector('.hero-word-end'),            speed: 0.07 }
+      { el: document.querySelector('.hero-row-top .hero-word'),  speed: 0.38 },
+      { el: document.querySelector('.hero-row-band .hero-word'), speed: 0.22 },
+      { el: document.querySelector('.hero-word-end'),            speed: 0.10 }
     ].filter(function(r){ return r.el; });
     var heroRaf = null;
     var heroScroll = function(){
       heroRaf = null;
       var y = window.scrollY;
-      heroRows.forEach(function(r){ r.el.style.transform = 'translateY('+(-y*r.speed)+'px)'; });
+      heroRows.forEach(function(r){ r.el.style.transform = 'translateY('+(y*r.speed)+'px)'; });
     };
     window.addEventListener('scroll', function(){
       if(!heroRaf) heroRaf = requestAnimationFrame(heroScroll);
