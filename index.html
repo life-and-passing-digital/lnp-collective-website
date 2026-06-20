@@ -251,6 +251,27 @@ h1,h2,h3{font-family:var(--head);font-weight:600;letter-spacing:-.02em;line-heig
 @media (prefers-reduced-motion:reduce){.logos-track{animation:none;}}
 
 /* =========================================================
+   SKILLS / STATS
+   ========================================================= */
+.stats{background:#fff;}
+.stats-split{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.12fr);gap:clamp(36px,5vw,84px);align-items:center;}
+.stats-media{border-radius:20px;overflow:hidden;align-self:stretch;}
+.stats-media img{display:block;width:100%;height:100%;object-fit:cover;}
+.stats-title{font-family:var(--head);font-weight:600;color:var(--ink);font-size:clamp(1.7rem,2.7vw,2.5rem);line-height:1.12;letter-spacing:-.02em;max-width:18ch;margin:0;}
+.stats-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(30px,3.6vw,52px) clamp(24px,3vw,44px);margin-top:clamp(34px,4.4vw,56px);}
+.stat-num{display:block;font-family:var(--head);font-weight:700;font-size:clamp(2.7rem,4.6vw,4rem);line-height:1;letter-spacing:-.03em;font-variant-numeric:tabular-nums;
+  background:linear-gradient(180deg,#9D4EDD 0%,var(--violet) 100%);-webkit-background-clip:text;background-clip:text;color:transparent;}
+.stat-label{margin:14px 0 0;color:var(--ink);opacity:.6;font-family:var(--body);font-size:clamp(14px,1.05vw,16px);line-height:1.5;max-width:26ch;}
+@media (max-width:860px){
+  .stats-split{grid-template-columns:1fr;gap:clamp(28px,5vw,40px);}
+  .stats-media img{max-height:60vh;}
+}
+@media (max-width:480px){
+  .stats-grid{grid-template-columns:1fr;gap:30px;}
+  .stat-label{max-width:34ch;}
+}
+
+/* =========================================================
    SCROLL TEXT
    ========================================================= */
 .stext-outer{position:relative;z-index:2;background:var(--ink);padding-block:clamp(72px,11vw,148px);}
@@ -593,6 +614,36 @@ html.js .rise,html.js .reveal{opacity:1 !important;transform:none !important;}
     </div>
   </section>
 
+  <!-- SKILLS / STATS -->
+  <section class="section stats" aria-label="Our expertise in numbers">
+    <div class="container stats-split">
+      <div class="stats-media reveal">
+        <img src="assets/img_skills_stats.webp" alt="Designer workspace with code, web design and mobile mockups across multiple screens" loading="lazy" />
+      </div>
+      <div class="stats-content">
+        <h2 class="stats-title reveal">The breadth of our skilled expertise and knowledge</h2>
+        <div class="stats-grid">
+          <div class="stat reveal">
+            <span class="stat-num" data-count="460" data-prefix="$" data-suffix="M+">$460M+</span>
+            <p class="stat-label">Worth of programs led, including acquisition integration</p>
+          </div>
+          <div class="stat reveal">
+            <span class="stat-num" data-count="100" data-suffix="+">100+</span>
+            <p class="stat-label">Web and app product solutions delivered</p>
+          </div>
+          <div class="stat reveal">
+            <span class="stat-num" data-count="100" data-suffix="+">100+</span>
+            <p class="stat-label">Web and app product solutions delivered</p>
+          </div>
+          <div class="stat reveal">
+            <span class="stat-num" data-count="100" data-suffix="+">100+</span>
+            <p class="stat-label">Web and app product solutions delivered</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- LOGO MARQUEE -->
   <section class="logos" aria-label="Organisations we have built for">
     <div class="logos-viewport">
@@ -858,6 +909,33 @@ html.js .rise,html.js .reveal{opacity:1 !important;transform:none !important;}
       });
     }, {rootMargin:'0px 0px -10% 0px', threshold:.12});
     reveals.forEach(function(el){ io.observe(el); });
+  }
+
+  /* stat count-up (ubank-style) */
+  var stats = document.querySelectorAll('.stat-num');
+  if(stats.length){
+    var render = function(el, val){ el.textContent = (el.dataset.prefix||'') + val.toLocaleString() + (el.dataset.suffix||''); };
+    if(reduce || !('IntersectionObserver' in window)){
+      stats.forEach(function(el){ render(el, +el.dataset.count); });
+    } else {
+      var countUp = function(el){
+        var target = +el.dataset.count, dur = 1700, start = null;
+        var step = function(ts){
+          if(!start) start = ts;
+          var p = Math.min((ts - start) / dur, 1);
+          var eased = 1 - Math.pow(1 - p, 3);
+          render(el, Math.round(eased * target));
+          if(p < 1) requestAnimationFrame(step);
+        };
+        requestAnimationFrame(step);
+      };
+      var sio = new IntersectionObserver(function(entries){
+        entries.forEach(function(e){
+          if(e.isIntersecting){ countUp(e.target); sio.unobserve(e.target); }
+        });
+      }, {threshold:.4});
+      stats.forEach(function(el){ render(el, 0); sio.observe(el); });
+    }
   }
 
 })();
