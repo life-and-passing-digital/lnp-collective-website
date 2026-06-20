@@ -217,7 +217,8 @@ h1,h2,h3{font-family:var(--head);font-weight:600;letter-spacing:-.02em;line-heig
 .hero-row{display:flex;align-items:center;padding-inline:clamp(20px,5.5vw,80px);flex:1;min-height:0;}
 .hero-row-top{justify-content:flex-start;}
 .hero-row-band{justify-content:center;background:var(--violet);}
-.hero-row-bottom{justify-content:space-between;align-items:flex-end;gap:clamp(16px,3vw,40px);}
+.hero-row-bottom{align-items:stretch;}
+.hero-bottom-group{display:flex;width:100%;justify-content:space-between;align-items:flex-end;gap:clamp(16px,3vw,40px);}
 .hero-word{
   font-family:var(--display);font-weight:400;
   font-size:clamp(58px,19vh,260px);
@@ -232,20 +233,21 @@ h1,h2,h3{font-family:var(--head);font-weight:600;letter-spacing:-.02em;line-heig
 .hero-lede{
   font-family:var(--body);font-weight:500;color:#fff;
   font-size:clamp(15px,1.15vw,18px);line-height:1.62;letter-spacing:-.01em;
-  max-width:30ch;margin:0;align-self:flex-end;
+  max-width:30ch;margin:0;
 }
 @media (max-width:720px){
-  .hero-row-bottom{flex-direction:column-reverse;align-items:flex-start;gap:clamp(18px,4vw,28px);}
-  .hero-lede{max-width:40ch;align-self:auto;}
+  .hero-bottom-group{flex-direction:column-reverse;align-items:flex-start;gap:clamp(18px,4vw,28px);}
+  .hero-lede{max-width:40ch;}
 }
 
 /* =========================================================
    SCROLL TEXT
    ========================================================= */
 .stext-outer{position:relative;background:var(--ink);height:380vh;}
-.stext-sticky{position:sticky;top:0;height:100vh;display:flex;align-items:center;overflow:hidden;}
-.stext-wrap{width:100%;max-width:820px;}
-.stext-body{font-family:var(--body);font-size:clamp(22px,3.2vw,48px);font-weight:500;line-height:1.38;letter-spacing:-.025em;margin:0;}
+.stext-sticky{position:sticky;top:0;height:100vh;display:flex;align-items:center;}
+.stext-wrap{width:100%;}
+.stext-body{font-family:var(--body);font-size:clamp(22px,3.5vw,52px);font-weight:500;line-height:1.38;letter-spacing:-.025em;margin:0;}
+.stext-body+.stext-body{margin-top:1.1em;}
 .sw{color:rgba(255,255,255,.14);transition:color .1s ease;display:inline;}
 .sw.lit{color:#fff;}
 
@@ -491,12 +493,14 @@ html.js .rise,html.js .reveal{opacity:1 !important;transform:none !important;}
         <div class="hero-row hero-row-top"><span class="hero-word" data-parallax="0.1" data-parallax-axis="x">Your vision.</span></div>
         <div class="hero-row hero-row-band"><span class="hero-word" data-parallax="-0.08" data-parallax-axis="x">Made possible.</span></div>
         <div class="hero-row hero-row-bottom">
-          <p class="hero-lede">Life and Passing Digital is a technology company that innovates and creates solutions that touch every human, every day.</p>
-          <span class="hero-word hero-word-end" data-parallax="0.12" data-parallax-axis="x">Through us.<span class="hero-arrow">
-            <svg viewBox="0 0 40 84" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M20 3 V72 M6 57 L20 73 L34 57" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </span></span>
+          <div class="hero-bottom-group" data-parallax="0.12" data-parallax-axis="x">
+            <p class="hero-lede">Life and Passing Digital is a technology company that innovates and creates solutions that touch every human, every day.</p>
+            <span class="hero-word hero-word-end">Through us.<span class="hero-arrow">
+              <svg viewBox="0 0 40 84" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M20 3 V72 M6 57 L20 73 L34 57" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span></span>
+          </div>
         </div>
       </div>
     </div>
@@ -506,9 +510,9 @@ html.js .rise,html.js .reveal{opacity:1 !important;transform:none !important;}
   <section class="stext-outer" id="story" aria-label="Our story">
     <div class="stext-sticky">
       <div class="container stext-wrap">
-        <p class="stext-body">
-<span class="sw">Life</span> <span class="sw">and</span> <span class="sw">Passing</span> <span class="sw">Digital</span> <span class="sw">has</span> <span class="sw">been</span> <span class="sw">building</span> <span class="sw">technology</span> <span class="sw">that</span> <span class="sw">matters.</span> <span class="sw">Not</span> <span class="sw">to</span> <span class="sw">ship</span> <span class="sw">and</span> <span class="sw">move</span> <span class="sw">on,</span> <span class="sw">but</span> <span class="sw">to</span> <span class="sw">create</span> <span class="sw">and</span> <span class="sw">operate</span> <span class="sw">solutions</span> <span class="sw">for</span> <span class="sw">the</span> <span class="sw">long</span> <span class="sw">term.<br><br></span><span class="sw">The</span> <span class="sw">transformations</span> <span class="sw">we</span> <span class="sw">make</span> <span class="sw">go</span> <span class="sw">deep</span> <span class="sw">—</span> <span class="sw">designed</span> <span class="sw">to</span> <span class="sw">accelerate</span> <span class="sw">innovation,</span> <span class="sw">elevate</span> <span class="sw">every</span> <span class="sw">experience,</span> <span class="sw">and</span> <span class="sw">strengthen</span> <span class="sw">the</span> <span class="sw">businesses</span> <span class="sw">we</span> <span class="sw">partner</span> <span class="sw">with.<br><br></span><span class="sw">Hierarchy</span> <span class="sw">is</span> <span class="sw">minimal</span> <span class="sw">and</span> <span class="sw">teams</span> <span class="sw">are</span> <span class="sw">small</span> <span class="sw">and</span> <span class="sw">talent-dense.</span> <span class="sw">We</span> <span class="sw">build</span> <span class="sw">with</span> <span class="sw">the</span> <span class="sw">ambition,</span> <span class="sw">agility,</span> <span class="sw">and</span> <span class="sw">urgency</span> <span class="sw">of</span> <span class="sw">a</span> <span class="sw">startup</span> <span class="sw">—</span> <span class="sw">powered</span> <span class="sw">by</span> <span class="sw">a</span> <span class="sw">vision</span> <span class="sw">of</span> <span class="sw">lasting</span> <span class="sw">change.</span>
-        </p>
+        <p class="stext-body"><span class="sw">Since</span> <span class="sw">2014,</span> <span class="sw">we've</span> <span class="sw">been</span> <span class="sw">collectively</span> <span class="sw">building</span> <span class="sw">digital</span> <span class="sw">solutions</span> <span class="sw">for</span> <span class="sw">banking</span> <span class="sw">and</span> <span class="sw">financial</span> <span class="sw">services,</span> <span class="sw">recruitment,</span> <span class="sw">media,</span> <span class="sw">bereavement</span> <span class="sw">care,</span> <span class="sw">medical,</span> <span class="sw">online</span> <span class="sw">conveyancing,</span> <span class="sw">AI</span> <span class="sw">tools,</span> <span class="sw">environmental</span> <span class="sw">services,</span> <span class="sw">energy</span> <span class="sw">and</span> <span class="sw">heavy</span> <span class="sw">industry.</span></p>
+        <p class="stext-body"><span class="sw">The</span> <span class="sw">transformations</span> <span class="sw">we</span> <span class="sw">make</span> <span class="sw">often</span> <span class="sw">deepen</span> <span class="sw">product</span> <span class="sw">experience,</span> <span class="sw">designed</span> <span class="sw">to</span> <span class="sw">speed</span> <span class="sw">innovation,</span> <span class="sw">drive</span> <span class="sw">customer</span> <span class="sw">adoption</span> <span class="sw">and</span> <span class="sw">strengthen</span> <span class="sw">business</span> <span class="sw">performance</span> <span class="sw">for</span> <span class="sw">the</span> <span class="sw">long</span> <span class="sw">term.</span></p>
+        <p class="stext-body"><span class="sw">Our</span> <span class="sw">structure</span> <span class="sw">is</span> <span class="sw">minimal</span> <span class="sw">with</span> <span class="sw">a</span> <span class="sw">small</span> <span class="sw">and</span> <span class="sw">talent-dense</span> <span class="sw">team.</span> <span class="sw">We</span> <span class="sw">operate</span> <span class="sw">established</span> <span class="sw">products</span> <span class="sw">with</span> <span class="sw">the</span> <span class="sw">ambition,</span> <span class="sw">agility,</span> <span class="sw">and</span> <span class="sw">urgency</span> <span class="sw">of</span> <span class="sw">a</span> <span class="sw">startup.</span></p>
       </div>
     </div>
   </section>
