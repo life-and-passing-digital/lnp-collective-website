@@ -435,7 +435,8 @@ h1,h2,h3{font-family:var(--head);font-weight:600;letter-spacing:-.02em;line-heig
 .cta-portrait:first-child{left:24px;}
 .cta-portrait.cta-portrait--right{right:24px;}
 .cta-body{position:relative;z-index:3;display:flex;flex-direction:column;align-items:center;text-align:center;
-  gap:clamp(20px,2.8vw,36px);padding-inline:368px;width:100%;}
+  gap:18px;padding-inline:368px;width:100%;}
+.cta .btn-pill{flex-shrink:0;margin-top:clamp(14px,2vw,28px);}
 .cta h2{
   margin:0;
   font-family:var(--display);font-weight:400;font-size:min(104px,7.8vw);line-height:.8;letter-spacing:.01em;text-transform:uppercase;
@@ -448,7 +449,7 @@ h1,h2,h3{font-family:var(--head);font-weight:600;letter-spacing:-.02em;line-heig
 }
 @keyframes fillshift{0%,100%{background-position:0% 50%;}50%{background-position:100% 50%;}}
 .cta-sub{max-width:42ch;margin:0;color:var(--mist-ink);font-family:var(--uncut);font-size:clamp(16px,1.4vw,20px);line-height:1.62;}
-.cta .btn-pill{flex-shrink:0;}
+
 @media (max-width:860px){
   .cta-portrait{display:none;}
   .cta-body{padding-inline:clamp(20px,5vw,40px);}
