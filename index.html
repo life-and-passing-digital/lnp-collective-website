@@ -396,6 +396,22 @@ h1,h2,h3{font-family:var(--head);font-weight:600;letter-spacing:-.02em;line-heig
 }
 
 /* =========================================================
+   PROCESS — scroll-zoom words (Ideate / Innovate / Accelerate)
+   ========================================================= */
+.zoomwords{position:relative;z-index:2;background:#fff;height:400vh;}
+.zoomwords-pin{position:sticky;top:0;height:100vh;overflow:hidden;}
+.zoomword{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;opacity:0;will-change:transform,opacity;}
+.zoomword span{font-family:var(--uncut);font-weight:500;color:var(--ink);font-size:clamp(3.4rem,13vw,15rem);line-height:1;letter-spacing:-.03em;white-space:nowrap;}
+@media (max-width:720px){
+  .zoomwords{height:340vh;}
+}
+@media (prefers-reduced-motion:reduce){
+  .zoomwords{height:auto;}
+  .zoomwords-pin{position:static;height:auto;}
+  .zoomword{position:relative;inset:auto;opacity:1;min-height:80vh;}
+}
+
+/* =========================================================
    APPROACH
    ========================================================= */
 .approach .work-head{margin-bottom:clamp(32px,5vw,52px);}
@@ -777,6 +793,15 @@ html.js .rise,html.js .reveal{opacity:1 !important;transform:none !important;}
 
   </section>
 
+  <!-- PROCESS — scroll-zoom words -->
+  <section class="zoomwords" aria-label="Our process">
+    <div class="zoomwords-pin">
+      <div class="zoomword" data-zoom><span>Ideate</span></div>
+      <div class="zoomword" data-zoom><span>Innovate</span></div>
+      <div class="zoomword" data-zoom><span>Accelerate</span></div>
+    </div>
+  </section>
+
   <!-- APPROACH -->
   <section class="section approach" id="approach">
     <div class="container">
@@ -908,6 +933,44 @@ html.js .rise,html.js .reveal{opacity:1 !important;transform:none !important;}
     window.addEventListener('scroll', function(){
       if(!heroRaf) heroRaf = requestAnimationFrame(heroScroll);
     }, {passive:true});
+  }
+
+  /* process scroll-zoom words (eldiora-style) */
+  var zoomSection = document.querySelector('.zoomwords');
+  if(zoomSection && !reduce){
+    var zoomWords = Array.prototype.slice.call(zoomSection.querySelectorAll('.zoomword'));
+    var zn = zoomWords.length;
+    var zoomRaf = null;
+    var onZoom = function(){
+      zoomRaf = null;
+      var rect = zoomSection.getBoundingClientRect();
+      var total = zoomSection.offsetHeight - window.innerHeight;
+      var scrolled = Math.min(Math.max(-rect.top, 0), total);
+      var progress = total > 0 ? scrolled / total : 0;   /* 0..1 across whole section */
+      var seg = 1 / zn;
+      zoomWords.forEach(function(word, i){
+        var local = (progress - i * seg) / seg;           /* 0..1 within this word's window */
+        var scale, opacity;
+        if(local <= 0 || local >= 1){
+          scale = local <= 0 ? 0.6 : 2.2;
+          opacity = 0;
+        } else {
+          scale = 0.6 + local * 1.6;                      /* 0.6 -> 2.2 */
+          if(local < 0.25)       opacity = local / 0.25;          /* fade in  */
+          else if(local > 0.7)   opacity = (1 - local) / 0.3;     /* fade out */
+          else                   opacity = 1;                     /* hold     */
+        }
+        word.style.transform = 'scale(' + scale.toFixed(3) + ')';
+        word.style.opacity = opacity.toFixed(3);
+      });
+    };
+    window.addEventListener('scroll', function(){
+      if(!zoomRaf) zoomRaf = requestAnimationFrame(onZoom);
+    }, {passive:true});
+    window.addEventListener('resize', function(){
+      if(!zoomRaf) zoomRaf = requestAnimationFrame(onZoom);
+    }, {passive:true});
+    onZoom();
   }
 
   /* scroll reveal */
