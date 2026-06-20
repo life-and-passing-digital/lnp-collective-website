@@ -423,13 +423,15 @@ h1,h2,h3{font-family:var(--head);font-weight:600;letter-spacing:-.02em;line-heig
 .step p{margin:12px 0 0;color:var(--mist);font-size:14.5px;line-height:1.55;}
 
 /* =========================================================
-   SHOWCASE — media-fill type (ubank-style)
+   CTA — gradient headline + centered button (combined)
    ========================================================= */
-.showcase{background:var(--ink);position:relative;z-index:2;overflow:hidden;text-align:center;}
-.showcase-lock{display:flex;flex-direction:column;align-items:center;margin:0;}
-.showcase-line{
-  font-family:var(--display);font-weight:400;text-transform:uppercase;
-  font-size:clamp(58px,14.5vw,210px);line-height:.82;letter-spacing:.012em;
+.cta{background:var(--ink);color:var(--paper);position:relative;z-index:2;overflow:hidden;text-align:center;}
+.cta::after{content:"";position:absolute;inset:auto -10% -55% 25%;height:120%;z-index:0;pointer-events:none;
+  background:radial-gradient(50% 50% at 50% 50%, rgba(202,112,255,.18), transparent 70%);}
+.cta .inner{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;gap:clamp(24px,3.4vw,40px);}
+.cta h2{
+  margin:0;max-width:18ch;
+  font-family:var(--head);font-weight:600;font-size:clamp(2.4rem,6.4vw,5.4rem);letter-spacing:-.04em;line-height:1.0;
   background-image:linear-gradient(115deg,#CA70FF 0%,#F4D2FF 20%,#7B2FA8 42%,#CA70FF 66%,#EBA8FF 100%);
   background-size:160% 160%;background-position:0% 50%;
   -webkit-background-clip:text;background-clip:text;
@@ -437,19 +439,9 @@ h1,h2,h3{font-family:var(--head);font-weight:600;letter-spacing:-.02em;line-heig
   animation:fillshift 16s ease-in-out infinite;
 }
 @keyframes fillshift{0%,100%{background-position:0% 50%;}50%{background-position:100% 50%;}}
-.showcase-sub{margin:clamp(26px,4vw,46px) auto 0;max-width:48ch;color:var(--mist-ink);font-size:clamp(16px,1.4vw,20px);line-height:1.62;}
-
-/* =========================================================
-   CTA
-   ========================================================= */
-.cta{background:var(--ink);color:var(--paper);position:relative;z-index:2;overflow:hidden;}
-.cta::after{content:"";position:absolute;inset:auto -10% -60% 30%;height:120%;z-index:0;pointer-events:none;
-  background:radial-gradient(50% 50% at 50% 50%, rgba(202,112,255,.18), transparent 70%);}
-.cta .inner{position:relative;z-index:1;display:grid;gap:clamp(28px,4vw,42px);}
-.cta h2{font-size:clamp(2.4rem,6.4vw,5.4rem);letter-spacing:-.04em;line-height:.98;max-width:16ch;}
-.cta .row2{display:flex;flex-wrap:wrap;gap:18px;align-items:center;}
-.cta .mailto{font-family:var(--mono);font-size:14px;letter-spacing:.04em;color:var(--mist-ink);border-bottom:1px solid var(--line-ink);padding-bottom:3px;transition:color .3s var(--ease),border-color .3s var(--ease);}
-.cta .mailto:hover{color:var(--paper);border-color:var(--bronze);}
+.cta-sub{max-width:52ch;margin:0 auto;color:var(--mist-ink);font-size:clamp(16px,1.4vw,20px);line-height:1.62;}
+.cta .btn-pill{margin-top:clamp(6px,1vw,12px);}
+@media (prefers-reduced-motion:reduce){.cta h2{animation:none;}}
 
 /* =========================================================
    FOOTER
@@ -826,26 +818,12 @@ html.js .rise,html.js .reveal{opacity:1 !important;transform:none !important;}
     </div>
   </section>
 
-  <!-- SHOWCASE -->
-  <section class="section showcase" aria-label="Every human, every day">
-    <div class="container">
-      <h2 class="showcase-lock reveal">
-        <span class="showcase-line">Every human.</span>
-        <span class="showcase-line">Every day.</span>
-      </h2>
-      <p class="showcase-sub reveal">From the first sketch to the millionth tap, we build digital products people return to — and keep.</p>
-    </div>
-  </section>
-
   <!-- CTA -->
   <section class="section cta" id="contact">
     <div class="container inner">
-      <span class="eyebrow on-ink reveal">Let's talk</span>
       <h2 class="reveal">Let's build something worth keeping.</h2>
-      <div class="row2 reveal">
-        <a class="btn btn-on-ink" href="mailto:hello@lnpcollective.com">Start a project <span class="arrow" aria-hidden="true">→</span></a>
-        <a class="mailto" href="mailto:hello@lnpcollective.com">hello@lnpcollective.com</a>
-      </div>
+      <p class="cta-sub reveal">From the first sketch to the millionth tap, we build digital products people return to — and keep.</p>
+      <a class="btn-pill reveal" href="mailto:hello@lnpcollective.com">Start a project</a>
     </div>
   </section>
 
