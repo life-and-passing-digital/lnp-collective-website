@@ -5,8 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Life and Passing Digital | Your vision, made possible through us.</title>
 <meta name="description" content="Life and Passing Digital is a technology company that innovates and creates digital products which touch every human, every day." />
-<link rel="icon" type="image/svg+xml" href="assets/LNP%20Logo%20Beacon.svg" />
-<link rel="apple-touch-icon" href="assets/LNP%20Logo%20Beacon.svg" />
+<link rel="icon" type="image/svg+xml" href="assets/LNP%20Logo%20Beacon%20Light.svg" />
+<link rel="apple-touch-icon" href="assets/LNP%20Logo%20Beacon%20Light.svg" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
@@ -263,15 +263,16 @@ h1,h2,h3{font-family:var(--head);font-weight:600;letter-spacing:-.02em;line-heig
   padding:clamp(22px,2.6vw,30px) 0;border-bottom:1px solid var(--line);
   transition:padding-left .45s var(--ease);
 }
-.row .no{font-family:var(--mono);font-size:13px;color:var(--mist);padding-top:6px;transition:color .35s var(--ease);}
+.row .cap-ic{align-self:start;padding-top:clamp(2px,.5vw,8px);}
+.row .cap-ic img{display:block;width:clamp(50px,5vw,64px);height:auto;}
 .row h3{font-size:clamp(1.4rem,2.4vw,2rem);letter-spacing:-.025em;font-weight:500;transition:transform .45s var(--ease-out);}
-.row p{margin:12px 0 0;color:var(--mist);max-width:52ch;font-size:15.5px;}
-.row .tags{margin-top:14px;display:flex;flex-wrap:wrap;gap:8px;}
-.tag{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--mist);border:1px solid var(--line);padding:5px 10px;border-radius:100px;transition:border-color .35s var(--ease), color .35s var(--ease);}
+.row p{margin:12px 0 0;color:var(--mist);max-width:52ch;font-size:15.5px;line-height:1.5;}
+.row .tags{margin-top:18px;display:flex;flex-wrap:wrap;gap:8px;}
+.tag{font-family:var(--body);font-weight:500;font-size:13px;letter-spacing:-.01em;color:var(--ink);background:#EFEDF0;border:0;padding:7px 14px;border-radius:100px;transition:background .35s var(--ease);}
 .row:hover{padding-left:14px;}
-.row:hover .no{color:var(--bronze);}
 .row:hover h3{transform:translateX(2px);}
-.row:hover .tag{border-color:var(--line-strong);color:var(--ink);}
+.row:hover .tag{background:var(--paper-2);}
+.cap-title{font-family:var(--display);font-weight:400;font-size:clamp(2.6rem,5.4vw,4.3rem);line-height:.95;letter-spacing:.012em;text-transform:uppercase;margin-top:0;}
 
 /* =========================================================
    WORK (dark gallery)
@@ -516,50 +517,49 @@ html.js .rise,html.js .reveal{opacity:1 !important;transform:none !important;}
   <section class="section" id="capabilities">
     <div class="container split">
       <div class="split-head">
-        <span class="eyebrow reveal">What we do</span>
-        <h2 class="h-section reveal">One team for the whole arc — strategy through scale.</h2>
-        <p class="reveal">We keep design, engineering, and strategy under one roof, so the
+        <h2 class="cap-title reveal">One team from strategy to scale</h2>
+        <p class="reveal">We keep design, engineering and strategy under one roof, so the
           thinking that shapes a product is the same thinking that ships it.</p>
       </div>
       <div class="index">
         <div class="row reveal">
-          <div class="no">01</div>
+          <div class="cap-ic"><img src="assets/icon-product-strategy.svg" alt="" width="64" height="64" /></div>
           <div>
             <h3>Product strategy</h3>
-            <p>Positioning, roadmaps, and the hard scoping calls — made before a single line of code is written.</p>
-            <div class="tags"><span class="tag">Research</span><span class="tag">Roadmapping</span><span class="tag">Prototyping</span></div>
+            <p>Positioning, roadmap, and the hard scoping calls — made before a single line of code is written.</p>
+            <div class="tags"><span class="tag">Business optimisation</span><span class="tag">Market positioning</span><span class="tag">M&amp;A integration</span><span class="tag">Roadmap</span></div>
           </div>
         </div>
         <div class="row reveal">
-          <div class="no">02</div>
+          <div class="cap-ic"><img src="assets/icon-design.svg" alt="" width="64" height="64" /></div>
           <div>
             <h3>Design</h3>
             <p>Brand, interface, and motion built on a systems backbone, so the tenth screen looks as considered as the first.</p>
-            <div class="tags"><span class="tag">Brand</span><span class="tag">UX / UI</span><span class="tag">Design systems</span></div>
+            <div class="tags"><span class="tag">UX / UI</span><span class="tag">Research</span><span class="tag">Design systems</span><span class="tag">Rapid prototyping</span><span class="tag">Branding</span></div>
           </div>
         </div>
         <div class="row reveal">
-          <div class="no">03</div>
+          <div class="cap-ic"><img src="assets/icon-engineering.svg" alt="" width="64" height="64" /></div>
           <div>
             <h3>Engineering</h3>
-            <p>Web, mobile, and platform builds that hold up in production — typed, tested, and handed over clean.</p>
-            <div class="tags"><span class="tag">Web</span><span class="tag">iOS &amp; Android</span><span class="tag">Platform</span></div>
+            <p>Brand, interface, and motion built on a systems backbone, so the tenth screen looks as considered as the first.</p>
+            <div class="tags"><span class="tag">iOS &amp; Android</span><span class="tag">Web</span><span class="tag">Platform</span><span class="tag">DevOps &amp; Cloud</span><span class="tag">Database &amp; ORM</span><span class="tag">ERP. CRM &amp; CMS integrations</span><span class="tag">Testing</span><span class="tag">Cyber security</span></div>
           </div>
         </div>
         <div class="row reveal">
-          <div class="no">04</div>
+          <div class="cap-ic"><img src="assets/icon-ai-data.svg" alt="" width="64" height="64" /></div>
           <div>
             <h3>AI &amp; data</h3>
             <p>Practical machine learning and data products, shipped responsibly and measured against real outcomes.</p>
-            <div class="tags"><span class="tag">Applied ML</span><span class="tag">Data products</span><span class="tag">Evals</span></div>
+            <div class="tags"><span class="tag">Applied ML</span><span class="tag">AI Agents</span><span class="tag">Data</span><span class="tag">Rapid prototyping</span><span class="tag">Branding</span></div>
           </div>
         </div>
         <div class="row reveal">
-          <div class="no">05</div>
+          <div class="cap-ic"><img src="assets/icon-growth.svg" alt="" width="64" height="64" /></div>
           <div>
             <h3>Growth</h3>
             <p>Instrumentation, experiments, and the retention loops that quietly compound after launch day.</p>
-            <div class="tags"><span class="tag">Analytics</span><span class="tag">Experiments</span><span class="tag">Lifecycle</span></div>
+            <div class="tags"><span class="tag">Analytics</span><span class="tag">Performance tracking</span><span class="tag">Lifecycle</span><span class="tag">Campaign marketing</span><span class="tag">Social media</span><span class="tag">Content creation</span><span class="tag">SEO &amp; AEO</span></div>
           </div>
         </div>
       </div>
