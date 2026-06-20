@@ -292,6 +292,9 @@ h1,h2,h3{font-family:var(--head);font-weight:600;letter-spacing:-.02em;line-heig
 .stext-wrap{width:100%;}
 .stext-body{font-family:var(--body);font-size:clamp(22px,3.2vw,48px);font-weight:500;line-height:1.38;letter-spacing:-.025em;margin:0;color:#fff;}
 .stext-body+.stext-body{margin-top:1.1em;}
+.stext-word{display:inline;color:rgba(255,255,255,.18);transition:color .35s ease;}
+.stext-word.lit{color:#fff;}
+@media(prefers-reduced-motion:reduce){.stext-word{color:#fff;transition:none;}}
 
 /* =========================================================
    CAPABILITIES INDEX
@@ -589,7 +592,7 @@ html.js .rise,html.js .reveal{opacity:1 !important;transform:none !important;}
 
   <!-- OUR PURPOSE -->
   <section class="stext-outer" id="story" aria-label="Our story">
-    <div class="container stext-wrap reveal">
+    <div class="container stext-wrap">
       <p class="stext-body">Since 2014, we've been collectively building digital solutions for banking and financial services, recruitment, media, bereavement care, medical, online conveyancing, AI tools, environmental services, energy and heavy industry.</p>
       <p class="stext-body">The transformations we make often deepen product experience, designed to speed innovation, drive customer adoption and strengthen business performance for the long term.</p>
       <p class="stext-body">Our structure is minimal with a small and talent-dense team. We operate established products with the ambition, agility, and urgency of a startup.</p>
@@ -966,6 +969,29 @@ html.js .rise,html.js .reveal{opacity:1 !important;transform:none !important;}
     }, {passive:true});
     onZoom();
   }
+
+  /* stext word-by-word scroll highlight (bendingspoons style) */
+  (function(){
+    var bodies = document.querySelectorAll('.stext-body');
+    if(!bodies.length || reduce) return;
+    bodies.forEach(function(p){
+      p.innerHTML = p.innerHTML.split(/(\s+)/).map(function(tok){
+        return /^\s+$/.test(tok) ? tok : '<span class="stext-word">'+tok+'</span>';
+      }).join('');
+    });
+    var words = document.querySelectorAll('.stext-word');
+    var raf = null;
+    function update(){
+      raf = null;
+      var line = window.innerHeight * 0.62;
+      words.forEach(function(w){
+        var r = w.getBoundingClientRect();
+        w.classList.toggle('lit', r.top + r.height * 0.5 < line);
+      });
+    }
+    window.addEventListener('scroll', function(){ if(!raf) raf = requestAnimationFrame(update); }, {passive:true});
+    update();
+  })();
 
   /* scroll reveal */
   var reveals = document.querySelectorAll('.reveal');
