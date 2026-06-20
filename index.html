@@ -828,18 +828,19 @@ html.js .rise,html.js .reveal{opacity:1 !important;transform:none !important;}
     });
   }
 
-  /* hero parallax — each word lags behind scroll at a different depth */
+  /* hero parallax — "Your vision." drifts left, "Through us." drifts right; band stays fixed */
   if(!reduce){
-    var heroRows = [
-      { el: document.querySelector('.hero-row-top .hero-word'),  speed: 0.38 },
-      { el: document.querySelector('.hero-row-band .hero-word'), speed: 0.22 },
-      { el: document.querySelector('.hero-word-end'),            speed: 0.10 }
+    var heroParallax = [
+      { el: document.querySelector('.hero-row-top .hero-word'), dir: -1, speed: 0.12 },
+      { el: document.querySelector('.hero-word-end'),           dir:  1, speed: 0.12 }
     ].filter(function(r){ return r.el; });
     var heroRaf = null;
     var heroScroll = function(){
       heroRaf = null;
       var y = window.scrollY;
-      heroRows.forEach(function(r){ r.el.style.transform = 'translateY('+(y*r.speed)+'px)'; });
+      heroParallax.forEach(function(r){
+        r.el.style.transform = 'translateX('+(y * r.speed * r.dir)+'px)';
+      });
     };
     window.addEventListener('scroll', function(){
       if(!heroRaf) heroRaf = requestAnimationFrame(heroScroll);
