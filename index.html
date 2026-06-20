@@ -341,17 +341,19 @@ h1,h2,h3{font-family:var(--head);font-weight:600;letter-spacing:-.02em;line-heig
    SELECTED WORK — stacked scroll panels
    ========================================================= */
 .projects{position:relative;z-index:2;background:#fff;padding:16px;}
-.project{position:sticky;top:16px;height:calc(100vh - 32px);overflow:hidden;display:flex;border-radius:24px;}
+.project{position:sticky;top:16px;height:calc(100vh - 32px);overflow:hidden;display:flex;border-radius:56px;}
 .project-bg{position:absolute;inset:0;background-size:cover;background-position:center;transform:scale(1.04);}
 .project-scrim{position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,0,12,.28) 0%,rgba(8,0,12,0) 26%,rgba(8,0,12,0) 52%,rgba(8,0,12,.62) 100%);}
 .project-inner{position:relative;z-index:2;width:100%;display:grid;grid-template-rows:auto 1fr auto;padding-block:clamp(92px,12vh,132px);}
 .project-tags{justify-self:start;display:flex;flex-direction:column;align-items:flex-start;gap:10px;}
 .ptag{background:#12001b;color:#fff;font-family:var(--body);font-weight:500;font-size:clamp(13px,1vw,15px);letter-spacing:-.01em;padding:11px 22px;border-radius:100px;}
-.project-scroll{justify-self:end;align-self:center;font-family:var(--display);font-weight:400;letter-spacing:.06em;font-size:clamp(18px,2.1vw,30px);color:#fff;opacity:.9;}
+.project-dots{justify-self:end;align-self:center;display:flex;flex-direction:column;gap:14px;}
+.project-dots span{width:12px;height:12px;border-radius:50%;background:rgba(255,255,255,.4);}
+.project-dots span.on{background:#fff;}
 .project-title{justify-self:start;align-self:end;margin:0;font-family:var(--display);font-weight:400;text-transform:uppercase;color:#fff;font-size:clamp(2.4rem,6.8vw,6rem);line-height:.92;letter-spacing:.01em;max-width:15ch;}
 @media (max-width:620px){
   .project-title{font-size:clamp(2.1rem,10vw,3.2rem);max-width:18ch;}
-  .project-scroll{font-size:15px;}
+  .project-dots span{width:10px;height:10px;}
 }
 
 /* =========================================================
@@ -661,7 +663,7 @@ html.js .rise,html.js .reveal{opacity:1 !important;transform:none !important;}
       <div class="project-scrim"></div>
       <div class="project-inner container">
         <div class="project-tags"><span class="ptag">Product Design</span><span class="ptag">iOS &amp; Android</span></div>
-        <span class="project-scroll" aria-hidden="true">(Scroll)</span>
+        <div class="project-dots" aria-hidden="true"><span class="on"></span><span></span><span></span><span></span><span></span></div>
         <h3 class="project-title">Ledger — Consumer Banking Rebuild</h3>
       </div>
     </article>
@@ -671,7 +673,7 @@ html.js .rise,html.js .reveal{opacity:1 !important;transform:none !important;}
       <div class="project-scrim"></div>
       <div class="project-inner container">
         <div class="project-tags"><span class="ptag">UX / UI</span><span class="ptag">Web Development</span></div>
-        <span class="project-scroll" aria-hidden="true">(Scroll)</span>
+        <div class="project-dots" aria-hidden="true"><span></span><span class="on"></span><span></span><span></span><span></span></div>
         <h3 class="project-title">Vitals — Connected Care Platform</h3>
       </div>
     </article>
@@ -681,7 +683,7 @@ html.js .rise,html.js .reveal{opacity:1 !important;transform:none !important;}
       <div class="project-scrim"></div>
       <div class="project-inner container">
         <div class="project-tags"><span class="ptag">Product Strategy</span><span class="ptag">Engineering</span></div>
-        <span class="project-scroll" aria-hidden="true">(Scroll)</span>
+        <div class="project-dots" aria-hidden="true"><span></span><span></span><span class="on"></span><span></span><span></span></div>
         <h3 class="project-title">Marketplace — Commerce Replatform</h3>
       </div>
     </article>
@@ -691,7 +693,7 @@ html.js .rise,html.js .reveal{opacity:1 !important;transform:none !important;}
       <div class="project-scrim"></div>
       <div class="project-inner container">
         <div class="project-tags"><span class="ptag">Design Systems</span><span class="ptag">Multi-platform</span></div>
-        <span class="project-scroll" aria-hidden="true">(Scroll)</span>
+        <div class="project-dots" aria-hidden="true"><span></span><span></span><span></span><span class="on"></span><span></span></div>
         <h3 class="project-title">Frame — Multi-Screen Streaming</h3>
       </div>
     </article>
@@ -701,7 +703,7 @@ html.js .rise,html.js .reveal{opacity:1 !important;transform:none !important;}
       <div class="project-scrim"></div>
       <div class="project-inner container">
         <div class="project-tags"><span class="ptag">AI &amp; Data</span><span class="ptag">Web Development</span></div>
-        <span class="project-scroll" aria-hidden="true">(Scroll)</span>
+        <div class="project-dots" aria-hidden="true"><span></span><span></span><span></span><span></span><span class="on"></span></div>
         <h3 class="project-title">Terra — Carbon Intelligence Dashboard</h3>
       </div>
     </article>
