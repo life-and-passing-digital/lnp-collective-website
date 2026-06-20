@@ -429,7 +429,7 @@ h1,h2,h3{font-family:var(--head);font-weight:600;letter-spacing:-.02em;line-heig
   display:flex;align-items:center;justify-content:center;min-height:560px;}
 .cta::after{content:"";position:absolute;inset:auto -10% -55% 25%;height:120%;z-index:0;pointer-events:none;
   background:radial-gradient(50% 50% at 50% 50%, rgba(202,112,255,.18), transparent 70%);}
-.cta-portrait{position:absolute;top:50%;transform:translateY(-50%);
+.cta-portrait{position:absolute;top:calc(50% - 230px);
   width:328px;height:460px;border-radius:56px;overflow:hidden;z-index:2;}
 .cta-portrait img{display:block;width:100%;height:100%;object-fit:cover;object-position:top center;}
 .cta-portrait:first-child{left:24px;}
@@ -832,7 +832,7 @@ html.js .rise,html.js .reveal{opacity:1 !important;transform:none !important;}
 
   <!-- CTA -->
   <section class="section cta" id="contact">
-    <div class="cta-portrait reveal">
+    <div class="cta-portrait">
       <img src="assets/img_dan_on_table.webp" alt="Dan, co-founder of Life and Passing Digital" loading="lazy" />
     </div>
     <div class="cta-body">
@@ -840,7 +840,7 @@ html.js .rise,html.js .reveal{opacity:1 !important;transform:none !important;}
       <p class="cta-sub reveal">From the first sketch to the millionth tap, we build digital products people return to and keep.</p>
       <a class="btn-pill reveal" href="mailto:hello@lnpcollective.com">Start a project</a>
     </div>
-    <div class="cta-portrait cta-portrait--right reveal">
+    <div class="cta-portrait cta-portrait--right">
       <img src="assets/img_agam_on_table.webp" alt="Agam, co-founder of Life and Passing Digital" loading="lazy" />
     </div>
   </section>
