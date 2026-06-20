@@ -423,16 +423,19 @@ h1,h2,h3{font-family:var(--head);font-weight:600;letter-spacing:-.02em;line-heig
 .step p{margin:12px 0 0;color:var(--mist);font-size:14.5px;line-height:1.55;}
 
 /* =========================================================
-   CTA — gradient headline + centered button (combined)
+   CTA — gradient headline + flanking portraits
    ========================================================= */
-.cta{background:var(--ink);color:var(--paper);position:relative;z-index:2;overflow:hidden;text-align:center;}
+.cta{background:var(--ink);color:var(--paper);position:relative;z-index:2;overflow:hidden;}
 .cta::after{content:"";position:absolute;inset:auto -10% -55% 25%;height:120%;z-index:0;pointer-events:none;
   background:radial-gradient(50% 50% at 50% 50%, rgba(202,112,255,.18), transparent 70%);}
-.cta .inner{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;gap:clamp(24px,3.4vw,40px);}
+.cta .inner{position:relative;z-index:1;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:clamp(24px,4vw,56px);}
+.cta-portrait{align-self:stretch;min-height:clamp(280px,40vw,540px);border-radius:24px;overflow:hidden;}
+.cta-portrait img{display:block;width:100%;height:100%;object-fit:cover;object-position:top center;}
+.cta-body{display:flex;flex-direction:column;align-items:center;text-align:center;gap:clamp(20px,2.8vw,36px);width:clamp(280px,36vw,580px);}
 .cta h2{
-  margin:0;max-width:18ch;
-  font-family:var(--head);font-weight:600;font-size:clamp(2.4rem,6.4vw,5.4rem);letter-spacing:-.04em;line-height:1.0;
-  padding-bottom:.12em;
+  margin:0;
+  font-family:var(--display);font-weight:400;font-size:104px;line-height:.8;letter-spacing:.01em;text-transform:uppercase;
+  padding-bottom:.1em;
   background-image:linear-gradient(115deg,#CA70FF 0%,#F4D2FF 20%,#7B2FA8 42%,#CA70FF 66%,#EBA8FF 100%);
   background-size:160% 160%;background-position:0% 50%;
   -webkit-background-clip:text;background-clip:text;
@@ -440,8 +443,15 @@ h1,h2,h3{font-family:var(--head);font-weight:600;letter-spacing:-.02em;line-heig
   animation:fillshift 16s ease-in-out infinite;
 }
 @keyframes fillshift{0%,100%{background-position:0% 50%;}50%{background-position:100% 50%;}}
-.cta-sub{max-width:52ch;margin:0 auto;color:var(--mist-ink);font-size:clamp(16px,1.4vw,20px);line-height:1.62;}
-.cta .btn-pill{margin-top:clamp(6px,1vw,12px);}
+.cta-sub{max-width:42ch;margin:0;color:var(--mist-ink);font-family:var(--uncut);font-size:clamp(16px,1.4vw,20px);line-height:1.62;}
+.cta .btn-pill{flex-shrink:0;}
+@media (max-width:860px){
+  .cta .inner{grid-template-columns:1fr;gap:clamp(28px,5vw,40px);}
+  .cta-portrait{min-height:56vw;border-radius:20px;}
+  .cta-portrait--right{order:-1;}
+  .cta h2{font-size:clamp(3.6rem,14vw,104px);}
+  .cta-body{width:100%;}
+}
 @media (prefers-reduced-motion:reduce){.cta h2{animation:none;}}
 
 /* =========================================================
@@ -822,9 +832,17 @@ html.js .rise,html.js .reveal{opacity:1 !important;transform:none !important;}
   <!-- CTA -->
   <section class="section cta" id="contact">
     <div class="container inner">
-      <h2 class="reveal">Let's build something worth keeping.</h2>
-      <p class="cta-sub reveal">From the first sketch to the millionth tap, we build digital products people return to — and keep.</p>
-      <a class="btn-pill reveal" href="mailto:hello@lnpcollective.com">Start a project</a>
+      <div class="cta-portrait reveal">
+        <img src="assets/img_dan_on_table.webp" alt="Dan, co-founder of Life and Passing Digital" loading="lazy" />
+      </div>
+      <div class="cta-body">
+        <h2 class="reveal">Let's build something worth keeping.</h2>
+        <p class="cta-sub reveal">From the first sketch to the millionth tap, we build digital products people return to and keep.</p>
+        <a class="btn-pill reveal" href="mailto:hello@lnpcollective.com">Start a project</a>
+      </div>
+      <div class="cta-portrait cta-portrait--right reveal">
+        <img src="assets/img_agam_on_table.webp" alt="Agam, co-founder of Life and Passing Digital" loading="lazy" />
+      </div>
     </div>
   </section>
 
