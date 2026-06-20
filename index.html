@@ -979,14 +979,28 @@ html.js .rise,html.js .reveal{opacity:1 !important;transform:none !important;}
         return /^\s+$/.test(tok) ? tok : '<span class="stext-word">'+tok+'</span>';
       }).join('');
     });
-    var words = document.querySelectorAll('.stext-word');
+    var words = Array.from(document.querySelectorAll('.stext-word'));
+    /* assign per-word stagger delay within each line */
+    var prevTop = -1, idx = 0;
+    words.forEach(function(w){
+      var top = Math.round(w.getBoundingClientRect().top);
+      if(top !== prevTop){ idx = 0; prevTop = top; } else { idx++; }
+      w.dataset.stagger = (idx * 0.06).toFixed(2);
+    });
     var raf = null;
     function update(){
       raf = null;
       var line = window.innerHeight * 0.62;
       words.forEach(function(w){
         var r = w.getBoundingClientRect();
-        w.classList.toggle('lit', r.top + r.height * 0.5 < line);
+        var lit = r.top + r.height * 0.5 < line;
+        if(lit && !w.classList.contains('lit')){
+          w.style.transitionDelay = w.dataset.stagger + 's';
+          w.classList.add('lit');
+        } else if(!lit && w.classList.contains('lit')){
+          w.style.transitionDelay = '0s';
+          w.classList.remove('lit');
+        }
       });
     }
     window.addEventListener('scroll', function(){ if(!raf) raf = requestAnimationFrame(update); }, {passive:true});
