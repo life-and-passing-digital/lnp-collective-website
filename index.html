@@ -405,7 +405,8 @@ h1,h2,h3{font-family:var(--head);font-weight:600;letter-spacing:-.02em;line-heig
 }
 @media (min-width:1441px){
   .projects .project-inner{margin-inline:0;padding-inline:80px;}
-  .approach-content{padding-left:280px;padding-right:96px;}
+  .stats-content{padding-left:clamp(48px,5.56vw,96px);padding-right:calc((100vw - var(--container)) / 2);}
+  .approach-content{padding-left:calc((100vw - var(--container)) / 2);padding-right:96px;}
 }
 
 /* =========================================================
