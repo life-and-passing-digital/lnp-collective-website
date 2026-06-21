@@ -501,8 +501,8 @@ h1,h2,h3{font-family:var(--head);font-weight:600;letter-spacing:-.02em;line-heig
 /* =========================================================
    FAQ — straight answers accordion
    ========================================================= */
-.faq{background:#F3ECF9;position:relative;z-index:2;}
-.faq-grid{display:grid;grid-template-columns:minmax(0,.92fr) minmax(0,1.18fr);gap:clamp(40px,7vw,110px);align-items:start;}
+.faq{background:#F3ECF9;position:relative;z-index:2;padding-block:clamp(56px,8vw,100px);}
+.faq-grid{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.2fr);gap:clamp(32px,5vw,72px);align-items:start;}
 .faq-title{font-family:var(--display);font-weight:400;font-size:clamp(2.6rem,5.4vw,4.3rem);line-height:.95;letter-spacing:.012em;text-transform:uppercase;color:var(--ink);margin:0;}
 .faq-lede{margin:clamp(18px,1.8vw,26px) 0 0;color:var(--mist);font-family:var(--uncut);font-size:clamp(16px,1.3vw,19px);line-height:1.6;max-width:34ch;}
 .faq-list{border-top:1px solid var(--line);}
@@ -521,17 +521,16 @@ h1,h2,h3{font-family:var(--head);font-weight:600;letter-spacing:-.02em;line-heig
 .faq-a{display:grid;grid-template-rows:0fr;transition:grid-template-rows .45s var(--ease);}
 .faq-item.open .faq-a{grid-template-rows:1fr;}
 .faq-a-inner{overflow:hidden;}
-.faq-a p{margin:0;padding:0 64px clamp(24px,2.6vw,32px) 0;color:var(--mist);font-family:var(--uncut);font-size:clamp(15px,1.15vw,17px);line-height:1.62;max-width:62ch;}
+.faq-a p{margin:0;padding:0 0 clamp(24px,2.6vw,32px) 0;color:var(--mist);font-family:var(--uncut);font-size:clamp(15px,1.15vw,17px);line-height:1.62;max-width:56ch;}
 @media (max-width:860px){
   .faq-grid{grid-template-columns:1fr;gap:clamp(26px,7vw,40px);}
-  .faq-a p{padding-right:0;}
 }
 @media (prefers-reduced-motion:reduce){.faq-a{transition:none;}}
 
 /* =========================================================
    FOOTER
    ========================================================= */
-.footer{background:#F3ECF9;color:#180026;position:relative;z-index:2;border-top:1px solid rgba(24,0,38,.12);padding-block:clamp(48px,6vw,72px);}
+.footer{background:#F3ECF9;color:#180026;position:relative;z-index:2;border-top:1px solid rgba(24,0,38,.12);padding-top:clamp(48px,6vw,72px);padding-bottom:clamp(28px,3vw,40px);}
 .foot-grid{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:clamp(28px,4vw,48px);}
 .footer .brand{color:#180026;}
 .foot-brand{gap:12px;}
@@ -541,6 +540,7 @@ h1,h2,h3{font-family:var(--head);font-weight:600;letter-spacing:-.02em;line-heig
 .foot-col a{display:block;color:rgba(24,0,38,.75);font-size:14.5px;padding:5px 0;width:max-content;transition:color .3s var(--ease);}
 .foot-col a:hover{color:#180026;}
 .foot-bottom{display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px;align-items:center;margin-top:clamp(40px,6vw,64px);padding-top:24px;border-top:1px solid rgba(24,0,38,.12);font-family:var(--mono);font-size:12px;letter-spacing:.04em;color:rgba(24,0,38,.55);}
+.foot-bottom-links{display:flex;gap:24px;align-items:center;}
 .foot-bottom a:hover{color:#180026;}
 
 /* =========================================================
@@ -1041,7 +1041,7 @@ html.js .rise,html.js .reveal{opacity:1 !important;transform:none !important;}
   </section>
 
   <!-- FAQ -->
-  <section class="section faq" id="faq" aria-label="Frequently asked questions">
+  <section class="faq" id="faq" aria-label="Frequently asked questions">
     <div class="container">
       <div class="faq-grid">
         <div class="faq-intro">
@@ -1112,8 +1112,11 @@ html.js .rise,html.js .reveal{opacity:1 !important;transform:none !important;}
       </div>
     </div>
     <div class="foot-bottom">
-      <span>© 2026 LnP Collective. All rights reserved.</span>
-      <a href="#top">Back to top ↑</a>
+      <span>© 2026 Life And Passing Digital Pty Ltd. All rights reserved.</span>
+      <div class="foot-bottom-links">
+        <a href="/privacy">Privacy Policy</a>
+        <a href="#top">Back to top ↑</a>
+      </div>
     </div>
   </div>
 </footer>
