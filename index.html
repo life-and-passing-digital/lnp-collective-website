@@ -546,9 +546,9 @@ html.js .reveal.in{opacity:1;transform:none;}
    TEAM — Metony-style draggable carousel
    ========================================================= */
 .team{background:#fff;overflow:hidden;}
-.team-head{text-align:center;max-width:32ch;margin:0 auto clamp(40px,5vw,66px);}
+.team-head{text-align:center;max-width:none;margin:0 auto clamp(40px,5vw,66px);}
 .team-title{margin:0;font-family:var(--display);font-weight:400;font-size:clamp(2.6rem,5.4vw,4.3rem);line-height:.95;letter-spacing:.012em;text-transform:uppercase;color:var(--ink);}
-.team-sub{max-width:42ch;margin:18px auto 0;font-family:var(--uncut);font-size:clamp(16px,1.4vw,20px);line-height:1.6;color:var(--mist);}
+.team-sub{max-width:none;margin:18px auto 0;font-family:var(--uncut);font-size:clamp(16px,1.4vw,20px);line-height:1.6;color:var(--mist);}
 
 .team-carousel{--team-gap:clamp(20px,2.4vw,32px);position:relative;max-width:var(--container);margin-inline:auto;padding-inline:clamp(56px,8vw,120px);}
 .team-viewport{overflow:hidden;}
@@ -863,7 +863,7 @@ html.js .rise,html.js .reveal{opacity:1 !important;transform:none !important;}
   <section class="section team" id="team" aria-label="Meet the team">
     <div class="container">
       <div class="team-head">
-        <h2 class="team-title reveal">Meet the people<br>behind the magic</h2>
+        <h2 class="team-title reveal">Meet the people behind the magic</h2>
         <p class="team-sub reveal">We&rsquo;re a team of thinkers, makers, and doers who blend creativity with strategy.</p>
       </div>
     </div>
@@ -893,11 +893,13 @@ html.js .rise,html.js .reveal{opacity:1 !important;transform:none !important;}
             <h3 class="team-name">Marlene Israel</h3>
             <p class="team-role">Chief Marketing Officer</p>
           </article>
+          <!-- Daniel Mo — hidden for now
           <article class="team-card">
             <div class="team-photo"><img src="assets/img_danmo.png" alt="Daniel Mo" loading="lazy" draggable="false" /></div>
             <h3 class="team-name">Daniel Mo</h3>
             <p class="team-role">Commercial and Financial Strategy Consultant</p>
           </article>
+          -->
         </div>
       </div>
       <button class="team-arrow team-arrow--next" type="button" aria-label="Next team members">
