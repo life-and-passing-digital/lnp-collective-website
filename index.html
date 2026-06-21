@@ -542,6 +542,51 @@ html.js .reveal.in{opacity:1;transform:none;}
   .footer .brand-cell{grid-column:1 / -1;}
 }
 
+/* =========================================================
+   TEAM — Metony-style draggable carousel
+   ========================================================= */
+.team{background:#fff;overflow:hidden;}
+.team-head{text-align:center;max-width:32ch;margin:0 auto clamp(40px,5vw,66px);}
+.team-title{margin:0;font-family:var(--display);font-weight:400;font-size:clamp(2.6rem,5.4vw,4.3rem);line-height:.95;letter-spacing:.012em;text-transform:uppercase;color:var(--ink);}
+.team-sub{max-width:42ch;margin:18px auto 0;font-family:var(--uncut);font-size:clamp(16px,1.4vw,20px);line-height:1.6;color:var(--mist);}
+
+.team-carousel{--team-gap:clamp(20px,2.4vw,32px);position:relative;max-width:var(--container);margin-inline:auto;padding-inline:clamp(56px,8vw,120px);}
+.team-viewport{overflow:hidden;}
+.team-track{display:flex;gap:var(--team-gap);cursor:grab;touch-action:pan-y;transition:transform .6s var(--ease);will-change:transform;}
+.team-track.dragging{cursor:grabbing;transition:none;}
+.team-card{flex:0 0 calc((100% - 2 * var(--team-gap)) / 3);min-width:0;user-select:none;}
+.team-photo{border-radius:28px;overflow:hidden;aspect-ratio:1 / 1.05;background:var(--paper-2);}
+.team-photo img{display:block;width:100%;height:100%;object-fit:cover;pointer-events:none;transition:transform .7s var(--ease);}
+.team-card:hover .team-photo img{transform:scale(1.05);}
+.team-name{margin:22px 0 0;text-align:center;font-family:var(--head);font-weight:700;font-size:clamp(20px,1.5vw,24px);letter-spacing:-.01em;color:var(--ink);}
+.team-role{margin:8px 0 0;text-align:center;font-family:var(--uncut);font-size:clamp(14px,1.05vw,16px);color:var(--mist);}
+
+.team-arrow{position:absolute;top:40%;transform:translateY(-50%);display:grid;place-items:center;width:clamp(46px,4vw,56px);height:clamp(46px,4vw,56px);border:none;border-radius:50%;background:var(--ink);color:#fff;cursor:pointer;z-index:4;transition:transform .3s var(--ease),background .3s var(--ease),opacity .3s var(--ease);}
+.team-arrow svg{width:44%;height:44%;}
+.team-arrow:hover:not(:disabled){transform:translateY(-50%) scale(1.08);background:var(--ink-3);}
+.team-arrow:disabled{opacity:.26;cursor:default;}
+.team-arrow--prev{left:clamp(4px,1.4vw,28px);}
+.team-arrow--next{right:clamp(4px,1.4vw,28px);}
+
+.team-carousel.js-reveal .team-card{opacity:0;transform:translateY(28px);transition:opacity .7s var(--ease-out),transform .7s var(--ease-out);}
+.team-carousel.js-reveal.in .team-card{opacity:1;transform:none;}
+.team-carousel.in .team-card:nth-child(2){transition-delay:.08s;}
+.team-carousel.in .team-card:nth-child(3){transition-delay:.16s;}
+.team-carousel.in .team-card:nth-child(4){transition-delay:.24s;}
+.team-carousel.in .team-card:nth-child(5){transition-delay:.32s;}
+
+@media (max-width:900px){
+  .team-card{flex-basis:calc((100% - var(--team-gap)) / 2);}
+}
+@media (max-width:600px){
+  .team-card{flex-basis:100%;}
+  .team-carousel{padding-inline:clamp(46px,13vw,64px);}
+}
+@media (prefers-reduced-motion:reduce){
+  .team-card{opacity:1 !important;transform:none !important;}
+  .team-photo img,.team-track{transition:none;}
+}
+
 @media (prefers-reduced-motion:reduce){
   *{animation-duration:.001ms !important;animation-iteration-count:1 !important;transition-duration:.001ms !important;}
 html.js .rise,html.js .reveal{opacity:1 !important;transform:none !important;}
@@ -814,6 +859,53 @@ html.js .rise,html.js .reveal{opacity:1 !important;transform:none !important;}
 
   </section>
 
+  <!-- TEAM — Metony-style carousel -->
+  <section class="section team" id="team" aria-label="Meet the team">
+    <div class="container">
+      <div class="team-head">
+        <h2 class="team-title reveal">Meet the people<br>behind the magic</h2>
+        <p class="team-sub reveal">We&rsquo;re a team of thinkers, makers, and doers who blend creativity with strategy.</p>
+      </div>
+    </div>
+    <div class="team-carousel">
+      <button class="team-arrow team-arrow--prev" type="button" aria-label="Previous team members">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20 12H5M11 6l-6 6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <div class="team-viewport">
+        <div class="team-track">
+          <article class="team-card">
+            <div class="team-photo"><img src="assets/img_agam.png" alt="Agam Lamba" loading="lazy" draggable="false" /></div>
+            <h3 class="team-name">Agam Lamba</h3>
+            <p class="team-role">Chief Executive Officer</p>
+          </article>
+          <article class="team-card">
+            <div class="team-photo"><img src="assets/img_daniel.png" alt="Daniel Xuereb" loading="lazy" draggable="false" /></div>
+            <h3 class="team-name">Daniel Xuereb</h3>
+            <p class="team-role">Chief Operating Officer</p>
+          </article>
+          <article class="team-card">
+            <div class="team-photo"><img src="assets/img_pavel.png" alt="Pavel Baranov" loading="lazy" draggable="false" /></div>
+            <h3 class="team-name">Pavel Baranov</h3>
+            <p class="team-role">Chief Technology Officer</p>
+          </article>
+          <article class="team-card">
+            <div class="team-photo"><img src="assets/img_danmo.png" alt="Team member" loading="lazy" draggable="false" /></div>
+            <h3 class="team-name">Dan</h3>
+            <p class="team-role">Team Member</p>
+          </article>
+          <article class="team-card">
+            <div class="team-photo"><img src="assets/img_marlene.png" alt="Marlene" loading="lazy" draggable="false" /></div>
+            <h3 class="team-name">Marlene</h3>
+            <p class="team-role">Team Member</p>
+          </article>
+        </div>
+      </div>
+      <button class="team-arrow team-arrow--next" type="button" aria-label="Next team members">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </div>
+  </section>
+
   <!-- PROCESS — scroll-zoom words -->
   <section class="zoomwords" aria-label="Our process">
     <div class="zoomwords-pin">
@@ -963,6 +1055,75 @@ html.js .rise,html.js .reveal{opacity:1 !important;transform:none !important;}
     window.addEventListener('scroll', queue, {passive:true});
     window.addEventListener('resize', queue, {passive:true});
     apply();
+  })();
+
+  /* team carousel — drag + arrow nav (Metony style) */
+  (function(){
+    var carousel = document.querySelector('.team-carousel');
+    if(!carousel) return;
+    var viewport = carousel.querySelector('.team-viewport');
+    var track = carousel.querySelector('.team-track');
+    var cards = Array.prototype.slice.call(track.children);
+    var prev = carousel.querySelector('.team-arrow--prev');
+    var next = carousel.querySelector('.team-arrow--next');
+    if(!cards.length) return;
+    var index = 0, curX = 0;
+
+    function step(){
+      var gap = parseFloat(getComputedStyle(track).columnGap) || 0;
+      return cards[0].getBoundingClientRect().width + gap;
+    }
+    function maxIndex(){
+      var gap = parseFloat(getComputedStyle(track).columnGap) || 0;
+      var visible = Math.max(1, Math.round((viewport.getBoundingClientRect().width + gap) / step()));
+      return Math.max(0, cards.length - visible);
+    }
+    function setX(x){ curX = x; track.style.transform = 'translateX(' + x + 'px)'; }
+    function go(i){
+      index = Math.max(0, Math.min(i, maxIndex()));
+      track.style.transition = '';
+      setX(-index * step());
+      if(prev) prev.disabled = index <= 0;
+      if(next) next.disabled = index >= maxIndex();
+    }
+    if(prev) prev.addEventListener('click', function(){ go(index - 1); });
+    if(next) next.addEventListener('click', function(){ go(index + 1); });
+    var rtimer;
+    window.addEventListener('resize', function(){ clearTimeout(rtimer); rtimer = setTimeout(function(){ go(index); }, 120); }, {passive:true});
+
+    /* drag / swipe */
+    var down = false, startX = 0, baseX = 0;
+    track.addEventListener('pointerdown', function(e){
+      down = true; startX = e.clientX; baseX = curX;
+      track.classList.add('dragging');
+      try{ track.setPointerCapture(e.pointerId); }catch(_){}
+    });
+    track.addEventListener('pointermove', function(e){
+      if(!down) return;
+      setX(baseX + (e.clientX - startX));
+    });
+    function release(){
+      if(!down) return;
+      down = false;
+      track.classList.remove('dragging');
+      go(Math.round(-curX / step()));
+    }
+    track.addEventListener('pointerup', release);
+    track.addEventListener('pointercancel', release);
+    track.addEventListener('lostpointercapture', release);
+
+    /* reveal (section-level so off-screen cards still animate in) */
+    carousel.classList.add('js-reveal');
+    if(reduce || !('IntersectionObserver' in window)){
+      carousel.classList.add('in');
+    } else {
+      var tio = new IntersectionObserver(function(entries){
+        entries.forEach(function(en){ if(en.isIntersecting){ carousel.classList.add('in'); tio.disconnect(); } });
+      }, {threshold:.15});
+      tio.observe(carousel);
+    }
+
+    go(0);
   })();
 
   /* entrance */
