@@ -228,7 +228,7 @@ h1,h2,h3{font-family:var(--head);font-weight:600;letter-spacing:-.02em;line-heig
 .hero-head{margin:0;flex:1;display:flex;flex-direction:column;justify-content:center;gap:clamp(8px,1.5vh,32px);}
 .hero-row{display:flex;align-items:center;padding-inline:clamp(20px,5.5vw,80px);}
 .hero-row-top{justify-content:flex-start;}
-.hero-row-band{justify-content:center;background:var(--violet);padding-top:28px;padding-bottom:4px;}
+.hero-row-band{justify-content:center;background-image:linear-gradient(115deg,#CA70FF 0%,#F4D2FF 20%,#7B2FA8 42%,#CA70FF 66%,#EBA8FF 100%);background-size:160% 160%;background-position:0% 50%;animation:fillshift 16s ease-in-out infinite;padding-top:28px;padding-bottom:4px;}
 .hero-row-bottom{align-items:stretch;margin-top:24px;}
 .hero-bottom-group{display:flex;width:100%;justify-content:flex-end;align-items:flex-start;gap:48px;}
 .hero-word{
@@ -496,7 +496,7 @@ h1,h2,h3{font-family:var(--head);font-weight:600;letter-spacing:-.02em;line-heig
   .cta-portrait.cta-portrait--right{right:calc((100% - 1440px) / 2 + 24px);}
   .cta-body{padding-inline:calc((100% - 1440px) / 2 + 416px);}
 }
-@media (prefers-reduced-motion:reduce){.cta h2{animation:none;}}
+@media (prefers-reduced-motion:reduce){.cta h2,.hero-row-band{animation:none;}}
 
 /* =========================================================
    FOOTER
