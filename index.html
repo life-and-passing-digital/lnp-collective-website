@@ -555,9 +555,22 @@ html.js .reveal.in{opacity:1;transform:none;}
 .team-track{display:flex;gap:var(--team-gap);cursor:grab;touch-action:pan-y;transition:transform .6s var(--ease);will-change:transform;}
 .team-track.dragging{cursor:grabbing;transition:none;}
 .team-card{flex:0 0 calc((100% - 2 * var(--team-gap)) / 3);min-width:0;user-select:none;}
-.team-photo{border-radius:28px;overflow:hidden;aspect-ratio:1 / 1.05;background:var(--paper-2);}
+.team-photo{position:relative;border-radius:28px;overflow:hidden;aspect-ratio:1 / 1.05;background:var(--paper-2);}
 .team-photo img{display:block;width:100%;height:100%;object-fit:cover;pointer-events:none;transition:transform .7s var(--ease);}
 .team-card:hover .team-photo img{transform:scale(1.05);}
+.team-social{position:absolute;left:0;right:0;bottom:20px;z-index:2;display:flex;justify-content:center;gap:14px;opacity:0;transform:translateY(12px);transition:opacity .35s var(--ease),transform .35s var(--ease);pointer-events:none;}
+.team-card:hover .team-social{opacity:1;transform:none;}
+.team-soc{display:grid;place-items:center;width:clamp(44px,3.6vw,52px);height:clamp(44px,3.6vw,52px);border-radius:50%;box-shadow:0 6px 18px rgba(8,0,12,.3);pointer-events:none;transition:transform .25s var(--ease);}
+.team-card:hover .team-soc{pointer-events:auto;}
+.team-soc:hover{transform:translateY(-3px);}
+.team-soc--in{background:#0A66C2;color:#fff;}
+.team-soc--in svg{width:52%;height:52%;}
+.team-soc--web{background:#F3ECFA;color:var(--ink);}
+.team-soc--web svg{width:46%;height:46%;}
+@media (hover:none){
+  .team-social{opacity:1;transform:none;}
+  .team-soc{pointer-events:auto;}
+}
 .team-name{margin:22px 0 0;text-align:center;font-family:var(--head);font-weight:700;font-size:clamp(20px,1.5vw,24px);letter-spacing:-.01em;color:var(--ink);}
 .team-role{margin:8px 0 0;text-align:center;font-family:var(--uncut);font-size:clamp(14px,1.05vw,16px);color:var(--mist);}
 
@@ -874,22 +887,42 @@ html.js .rise,html.js .reveal{opacity:1 !important;transform:none !important;}
       <div class="team-viewport">
         <div class="team-track">
           <article class="team-card">
-            <div class="team-photo"><img src="assets/img_agam.png" alt="Agam Lamba" loading="lazy" draggable="false" /></div>
+            <div class="team-photo"><img src="assets/img_agam.png" alt="Agam Lamba" loading="lazy" draggable="false" />
+              <div class="team-social">
+                <a class="team-soc team-soc--in" href="https://www.linkedin.com/in/agamlamba/" target="_blank" rel="noopener noreferrer" aria-label="Agam Lamba on LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM10 9h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.78 2.65 4.78 6.1V21H17v-5.3c0-1.26-.02-2.9-1.77-2.9-1.77 0-2.04 1.38-2.04 2.8V21H10z"/></svg></a>
+                <a class="team-soc team-soc--web" href="https://agamlamba.com" target="_blank" rel="noopener noreferrer" aria-label="Agam Lamba website"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.07 0l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.72"/><path d="M14 11a5 5 0 0 0-7.07 0l-3 3a5 5 0 0 0 7.07 7.07l1.72-1.72"/></svg></a>
+              </div>
+            </div>
             <h3 class="team-name">Agam Lamba</h3>
             <p class="team-role">Chief Executive Officer</p>
           </article>
           <article class="team-card">
-            <div class="team-photo"><img src="assets/img_daniel.png" alt="Daniel Xuereb" loading="lazy" draggable="false" /></div>
+            <div class="team-photo"><img src="assets/img_daniel.png" alt="Daniel Xuereb" loading="lazy" draggable="false" />
+              <div class="team-social">
+                <a class="team-soc team-soc--in" href="https://www.linkedin.com/in/daniel-xuereb/" target="_blank" rel="noopener noreferrer" aria-label="Daniel Xuereb on LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM10 9h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.78 2.65 4.78 6.1V21H17v-5.3c0-1.26-.02-2.9-1.77-2.9-1.77 0-2.04 1.38-2.04 2.8V21H10z"/></svg></a>
+                <a class="team-soc team-soc--web" href="https://danielxuereb.com" target="_blank" rel="noopener noreferrer" aria-label="Daniel Xuereb website"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.07 0l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.72"/><path d="M14 11a5 5 0 0 0-7.07 0l-3 3a5 5 0 0 0 7.07 7.07l1.72-1.72"/></svg></a>
+              </div>
+            </div>
             <h3 class="team-name">Daniel Xuereb</h3>
             <p class="team-role">Chief Operating Officer</p>
           </article>
           <article class="team-card">
-            <div class="team-photo"><img src="assets/img_pavel.png" alt="Pavel Baranov" loading="lazy" draggable="false" /></div>
+            <div class="team-photo"><img src="assets/img_pavel.png" alt="Pavel Baranov" loading="lazy" draggable="false" />
+              <div class="team-social">
+                <a class="team-soc team-soc--in" href="https://www.linkedin.com/in/pavbaranov/" target="_blank" rel="noopener noreferrer" aria-label="Pavel Baranov on LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM10 9h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.78 2.65 4.78 6.1V21H17v-5.3c0-1.26-.02-2.9-1.77-2.9-1.77 0-2.04 1.38-2.04 2.8V21H10z"/></svg></a>
+                <a class="team-soc team-soc--web" href="http://www.pixelcomrade.com/" target="_blank" rel="noopener noreferrer" aria-label="Pavel Baranov website"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.07 0l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.72"/><path d="M14 11a5 5 0 0 0-7.07 0l-3 3a5 5 0 0 0 7.07 7.07l1.72-1.72"/></svg></a>
+              </div>
+            </div>
             <h3 class="team-name">Pavel Baranov</h3>
             <p class="team-role">Chief Technology Officer</p>
           </article>
           <article class="team-card">
-            <div class="team-photo"><img src="assets/img_marlene.png" alt="Marlene Israel" loading="lazy" draggable="false" /></div>
+            <div class="team-photo"><img src="assets/img_marlene.png" alt="Marlene Israel" loading="lazy" draggable="false" />
+              <div class="team-social">
+                <a class="team-soc team-soc--in" href="https://www.linkedin.com/in/marleneisrael/" target="_blank" rel="noopener noreferrer" aria-label="Marlene Israel on LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM10 9h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.78 2.65 4.78 6.1V21H17v-5.3c0-1.26-.02-2.9-1.77-2.9-1.77 0-2.04 1.38-2.04 2.8V21H10z"/></svg></a>
+                <a class="team-soc team-soc--web" href="https://www.m1media.com.au/" target="_blank" rel="noopener noreferrer" aria-label="Marlene Israel website"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.07 0l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.72"/><path d="M14 11a5 5 0 0 0-7.07 0l-3 3a5 5 0 0 0 7.07 7.07l1.72-1.72"/></svg></a>
+              </div>
+            </div>
             <h3 class="team-name">Marlene Israel</h3>
             <p class="team-role">Chief Marketing Officer</p>
           </article>
@@ -1093,26 +1126,30 @@ html.js .rise,html.js .reveal{opacity:1 !important;transform:none !important;}
     var rtimer;
     window.addEventListener('resize', function(){ clearTimeout(rtimer); rtimer = setTimeout(function(){ go(index); }, 120); }, {passive:true});
 
-    /* drag / swipe */
-    var down = false, startX = 0, baseX = 0;
-    track.addEventListener('pointerdown', function(e){
-      down = true; startX = e.clientX; baseX = curX;
-      track.classList.add('dragging');
-      try{ track.setPointerCapture(e.pointerId); }catch(_){}
-    });
-    track.addEventListener('pointermove', function(e){
+    /* drag / swipe — window listeners (no pointer capture, so card links stay clickable) */
+    var down = false, startX = 0, baseX = 0, dragged = false;
+    function onMove(e){
       if(!down) return;
-      setX(baseX + (e.clientX - startX));
-    });
-    function release(){
+      var dx = e.clientX - startX;
+      if(!dragged && Math.abs(dx) > 5){ dragged = true; track.classList.add('dragging'); }
+      if(dragged) setX(baseX + dx);
+    }
+    function onUp(){
       if(!down) return;
       down = false;
-      track.classList.remove('dragging');
-      go(Math.round(-curX / step()));
+      window.removeEventListener('pointermove', onMove);
+      window.removeEventListener('pointerup', onUp);
+      if(dragged){ track.classList.remove('dragging'); go(Math.round(-curX / step())); }
     }
-    track.addEventListener('pointerup', release);
-    track.addEventListener('pointercancel', release);
-    track.addEventListener('lostpointercapture', release);
+    track.addEventListener('pointerdown', function(e){
+      if(e.button != null && e.button !== 0) return;
+      down = true; dragged = false; startX = e.clientX; baseX = curX;
+      window.addEventListener('pointermove', onMove);
+      window.addEventListener('pointerup', onUp);
+    });
+    /* swallow the click that follows a drag so card links don't fire */
+    track.addEventListener('click', function(e){ if(dragged){ e.preventDefault(); e.stopPropagation(); } }, true);
+    track.addEventListener('dragstart', function(e){ e.preventDefault(); });
 
     /* reveal (section-level so off-screen cards still animate in) */
     carousel.classList.add('js-reveal');
