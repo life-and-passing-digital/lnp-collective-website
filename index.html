@@ -44,12 +44,12 @@
   --ink-3:#2D0B49;
   --mist:#6A5B7A;         /* secondary text on light */
   --mist-ink:rgba(244,236,251,.64); /* secondary text on dark */
-  --violet:#CA70FF;       /* brand accent */
-  --violet-lift:#D98FFF;
-  --violet-soft:rgba(202,112,255,.16);
-  --bronze:#CA70FF;       /* legacy alias → violet */
-  --bronze-lift:#D98FFF;
-  --bronze-soft:rgba(202,112,255,.16);
+  --violet:#7548FF;       /* brand accent */
+  --violet-lift:#8B63FF;
+  --violet-soft:rgba(117,72,255,.16);
+  --bronze:#7548FF;       /* legacy alias → violet */
+  --bronze-lift:#8B63FF;
+  --bronze-soft:rgba(117,72,255,.16);
   --line:rgba(24,0,38,.12);
   --line-strong:rgba(24,0,38,.24);
   --line-ink:rgba(244,236,251,.16);
@@ -534,9 +534,9 @@ h1,h2,h3{font-family:var(--head);font-weight:600;letter-spacing:-.02em;line-heig
 .footer .brand{color:#180026;}
 .foot-brand{gap:12px;display:inline-flex;}
 .foot-full-logo{display:block;width:clamp(140px,14vw,200px);height:auto;}
-.foot-bottom{display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px;align-items:center;margin-top:clamp(8px,1.5vw,20px);font-family:var(--uncut);font-size:16px;font-weight:500;letter-spacing:0;color:#180026;}
+.foot-bottom{display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px;align-items:center;margin-top:clamp(8px,1.5vw,20px);font-family:var(--uncut);font-size:16px;font-weight:500;letter-spacing:0;color:var(--violet);}
 .foot-bottom-links{display:flex;gap:24px;align-items:center;}
-.foot-bottom a:hover{color:#180026;}
+.foot-bottom a:hover{color:var(--violet-lift);}
 
 /* =========================================================
    REVEAL ANIMATIONS (only when JS present)
