@@ -390,13 +390,13 @@ h1,h2,h3{font-family:var(--head);font-weight:600;letter-spacing:-.02em;line-heig
 .project-tags{justify-self:start;display:flex;flex-direction:column;align-items:flex-start;gap:10px;}
 .ptag{background:#12001b;color:#fff;font-family:var(--body);font-weight:500;font-size:clamp(13px,1vw,15px);letter-spacing:-.01em;padding:11px 22px;border-radius:100px;}
 .project-dots{justify-self:end;align-self:center;display:flex;flex-direction:column;gap:14px;}
-.project-dots span{width:12px;height:12px;border-radius:100px;background:rgba(255,255,255,.4);transition:height .45s var(--ease),background .45s var(--ease);}
+.project-dots span{width:12px;height:12px;border-radius:100px;background:rgba(255,255,255,.6);box-shadow:0 2px 8px rgba(8,0,12,.5);transition:height .45s var(--ease),background .45s var(--ease);}
 .project-dots span.on{height:34px;background:#fff;}
 .project-title{justify-self:start;align-self:end;margin:0;font-family:var(--display);font-weight:400;text-transform:uppercase;color:#fff;font-size:72px;line-height:.8;letter-spacing:.01em;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
 .project--link{cursor:pointer;}
 .project--light .project-scrim{display:none;}
 .project--light .project-title{color:var(--ink);}
-.project--light .project-dots span{background:rgba(24,0,38,.28);}
+.project--light .project-dots span{background:rgba(24,0,38,.45);box-shadow:0 2px 8px rgba(255,255,255,.45);}
 .project--light .project-dots span.on{height:34px;background:var(--ink);}
 @media (max-width:620px){
   .project-title{font-size:clamp(2rem,9.5vw,3rem);}
