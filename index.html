@@ -389,15 +389,14 @@ h1,h2,h3{font-family:var(--head);font-weight:600;letter-spacing:-.02em;line-heig
 .project-inner{position:relative;z-index:2;width:100%;display:grid;grid-template-rows:auto 1fr auto;padding-block:clamp(92px,12vh,132px);}
 .project-tags{justify-self:start;display:flex;flex-direction:column;align-items:flex-start;gap:10px;}
 .ptag{background:#12001b;color:#fff;font-family:var(--body);font-weight:500;font-size:clamp(13px,1vw,15px);letter-spacing:-.01em;padding:11px 22px;border-radius:100px;}
-.project-dots{justify-self:end;align-self:center;display:flex;flex-direction:column;gap:14px;}
-.project-dots span{width:12px;height:12px;border-radius:100px;background:rgba(255,255,255,.6);box-shadow:0 2px 8px rgba(8,0,12,.5);transition:height .45s var(--ease),background .45s var(--ease);}
+.project-dots{position:absolute;top:50%;right:clamp(28px,5.5vw,80px);transform:translateY(-50%);z-index:3;display:flex;flex-direction:column;gap:14px;}
+.project-dots span{width:12px;height:12px;border-radius:100px;background:rgba(255,255,255,.65);box-shadow:0 2px 10px rgba(8,0,12,.7);transition:height .45s var(--ease),background .45s var(--ease);}
 .project-dots span.on{height:34px;background:#fff;}
 .project-title{justify-self:start;align-self:end;margin:0;font-family:var(--display);font-weight:400;text-transform:uppercase;color:#fff;font-size:72px;line-height:.8;letter-spacing:.01em;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
 .project--link{cursor:pointer;}
 .project--light .project-scrim{display:none;}
 .project--light .project-title{color:var(--ink);}
-.project--light .project-dots span{background:rgba(24,0,38,.45);box-shadow:0 2px 8px rgba(255,255,255,.45);}
-.project--light .project-dots span.on{height:34px;background:var(--ink);}
+.project--light .project-dots span{box-shadow:0 2px 12px rgba(8,0,12,.85);}
 @media (max-width:620px){
   .project-title{font-size:clamp(2rem,9.5vw,3rem);}
   .project-dots span{width:10px;height:10px;}
@@ -764,9 +763,9 @@ html.js .rise,html.js .reveal{opacity:1 !important;transform:none !important;}
       <div class="project-scrim"></div>
       <div class="project-inner container">
         <div class="project-tags"><span class="ptag">UX / UI</span><span class="ptag">Design systems &amp; accessibility</span><span class="ptag">Product strategy</span><span class="ptag">Market research &amp; positioning</span></div>
-        <div class="project-dots" aria-hidden="true"><span class="on"></span><span></span><span></span><span></span><span></span></div>
         <h3 class="project-title">Westpac Brand, App &amp; Web Refresh</h3>
       </div>
+      <div class="project-dots" aria-hidden="true"><span class="on"></span><span></span><span></span><span></span><span></span></div>
     </article>
 
     <article class="project project--light project--link" data-href="https://www.taste.com.au">
@@ -774,9 +773,9 @@ html.js .rise,html.js .reveal{opacity:1 !important;transform:none !important;}
       <div class="project-scrim"></div>
       <div class="project-inner container">
         <div class="project-tags"><span class="ptag">Web design</span><span class="ptag">Rapid prototyping &amp; testing</span><span class="ptag">SEO &amp; AEO</span></div>
-        <div class="project-dots" aria-hidden="true"><span></span><span class="on"></span><span></span><span></span><span></span></div>
         <h3 class="project-title">Taste Web Funnel Optimisation &amp; CX</h3>
       </div>
+      <div class="project-dots" aria-hidden="true"><span></span><span class="on"></span><span></span><span></span><span></span></div>
     </article>
 
     <article class="project project--link" data-href="https://www.oroxglobal.com">
@@ -784,9 +783,9 @@ html.js .rise,html.js .reveal{opacity:1 !important;transform:none !important;}
       <div class="project-scrim"></div>
       <div class="project-inner container">
         <div class="project-tags"><span class="ptag">UX / UI</span><span class="ptag">Content creation</span><span class="ptag">Web &amp; app development</span></div>
-        <div class="project-dots" aria-hidden="true"><span></span><span></span><span class="on"></span><span></span><span></span></div>
         <h3 class="project-title">Redesigning the OROX Nexus Engine&#8482;</h3>
       </div>
+      <div class="project-dots" aria-hidden="true"><span></span><span></span><span class="on"></span><span></span><span></span></div>
     </article>
 
     <article class="project project--link" data-href="https://apps.apple.com/au/app/dehancer-film-emulation/id6443648413">
@@ -794,9 +793,9 @@ html.js .rise,html.js .reveal{opacity:1 !important;transform:none !important;}
       <div class="project-scrim"></div>
       <div class="project-inner container">
         <div class="project-tags"><span class="ptag">UX / UI</span><span class="ptag">Design systems</span><span class="ptag">Product strategy</span></div>
-        <div class="project-dots" aria-hidden="true"><span></span><span></span><span></span><span class="on"></span><span></span></div>
         <h3 class="project-title">Dehancer App Experience Refresh</h3>
       </div>
+      <div class="project-dots" aria-hidden="true"><span></span><span></span><span></span><span class="on"></span><span></span></div>
     </article>
 
     <article class="project project--link" data-href="https://www.buysecure.com.au">
@@ -804,9 +803,9 @@ html.js .rise,html.js .reveal{opacity:1 !important;transform:none !important;}
       <div class="project-scrim"></div>
       <div class="project-inner container">
         <div class="project-tags"><span class="ptag">UX / UI &amp; Branding</span><span class="ptag">AI automation</span></div>
-        <div class="project-dots" aria-hidden="true"><span></span><span></span><span></span><span></span><span class="on"></span></div>
         <h3 class="project-title">BuySecure — AI Contract Reviewer</h3>
       </div>
+      <div class="project-dots" aria-hidden="true"><span></span><span></span><span></span><span></span><span class="on"></span></div>
     </article>
 
   </section>
