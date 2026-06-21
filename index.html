@@ -215,6 +215,8 @@ h1,h2,h3{font-family:var(--head);font-weight:600;letter-spacing:-.02em;line-heig
   transition:transform .35s var(--ease), box-shadow .35s var(--ease), background .35s var(--ease), color .35s var(--ease), border-color .35s var(--ease);
 }
 .btn-pill:hover{transform:translateY(-2px);background:#fff;border-color:#fff;box-shadow:0 12px 34px -12px rgba(202,112,255,.6);}
+.btn-pill--ink{height:52px;padding-inline:32px;background:var(--ink);color:#fff;border-color:var(--ink);}
+.btn-pill--ink:hover{transform:translateY(-2px);background:var(--ink);border-color:var(--ink);box-shadow:0 14px 38px -12px rgba(117,72,255,.55);}
 .menu-btn{display:none;}
 
 /* mobile menu */
@@ -598,6 +600,7 @@ html.js .reveal.in{opacity:1;transform:none;}
 .team-title{margin:0;font-family:var(--display);font-weight:400;font-size:clamp(2.6rem,5.4vw,4.3rem);line-height:.95;letter-spacing:.012em;text-transform:uppercase;color:var(--ink);}
 .team-sub{max-width:none;margin:18px auto 0;font-family:var(--uncut);font-size:clamp(16px,1.4vw,20px);line-height:1.6;color:var(--mist);}
 
+.team-cta{display:flex;justify-content:center;margin-top:clamp(40px,5vw,64px);}
 .team-carousel{--team-gap:clamp(20px,2.4vw,32px);position:relative;max-width:var(--container);margin-inline:auto;padding-inline:clamp(56px,8vw,120px);}
 .team-viewport{overflow:hidden;}
 .team-track{display:flex;gap:var(--team-gap);cursor:grab;touch-action:pan-y;transition:transform .6s var(--ease);will-change:transform;}
@@ -955,16 +958,6 @@ html.js .rise,html.js .reveal{opacity:1 !important;transform:none !important;}
             <p class="team-role">Chief Operating Officer</p>
           </article>
           <article class="team-card">
-            <div class="team-photo"><img src="assets/img_pavel.png" alt="Pavel Baranov" loading="lazy" draggable="false" />
-              <div class="team-social">
-                <a class="team-soc team-soc--in" href="https://www.linkedin.com/in/pavbaranov/" target="_blank" rel="noopener noreferrer" aria-label="Pavel Baranov on LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM10 9h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.78 2.65 4.78 6.1V21H17v-5.3c0-1.26-.02-2.9-1.77-2.9-1.77 0-2.04 1.38-2.04 2.8V21H10z"/></svg></a>
-                <a class="team-soc team-soc--web" href="http://www.pixelcomrade.com/" target="_blank" rel="noopener noreferrer" aria-label="Pavel Baranov website"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.07 0l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.72"/><path d="M14 11a5 5 0 0 0-7.07 0l-3 3a5 5 0 0 0 7.07 7.07l1.72-1.72"/></svg></a>
-              </div>
-            </div>
-            <h3 class="team-name">Pavel Baranov</h3>
-            <p class="team-role">Chief Technology Officer</p>
-          </article>
-          <article class="team-card">
             <div class="team-photo"><img src="assets/img_marlene.png" alt="Marlene Israel" loading="lazy" draggable="false" />
               <div class="team-social">
                 <a class="team-soc team-soc--in" href="https://www.linkedin.com/in/marleneisrael/" target="_blank" rel="noopener noreferrer" aria-label="Marlene Israel on LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM10 9h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.78 2.65 4.78 6.1V21H17v-5.3c0-1.26-.02-2.9-1.77-2.9-1.77 0-2.04 1.38-2.04 2.8V21H10z"/></svg></a>
@@ -973,6 +966,16 @@ html.js .rise,html.js .reveal{opacity:1 !important;transform:none !important;}
             </div>
             <h3 class="team-name">Marlene Israel</h3>
             <p class="team-role">Chief Marketing Officer</p>
+          </article>
+          <article class="team-card">
+            <div class="team-photo"><img src="assets/img_pavel.png" alt="Pavel Baranov" loading="lazy" draggable="false" />
+              <div class="team-social">
+                <a class="team-soc team-soc--in" href="https://www.linkedin.com/in/pavbaranov/" target="_blank" rel="noopener noreferrer" aria-label="Pavel Baranov on LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM10 9h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.78 2.65 4.78 6.1V21H17v-5.3c0-1.26-.02-2.9-1.77-2.9-1.77 0-2.04 1.38-2.04 2.8V21H10z"/></svg></a>
+                <a class="team-soc team-soc--web" href="http://www.pixelcomrade.com/" target="_blank" rel="noopener noreferrer" aria-label="Pavel Baranov website"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.07 0l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.72"/><path d="M14 11a5 5 0 0 0-7.07 0l-3 3a5 5 0 0 0 7.07 7.07l1.72-1.72"/></svg></a>
+              </div>
+            </div>
+            <h3 class="team-name">Pavel Baranov</h3>
+            <p class="team-role">Chief Technology Officer</p>
           </article>
           <!-- Daniel Mo — hidden for now
           <article class="team-card">
@@ -986,6 +989,9 @@ html.js .rise,html.js .reveal{opacity:1 !important;transform:none !important;}
       <button class="team-arrow team-arrow--next" type="button" aria-label="Next team members">
         <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </button>
+    </div>
+    <div class="container team-cta">
+      <a class="btn-pill btn-pill--ink reveal" href="/fit-check">Run the fit check</a>
     </div>
   </section>
 
