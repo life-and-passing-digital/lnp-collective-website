@@ -767,7 +767,7 @@ html.js .rise,html.js .reveal{opacity:1 !important;transform:none !important;}
       <div class="project-rail-dots"><span></span><span></span><span></span><span></span><span></span></div>
     </div>
 
-    <article class="project project--link" data-href-ios="https://apps.apple.com/au/app/westpac-mobile-banking/id299530195" data-href-android="https://play.google.com/store/apps/details?id=org.westpac.bank">
+    <article class="project project--link" data-href-ios="https://apps.apple.com/au/app/westpac/id299111811" data-href-android="https://play.google.com/store/apps/details?id=org.westpac.bank&amp;hl=en_AU" data-href-web="https://www.westpac.com.au/personal-banking/online-banking/mobile-app/">
       <div class="project-bg" style="background-image:url(assets/img_westpac.webp)"></div>
       <div class="project-scrim"></div>
       <div class="project-inner container">
@@ -776,7 +776,7 @@ html.js .rise,html.js .reveal{opacity:1 !important;transform:none !important;}
       </div>
     </article>
 
-    <article class="project project--light project--link" data-href="https://www.taste.com.au">
+    <article class="project project--light project--link" data-href="http://taste.com.au/">
       <div class="project-bg" style="background-image:url(assets/img_taste_news.webp)"></div>
       <div class="project-scrim"></div>
       <div class="project-inner container">
@@ -785,7 +785,7 @@ html.js .rise,html.js .reveal{opacity:1 !important;transform:none !important;}
       </div>
     </article>
 
-    <article class="project project--link" data-href="https://www.oroxglobal.com">
+    <article class="project project--link" data-href="https://oroxglobal.com/">
       <div class="project-bg" style="background-image:url(assets/img_orox.webp)"></div>
       <div class="project-scrim"></div>
       <div class="project-inner container">
@@ -803,7 +803,7 @@ html.js .rise,html.js .reveal{opacity:1 !important;transform:none !important;}
       </div>
     </article>
 
-    <article class="project project--link" data-href="https://www.buysecure.com.au">
+    <article class="project project--link" data-href="https://buysecure.com.au/">
       <div class="project-bg" style="background-image:url(assets/img_buysecure.webp)"></div>
       <div class="project-scrim"></div>
       <div class="project-inner container">
@@ -929,7 +929,9 @@ html.js .rise,html.js .reveal{opacity:1 !important;transform:none !important;}
       el.addEventListener('click', function(){
         var href = el.dataset.href;
         if(!href){
-          href = isAndroid ? el.dataset.hrefAndroid : el.dataset.hrefIos;
+          if(isIOS)          href = el.dataset.hrefIos;
+          else if(isAndroid) href = el.dataset.hrefAndroid;
+          else               href = el.dataset.hrefWeb || el.dataset.hrefIos;
         }
         if(href) window.open(href, '_blank', 'noopener,noreferrer');
       });
