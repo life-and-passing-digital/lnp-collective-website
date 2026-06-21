@@ -432,14 +432,14 @@ h1,h2,h3{font-family:var(--head);font-weight:600;letter-spacing:-.02em;line-heig
 .approach-content{display:flex;flex-direction:column;justify-content:center;padding:clamp(32px,6vh,80px) clamp(28px,5.5vw,100px);}
 .approach-title{margin:0;font-family:var(--head);font-weight:600;color:var(--ink);font-size:clamp(1.9rem,3vw,2.8rem);line-height:1.1;letter-spacing:-.025em;max-width:18ch;}
 .approach-lede{margin:clamp(16px,1.6vw,22px) 0 0;color:var(--mist);font-family:var(--uncut);font-size:clamp(16px,1.3vw,19px);line-height:1.6;max-width:40ch;}
-.approach-steps{list-style:none;margin:clamp(30px,4vw,52px) 0 0;padding:0;position:relative;--num-col:clamp(20px,1.7vw,24px);--num-gap:clamp(8px,1.4vw,16px);}
+.approach-steps{list-style:none;margin:clamp(30px,4vw,52px) 0 0;padding:0;position:relative;--num-col:clamp(20px,1.7vw,24px);--num-gap:clamp(8px,1.4vw,16px);--fill:0px;}
 .approach-steps::before{content:"";position:absolute;top:0;bottom:0;left:calc(var(--num-col) + var(--num-gap));width:2px;background:var(--line);}
+.approach-steps::after{content:"";position:absolute;top:0;left:calc(var(--num-col) + var(--num-gap));width:2px;height:var(--fill);background:var(--ink);}
 .astep{display:grid;grid-template-columns:var(--num-col) 1fr;column-gap:var(--num-gap);}
 .astep-no{font-family:var(--head);font-weight:400;font-size:clamp(18px,1.5vw,22px);line-height:1.3;color:var(--mist);opacity:.5;transition:color .4s var(--ease),opacity .4s var(--ease),font-weight .4s var(--ease);}
 .astep.active .astep-no{color:var(--ink);opacity:1;font-weight:600;}
-.astep-main{border-left:2px solid transparent;padding:0 0 clamp(24px,3vw,38px) clamp(46px,4vw,64px);transition:border-color .4s var(--ease);}
+.astep-main{border-left:2px solid transparent;padding:0 0 clamp(24px,3vw,38px) clamp(46px,4vw,64px);}
 .astep:last-child .astep-main{padding-bottom:0;}
-.astep.active .astep-main{border-left-color:var(--ink);}
 .astep-main h3{margin:0;font-family:var(--head);font-weight:600;font-size:clamp(1.05rem,1.5vw,1.35rem);letter-spacing:-.01em;color:var(--mist);opacity:.55;transition:color .4s var(--ease),opacity .4s var(--ease);}
 .astep.active .astep-main h3{color:var(--ink);opacity:1;}
 .astep-main p{margin:8px 0 0;font-family:var(--uncut);font-size:clamp(14px,1.05vw,15.5px);line-height:1.55;color:var(--mist);opacity:.4;max-width:34ch;transition:opacity .4s var(--ease);}
@@ -1186,27 +1186,40 @@ html.js .rise,html.js .reveal{opacity:1 !important;transform:none !important;}
     go(0);
   })();
 
-  /* approach — sticky scroll step activation (Metony working-process style) */
+  /* approach — growing progress line, lighting each step as it reaches them (Metony style) */
   (function(){
     var section = document.querySelector('.approach');
     if(!section) return;
+    var stepsEl = section.querySelector('.approach-steps');
     var steps = Array.prototype.slice.call(section.querySelectorAll('.astep'));
-    if(!steps.length) return;
+    if(!stepsEl || !steps.length) return;
     var mq = window.matchMedia('(max-width:860px)');
-    var raf = null;
+    var raf = null, trackH = 0, tops = [];
+    function measure(){
+      trackH = stepsEl.offsetHeight;
+      tops = steps.map(function(s){ return s.offsetTop; });
+    }
     function apply(){
       raf = null;
-      if(mq.matches){ steps.forEach(function(s){ s.classList.remove('active'); }); return; }
+      if(mq.matches){
+        steps.forEach(function(s){ s.classList.remove('active'); });
+        stepsEl.style.setProperty('--fill', '0px');
+        return;
+      }
       var rect = section.getBoundingClientRect();
       var total = section.offsetHeight - window.innerHeight;
       var scrolled = Math.min(Math.max(-rect.top, 0), total);
       var p = total > 0 ? scrolled / total : 0;
-      var idx = Math.min(steps.length - 1, Math.floor(p * steps.length));
-      for(var i=0;i<steps.length;i++){ steps[i].classList.toggle('active', i === idx); }
+      var fillPx = p * trackH;
+      stepsEl.style.setProperty('--fill', fillPx.toFixed(1) + 'px');
+      var idx = 0;
+      for(var i=0;i<steps.length;i++){ if(tops[i] <= fillPx + 2) idx = i; }
+      for(var j=0;j<steps.length;j++){ steps[j].classList.toggle('active', j === idx); }
     }
     var queue = function(){ if(!raf) raf = requestAnimationFrame(apply); };
     window.addEventListener('scroll', queue, {passive:true});
-    window.addEventListener('resize', queue, {passive:true});
+    window.addEventListener('resize', function(){ measure(); queue(); }, {passive:true});
+    measure();
     apply();
   })();
 
