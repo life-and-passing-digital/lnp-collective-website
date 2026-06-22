@@ -244,7 +244,7 @@ img{display:block;max-width:100%;}
 /* RESPONSIVE */
 @media (max-width:860px){
   .fc-hero{grid-template-columns:1fr;min-height:auto;}
-  .fc-hero-img{height:clamp(300px,52vh,460px);}
+  .fc-hero-img{height:calc(100vh - 104px);height:calc(100dvh - 104px);min-height:360px;}
   .fc-hero-content{padding:clamp(40px,7vw,64px) clamp(20px,5vw,40px);}
   .foot-bottom{flex-direction:column;align-items:flex-start;}
   .foot-bottom-links{flex-direction:column;align-items:flex-start;gap:16px;}
