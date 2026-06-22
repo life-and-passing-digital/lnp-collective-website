@@ -10,6 +10,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <style>
 @font-face{
   font-family:"Uncut Sans";
@@ -209,11 +210,22 @@ img{display:block;max-width:100%;}
 }
 .fc-field input::placeholder{color:var(--muted);}
 .fc-field input:focus{outline:none;border-color:var(--violet);}
-.fc-thanks{
-  font-family:var(--uncut);font-weight:500;font-size:20px;line-height:1.64;color:var(--ink);
-  margin:0;display:none;
-}
-.fc-thanks.show{display:block;}
+/* SUBMIT MODAL */
+.fc-modal{position:fixed;inset:0;z-index:1000;display:flex;align-items:center;justify-content:center;padding:20px;overflow-y:auto;}
+.fc-modal[hidden]{display:none;}
+.fc-modal-scrim{position:absolute;inset:0;background:rgba(0,0,0,.5);}
+.fc-modal-dialog{position:relative;z-index:1;background:#fff;width:840px;max-width:100%;border-radius:40px;
+  box-shadow:0 24px 19px rgba(0,0,0,.14),0 9px 23px rgba(0,0,0,.12),0 11px 7.5px rgba(0,0,0,.2);
+  animation:fc-modal-in .3s var(--ease-out) both;}
+.fc-modal-head{padding:32px 40px 8px;}
+.fc-modal-title{font-family:var(--uncut);font-weight:700;font-size:24px;line-height:1.1;color:var(--ink);margin:0;}
+.fc-modal-body{padding:24px 40px;display:flex;flex-direction:column;gap:1em;}
+.fc-modal-body p{font-family:var(--uncut);font-weight:400;font-size:20px;line-height:1.64;color:var(--shade);margin:0;}
+.fc-modal-cta{display:flex;justify-content:flex-end;padding:16px 40px 32px;}
+@keyframes fc-modal-in{from{opacity:0;transform:translateY(12px);}to{opacity:1;transform:none;}}
+@media (prefers-reduced-motion:reduce){.fc-modal-dialog{animation:none;}}
+@media(max-width:600px){.fc-modal-dialog{border-radius:24px;}.fc-modal-head{padding:24px 24px 8px;}
+  .fc-modal-body{padding:16px 24px;}.fc-modal-body p{font-size:18px;}.fc-modal-cta{padding:12px 24px 24px;}}
 
 /* FOOTER */
 .footer{background:#F3ECF9;color:#180026;position:relative;z-index:2;padding-top:clamp(40px,5vw,60px);padding-bottom:clamp(24px,2.6vw,34px);}
@@ -391,7 +403,6 @@ img{display:block;max-width:100%;}
           <button type="submit" class="btn btn-primary">Submit</button>
           <button type="button" class="btn btn-ghost" id="changeAnswers">Change my answers</button>
         </div>
-        <p class="fc-thanks" id="fcThanks">Thanks &mdash; your answers are on their way to our inbox. We&rsquo;ll be in touch shortly.</p>
       </form>
     </div>
   </section>
@@ -414,8 +425,36 @@ img{display:block;max-width:100%;}
   </div>
 </footer>
 
+<!-- SUBMIT CONFIRMATION MODAL -->
+<div class="fc-modal" id="fcModal" role="dialog" aria-modal="true" aria-labelledby="fcModalTitle" hidden>
+  <div class="fc-modal-scrim" data-close></div>
+  <div class="fc-modal-dialog">
+    <div class="fc-modal-head"><h2 class="fc-modal-title" id="fcModalTitle">Message sent</h2></div>
+    <div class="fc-modal-body">
+      <p>Thank you for submitting your answers. A member of our team will be in touch with you shortly via email.</p>
+      <p>We&rsquo;ve also shared a copy of the answers with the fit score with you. If the email hasn&rsquo;t come through to your inbox, please check your junk or spam folder.</p>
+    </div>
+    <div class="fc-modal-cta"><button type="button" class="btn btn-primary" id="fcModalOk">OK, got it</button></div>
+  </div>
+</div>
+
 <script>
 (function(){
+  // EmailJS — sends the user a styled HTML copy of their results.
+  // Fill these three values from your EmailJS dashboard to enable it
+  // (the public key is safe to expose in client-side code). Until they
+  // are set, the form still works: the internal notification goes via
+  // Formsubmit and the confirmation modal still shows.
+  // Setup: 1) create a service (connect the inbox that sends the mail),
+  // 2) create a template with To Email = {{to_email}}, Subject = {{subject}},
+  //    and a content/code block containing {{{content}}} (triple braces = raw HTML),
+  //    optionally Bcc = info@gaiaapp.net, 3) copy the Public Key from Account.
+  var EMAILJS_PUBLIC_KEY  = '';  // TODO
+  var EMAILJS_SERVICE_ID  = '';  // TODO
+  var EMAILJS_TEMPLATE_ID = '';  // TODO
+  var emailjsReady = !!(EMAILJS_PUBLIC_KEY && EMAILJS_SERVICE_ID && EMAILJS_TEMPLATE_ID && window.emailjs);
+  if(emailjsReady){ emailjs.init({publicKey: EMAILJS_PUBLIC_KEY}); }
+
   var QUESTIONS = [
     "What kind of organisation are you?",
     "If the problem you have in mind got fixed, what is it worth a year?",
@@ -577,12 +616,71 @@ img{display:block;max-width:100%;}
 
   document.getElementById('changeAnswers').addEventListener('click', function(){
     results.classList.remove('show');
-    document.getElementById('fcThanks').classList.remove('show');
     quiz.style.display = 'flex';
     document.getElementById('fit-check').scrollIntoView({behavior:'smooth', block:'start'});
   });
 
-  // Lead form -> POST to Formsubmit.co which delivers to info@gaiaapp.net.
+  // Small HTML-escape for values that go into the emailed copy.
+  function esc(s){ return String(s == null ? '' : s).replace(/[&<>"]/g, function(c){
+    return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'})[c]; }); }
+
+  // Build a website-matching HTML results card (score card on top, then the
+  // exact answers) for the copy emailed to the user. Email-safe: table layout,
+  // inline styles, sans-serif fallback (mail clients don't load webfonts).
+  function buildEmailHtml(r, name, company){
+    var ansRows = '';
+    for(var i = 0; i < QUESTIONS.length; i++){
+      ansRows +=
+        '<tr><td style="padding:0 0 14px;">' +
+          '<div style="font-size:14px;line-height:1.5;color:#463351;">' + (i + 1) + '. ' + esc(QUESTIONS[i]) + '</div>' +
+          '<div style="font-size:16px;line-height:1.5;font-weight:700;color:#180026;">' + esc(answers[i] ? answers[i].label : '—') + '</div>' +
+        '</td></tr>';
+    }
+    return '' +
+    '<div style="font-family:Arial,Helvetica,sans-serif;max-width:640px;margin:0 auto;padding:8px;color:#180026;">' +
+      '<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#F3F7FA;border-radius:24px;border-collapse:separate;">' +
+        '<tr><td style="padding:32px;">' +
+          '<table role="presentation" cellpadding="0" cellspacing="0" width="100%"><tr>' +
+            '<td valign="top" style="padding-right:24px;width:38%;">' +
+              '<div style="font-size:16px;line-height:1.28;color:#463351;">Score</div>' +
+              '<div style="font-weight:700;line-height:1.1;white-space:nowrap;"><span style="color:#7548FF;font-size:56px;">' + r.score + '</span><span style="font-size:28px;color:#180026;">/100</span></div>' +
+            '</td>' +
+            '<td valign="top">' +
+              '<div style="font-size:16px;line-height:1.28;color:#463351;">Action to take</div>' +
+              '<div style="font-weight:700;font-size:28px;line-height:1.1;color:#180026;margin-top:4px;">' + esc(r.action) + '</div>' +
+              '<div style="font-size:18px;line-height:1.5;color:#463351;margin-top:6px;">' + esc(r.pricing) + '</div>' +
+            '</td>' +
+          '</tr></table>' +
+          '<p style="font-size:18px;line-height:1.6;color:#463351;margin:24px 0 0;">' + esc(r.para) + '</p>' +
+        '</td></tr>' +
+      '</table>' +
+      '<h3 style="font-size:18px;line-height:1.2;color:#180026;margin:28px 0 14px;">Your answers</h3>' +
+      '<table role="presentation" width="100%" cellpadding="0" cellspacing="0">' + ansRows + '</table>' +
+      '<p style="font-size:13px;line-height:1.6;color:#807388;margin:28px 0 0;">&mdash; Life and Passing Digital</p>' +
+    '</div>';
+  }
+
+  // Submit confirmation modal
+  var modal = document.getElementById('fcModal');
+  var lastFocus = null;
+  function openModal(){
+    lastFocus = document.activeElement;
+    modal.hidden = false;
+    document.body.style.overflow = 'hidden';
+    document.getElementById('fcModalOk').focus();
+    document.addEventListener('keydown', onModalKey);
+  }
+  function closeModal(){
+    modal.hidden = true;
+    document.body.style.overflow = '';
+    document.removeEventListener('keydown', onModalKey);
+    if(lastFocus && lastFocus.focus) lastFocus.focus();
+  }
+  function onModalKey(e){ if(e.key === 'Escape') closeModal(); }
+  document.getElementById('fcModalOk').addEventListener('click', closeModal);
+  modal.querySelector('[data-close]').addEventListener('click', closeModal);
+
+  // Lead form -> internal notification (Formsubmit) + styled copy to the user (EmailJS).
   document.getElementById('fcLead').addEventListener('submit', function(e){
     e.preventDefault();
     var email = document.getElementById('leadEmail').value.trim();
@@ -610,7 +708,10 @@ img{display:block;max-width:100%;}
     var submitBtn = e.target.querySelector('[type=submit]');
     submitBtn.disabled = true;
     submitBtn.textContent = 'Sending…';
-    fetch('https://formsubmit.co/ajax/info@gaiaapp.net', {
+
+    var tasks = [];
+    // Internal lead notification — reliable, needs no extra setup.
+    tasks.push(fetch('https://formsubmit.co/ajax/info@gaiaapp.net', {
       method: 'POST',
       headers: {'Content-Type': 'application/json', 'Accept': 'application/json'},
       body: JSON.stringify({
@@ -622,13 +723,27 @@ img{display:block;max-width:100%;}
         _captcha: 'false',
         _template: 'table'
       })
-    }).then(function(){
-      document.getElementById('fcThanks').classList.add('show');
-      submitBtn.textContent = 'Sent';
-    }).catch(function(){
+    }));
+    // Website-matching copy to the user — only when EmailJS is configured.
+    if(emailjsReady){
+      tasks.push(emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
+        to_email: email,
+        subject: "Your Life and Passing Digital fit check results (" + r.score + "/100)",
+        content: buildEmailHtml(r, name, company),
+        name: name || '—',
+        company: company || '—',
+        score: r.score,
+        action: r.action,
+        pricing: r.pricing
+      }));
+    }
+
+    Promise.allSettled(tasks).then(function(results){
       submitBtn.disabled = false;
       submitBtn.textContent = 'Submit';
-      alert('Something went wrong — please try again or email us directly at info@gaiaapp.net.');
+      var anyOk = results.some(function(x){ return x.status === 'fulfilled'; });
+      if(anyOk){ openModal(); }
+      else { alert('Something went wrong — please try again or email us directly at info@gaiaapp.net.'); }
     });
   });
 
