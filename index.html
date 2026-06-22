@@ -408,8 +408,13 @@ h1,h2,h3{font-family:var(--head);font-weight:600;letter-spacing:-.02em;line-heig
 @media (max-width:767px){
   .project-bg{background-image:var(--bg-m);}
 }
+@media (max-width:860px){
+  .project-inner{display:flex;flex-direction:column;justify-content:flex-start;padding:40px 24px;gap:32px;}
+  .project-tags{flex-direction:row;flex-wrap:wrap;gap:8px;}
+  .ptag{font-size:14px;padding:8px 16px;}
+  .project-title{font-size:45px;line-height:.88;align-self:auto;-webkit-line-clamp:unset;overflow:visible;}
+}
 @media (max-width:620px){
-  .project-title{font-size:clamp(2rem,9.5vw,3rem);}
   .project-rail-dots span{width:10px;height:10px;}
 }
 @media (min-width:1441px){
