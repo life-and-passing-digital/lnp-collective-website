@@ -140,9 +140,10 @@ img{display:block;max-width:100%;}
 
 /* QUESTIONS */
 .fc-quiz{display:flex;flex-direction:column;gap:clamp(40px,4.5vw,56px);}
-.fc-question{border:0;padding:0;margin:0;min-inline-size:0;transition:opacity .55s var(--ease-out),transform .55s var(--ease-out);}
-.fc-question.is-hidden{display:none;}
-.fc-question.is-entering{opacity:0;transform:translateY(28px);}
+@keyframes fc-fadeinup{from{opacity:0;transform:translateY(28px);}to{opacity:1;transform:none;}}
+.fc-question{border:0;padding:0;margin:0;min-inline-size:0;}
+.fc-question.is-hidden,.fc-cta.is-hidden{display:none;}
+.fc-question.is-entering,.fc-cta.is-entering{animation:fc-fadeinup .55s var(--ease-out) both;}
 .fc-q-heading{
   display:flex;align-items:flex-start;gap:0;
   font-family:var(--uncut);font-weight:700;
@@ -169,9 +170,7 @@ img{display:block;max-width:100%;}
 .fc-question.missing .fc-q-heading{color:var(--violet);}
 
 /* CTA row */
-.fc-cta{display:flex;gap:12px;align-items:center;flex-wrap:wrap;padding-top:clamp(8px,2vw,32px);transition:opacity .55s var(--ease-out),transform .55s var(--ease-out);}
-.fc-cta.is-hidden{display:none;}
-.fc-cta.is-entering{opacity:0;transform:translateY(28px);}
+.fc-cta{display:flex;gap:12px;align-items:center;flex-wrap:wrap;padding-top:clamp(8px,2vw,32px);}
 .fc-error{
   font-family:var(--uncut);font-weight:500;font-size:15px;color:var(--violet);
   margin:0;display:none;
@@ -450,8 +449,13 @@ img{display:block;max-width:100%;}
   function reveal(el){
     if(!el || !el.classList.contains('is-hidden')) return;
     el.classList.remove('is-hidden');
-    void el.offsetWidth; // force reflow so the transition runs
-    el.classList.remove('is-entering');
+    // Double rAF: first frame clears display:none, second triggers the keyframe.
+    requestAnimationFrame(function(){
+      requestAnimationFrame(function(){
+        el.classList.add('is-entering');
+        el.addEventListener('animationend', function(){ el.classList.remove('is-entering'); }, {once:true});
+      });
+    });
   }
 
   // Progressive reveal: only question 1 is shown on load; the rest (and the CTA)
@@ -459,9 +463,9 @@ img{display:block;max-width:100%;}
   var reduceMotion = window.matchMedia('(prefers-reduced-motion:reduce)').matches;
   if(!reduceMotion){
     fieldsets.forEach(function(fs, i){
-      if(i > 0){ fs.classList.add('is-hidden', 'is-entering'); }
+      if(i > 0){ fs.classList.add('is-hidden'); }
     });
-    cta.classList.add('is-hidden', 'is-entering');
+    cta.classList.add('is-hidden');
   }
 
   // Chip selection (single-select within each question)
