@@ -140,8 +140,9 @@ img{display:block;max-width:100%;}
 
 /* QUESTIONS */
 .fc-quiz{display:flex;flex-direction:column;gap:clamp(40px,4.5vw,56px);}
-.fc-question{border:0;padding:0;margin:0;min-inline-size:0;opacity:0;transform:translateY(28px);transition:opacity .55s var(--ease-out),transform .55s var(--ease-out);pointer-events:none;}
-.fc-question--visible{opacity:1;transform:none;pointer-events:auto;}
+.fc-question{border:0;padding:0;margin:0;min-inline-size:0;transition:opacity .55s var(--ease-out),transform .55s var(--ease-out);}
+.fc-question.is-hidden{display:none;}
+.fc-question.is-entering{opacity:0;transform:translateY(28px);}
 .fc-q-heading{
   display:flex;align-items:flex-start;gap:0;
   font-family:var(--uncut);font-weight:700;
@@ -168,7 +169,9 @@ img{display:block;max-width:100%;}
 .fc-question.missing .fc-q-heading{color:var(--violet);}
 
 /* CTA row */
-.fc-cta{display:flex;gap:12px;align-items:center;flex-wrap:wrap;padding-top:clamp(8px,2vw,32px);}
+.fc-cta{display:flex;gap:12px;align-items:center;flex-wrap:wrap;padding-top:clamp(8px,2vw,32px);transition:opacity .55s var(--ease-out),transform .55s var(--ease-out);}
+.fc-cta.is-hidden{display:none;}
+.fc-cta.is-entering{opacity:0;transform:translateY(28px);}
 .fc-error{
   font-family:var(--uncut);font-weight:500;font-size:15px;color:var(--violet);
   margin:0;display:none;
@@ -441,12 +444,24 @@ img{display:block;max-width:100%;}
   // answers[q] = {score, label, value}
   var answers = {};
 
-  // Show first question immediately; rest reveal on answer
+  var cta = quiz.querySelector('.fc-cta');
+
+  // Reveal a question (or the CTA) that starts hidden, animating it in from below.
+  function reveal(el){
+    if(!el || !el.classList.contains('is-hidden')) return;
+    el.classList.remove('is-hidden');
+    void el.offsetWidth; // force reflow so the transition runs
+    el.classList.remove('is-entering');
+  }
+
+  // Progressive reveal: only question 1 is shown on load; the rest (and the CTA)
+  // fade in as each previous question is answered. Skipped under reduced motion.
   var reduceMotion = window.matchMedia('(prefers-reduced-motion:reduce)').matches;
-  if(reduceMotion){
-    fieldsets.forEach(function(fs){ fs.classList.add('fc-question--visible'); });
-  } else {
-    fieldsets[0].classList.add('fc-question--visible');
+  if(!reduceMotion){
+    fieldsets.forEach(function(fs, i){
+      if(i > 0){ fs.classList.add('is-hidden', 'is-entering'); }
+    });
+    cta.classList.add('is-hidden', 'is-entering');
   }
 
   // Chip selection (single-select within each question)
@@ -467,14 +482,12 @@ img{display:block;max-width:100%;}
         if(errorEl.classList.contains('show') && Object.keys(answers).length === QUESTIONS.length){
           errorEl.classList.remove('show');
         }
-        // Reveal the next question
+        // Reveal the next question, or the CTA after the final question
         var nextIdx = parseInt(q, 10) + 1;
-        if(nextIdx < fieldsets.length){
-          var next = fieldsets[nextIdx];
-          if(!next.classList.contains('fc-question--visible')){
-            next.classList.add('fc-question--visible');
-            setTimeout(function(){ next.scrollIntoView({behavior:'smooth', block:'nearest'}); }, 80);
-          }
+        var nextEl = nextIdx < fieldsets.length ? fieldsets[nextIdx] : cta;
+        if(nextEl && nextEl.classList.contains('is-hidden')){
+          reveal(nextEl);
+          setTimeout(function(){ nextEl.scrollIntoView({behavior:'smooth', block:'nearest'}); }, 80);
         }
       });
     });
@@ -562,10 +575,6 @@ img{display:block;max-width:100%;}
     results.classList.remove('show');
     document.getElementById('fcThanks').classList.remove('show');
     quiz.style.display = 'flex';
-    // Ensure all previously answered questions are still visible
-    fieldsets.forEach(function(fs, i){
-      if(answers[i] !== undefined){ fs.classList.add('fc-question--visible'); }
-    });
     document.getElementById('fit-check').scrollIntoView({behavior:'smooth', block:'start'});
   });
 
