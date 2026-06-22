@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Privacy Policy | Life and Passing Digital</title>
+<meta name="description" content="Global Privacy Policy for Life and Passing Digital Pty Ltd. Learn how we collect, use, disclose, and protect your personal information." />
+<link rel="icon" type="image/svg+xml" href="../assets/LNP%20Logo%20Beacon%20Light.svg" />
+<link rel="apple-touch-icon" href="../assets/LNP%20Logo%20Beacon%20Light.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet" />
+<style>
+@font-face{
+  font-family:"Uncut Sans";
+  src:url("../assets/Webfonts/UncutSans-Variable.woff2") format("woff2-variations"),
+      url("../assets/Webfonts/UncutSans-Regular.woff2") format("woff2");
+  font-weight:100 900;
+  font-display:swap;
+}
+
+:root{
+  --paper:#F3ECFA;
+  --ink:#180026;
+  --mist:#6A5B7A;
+  --shade:#463351;
+  --violet:#7548FF;
+  --line:rgba(24,0,38,.12);
+  --display:"Bebas Neue","Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --head:"Uncut Sans","Inter", ui-sans-serif, system-ui, sans-serif;
+  --body:"Uncut Sans","Inter", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --uncut:"Uncut Sans","Inter", ui-sans-serif, system-ui, sans-serif;
+  --container:1280px;
+  --ease:cubic-bezier(.2,.7,.2,1);
+  --ease-out:cubic-bezier(.16,1,.3,1);
+}
+
+*,*::before,*::after{box-sizing:border-box;}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto;}}
+
+body{
+  margin:0;
+  background:#fff;
+  color:var(--ink);
+  font-family:var(--body);
+  font-size:17px;
+  line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+  overflow-x:hidden;
+}
+
+a{color:inherit;text-decoration:none;}
+img{display:block;max-width:100%;}
+:focus-visible{outline:2px solid var(--violet);outline-offset:3px;border-radius:4px;}
+
+/* NAV */
+.nav{
+  position:sticky;top:0;z-index:50;
+  background:#180026;
+}
+.nav-inner{
+  display:flex;align-items:center;justify-content:space-between;
+  height:104px;
+  max-width:var(--container);margin-inline:auto;
+  padding-inline:clamp(20px,5.5vw,80px);
+}
+.brand{display:inline-flex;align-items:center;gap:12px;font-family:var(--head);font-weight:600;letter-spacing:-.01em;font-size:18px;color:var(--paper);}
+.brand .logo{width:72px;height:72px;flex:none;display:block;}
+.brand .logo img{display:block;width:100%;height:100%;}
+.brand-name{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;}
+.nav-cta{display:flex;align-items:center;gap:12px;}
+.btn-pill{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;white-space:nowrap;cursor:pointer;
+  font-family:var(--head);font-weight:600;font-size:16px;letter-spacing:-.018em;
+  height:40px;padding-inline:24px;border-radius:999px;
+  background:#fff;color:#180026;border:1px solid #fff;
+  transition:transform .35s var(--ease), box-shadow .35s var(--ease);
+}
+.btn-pill:hover{transform:translateY(-2px);box-shadow:0 12px 34px -12px rgba(202,112,255,.6);}
+
+/* CONTENT */
+.pp-content{
+  max-width:var(--container);margin-inline:auto;
+  padding:clamp(56px,8vw,120px) clamp(20px,5.5vw,80px);
+}
+
+.pp-header{text-align:center;margin-bottom:clamp(32px,5vw,64px);}
+.pp-title{
+  font-family:var(--display);font-weight:400;
+  font-size:clamp(48px,6.1vw,88px);
+  line-height:.8;letter-spacing:-.02em;text-transform:uppercase;
+  color:var(--ink);margin:0;
+}
+.pp-date{
+  font-family:var(--uncut);font-weight:400;
+  font-size:24px;line-height:1.64;
+  color:var(--shade);margin:clamp(16px,2vw,24px) 0 0;
+}
+
+.pp-body{
+  display:flex;gap:48px;align-items:flex-start;
+}
+
+.pp-copy{flex:1;min-width:0;}
+
+.pp-intro{
+  font-family:var(--uncut);font-weight:400;
+  font-size:20px;line-height:1.64;color:var(--shade);
+  margin:0 0 56px;
+}
+.pp-intro strong{font-weight:700;}
+
+.pp-section{margin-bottom:56px;}
+.pp-section:last-child{margin-bottom:0;}
+
+.pp-section-heading{
+  display:flex;align-items:flex-start;gap:0;
+  font-family:var(--uncut);font-weight:700;
+  font-size:clamp(24px,2.5vw,36px);line-height:1.1;
+  color:var(--ink);margin:0 0 24px;
+}
+.pp-section-num{flex-shrink:0;width:48px;display:inline-block;}
+@media (min-width:861px){
+  .pp-section-num{width:64px;}
+}
+
+.pp-section-body{
+  font-family:var(--uncut);font-weight:400;
+  font-size:20px;line-height:1.64;color:var(--shade);
+}
+.pp-section-body p{margin:0 0 1em;}
+.pp-section-body p:last-child{margin-bottom:0;}
+.pp-section-body ul{margin:.5em 0 1em;padding-left:30px;}
+.pp-section-body li{margin-bottom:.25em;}
+.pp-section-body li:last-child{margin-bottom:0;}
+.pp-section-body a{color:var(--shade);text-decoration:underline;}
+.pp-section-body a:hover{color:var(--ink);}
+
+/* TABLE OF CONTENTS — sticky sidebar */
+.pp-toc{
+  position:sticky;top:128px;
+  width:320px;flex-shrink:0;
+}
+.pp-toc-title{
+  font-family:var(--uncut);font-weight:600;
+  font-size:24px;line-height:1.5;
+  color:var(--ink);margin:0 0 24px;
+}
+.pp-toc-list{
+  list-style:none;margin:0;padding:0;
+  display:flex;flex-direction:column;gap:12px;
+}
+.pp-toc-list a{
+  font-family:var(--uncut);font-weight:500;
+  font-size:16px;line-height:1.5;
+  color:var(--shade);
+  transition:color .25s var(--ease);
+}
+.pp-toc-list a:hover,
+.pp-toc-list a.active{
+  color:var(--violet);
+}
+
+/* FOOTER */
+.footer{background:#F3ECF9;color:#180026;position:relative;z-index:2;padding-top:clamp(40px,5vw,60px);padding-bottom:clamp(24px,2.6vw,34px);}
+.footer .container{max-width:var(--container);margin-inline:auto;padding-inline:clamp(20px,5.5vw,80px);}
+.foot-brand{gap:12px;display:inline-flex;}
+.foot-full-logo{display:block;width:clamp(140px,14vw,200px);height:auto;}
+.foot-bottom{display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px;align-items:center;margin-top:clamp(8px,1.5vw,20px);font-family:var(--uncut);font-size:16px;font-weight:500;letter-spacing:0;color:#180026;}
+.foot-bottom-links{display:flex;gap:24px;align-items:center;}
+.foot-bottom a{color:#180026;}
+.foot-bottom a:hover{color:#180026;}
+
+/* RESPONSIVE */
+@media (max-width:860px){
+  .pp-body{flex-direction:column;}
+  .pp-toc{
+    position:static;width:100%;
+    order:-1;
+    border-bottom:1px solid var(--line);
+    padding-bottom:24px;margin-bottom:8px;
+  }
+  .pp-toc-list{flex-direction:column;gap:10px;}
+
+  .foot-bottom{flex-direction:column;align-items:flex-start;}
+  .foot-bottom-links{flex-direction:column;align-items:flex-start;gap:16px;}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<header class="nav" id="nav">
+  <div class="nav-inner">
+    <a class="brand" href="/" aria-label="Life and Passing Digital — home">
+      <span class="logo" aria-hidden="true">
+        <img src="../assets/LNP%20Logo%20Beacon.svg" alt="" width="46" height="46" />
+      </span>
+      <span class="brand-name">Life&nbsp;and&nbsp;Passing&nbsp;Digital</span>
+    </a>
+    <div class="nav-cta">
+      <a class="btn-pill" href="/#contact">Start a project</a>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="pp-content">
+
+    <!-- HEADER -->
+    <div class="pp-header">
+      <h1 class="pp-title">Global Privacy Policy</h1>
+      <p class="pp-date">Effective date: 21 June 2026</p>
+    </div>
+
+    <!-- BODY: COPY + TOC -->
+    <div class="pp-body">
+
+      <!-- COPY -->
+      <div class="pp-copy">
+
+        <!-- INTRODUCTION -->
+        <div class="pp-intro" id="introduction">
+          <p>At Life And Passing Digital Pty Ltd with ACN: 677 453 235 (hereinafter, &ldquo;<strong>LnP</strong>,&rdquo; &ldquo;<strong>LnP Digital</strong>,&rdquo; &ldquo;<strong>Company</strong>,&rdquo; &ldquo;<strong>us</strong>,&rdquo; or &ldquo;<strong>we</strong>&rdquo;), we respect and protect the privacy of visitors to our website, www.lifeandpassing.com, and the other websites under the lifeandpassing.com domain (collectively, the &ldquo;Sites&rdquo;), and our customers who use our SaaS product, web design software, tools, and related services (together with the Sites, the &ldquo;Platform&rdquo;).</p>
+
+          <p>This Global Privacy Policy (&ldquo;Policy&rdquo;) explains how we collect, use, disclose, and protect visitors&rsquo; and users&rsquo; information as part of the Platform. Any discussion of your use of the Platform in this Policy is meant to include your visits and other interactions with the Sites and Platforms, whether or not you are a user of LnP&rsquo;s product suite.</p>
+
+          <p>We are Australian proprietary limited company and operate in accordance with Australian law, including the Privacy Act 1988 (Cth) and the Australian Privacy Principles. From time to time, we may review and update this Policy, including to take account of new or amended laws, new technology, and/or changes to our operations. We will post changes to this Policy on our websites along with the effective date of the changed policy. We recommend that you review this Policy periodically.</p>
+
+          <p>By accessing and using our Platform, you signify your acceptance to the terms of this Privacy Policy, including transfers to third parties and other countries. If you do not agree with or you are not comfortable with any aspect of this Privacy Policy, you should immediately discontinue access or use of our Platform.</p>
+        </div>
+
+        <!-- 1 -->
+        <div class="pp-section" id="quality-policy">
+          <h2 class="pp-section-heading"><span class="pp-section-num">1.</span> Quality policy</h2>
+          <div class="pp-section-body">
+            <p>LnP is dedicated to providing a high quality of service across digital consulting, workflow solutions, operations, AI optimisation, innovation, entity mergers and acquisitions, and any raw material procurement. We strive to exceed customer expectations by delivering safe, effective, and reliable solutions that align with the highest standards of customer experience and information technology.</p>
+            <p>We are committed to customer satisfaction, continuous improvement, compliance with Australian and international regulations, employee engagement, the safety and efficacy of our products and services, and sustainability. Our Quality Policy is regularly reviewed to ensure it remains aligned with our business objectives, regulatory obligations, and economic responsibilities.</p>
+            <p>The entire LnP team is responsible for implementing this Quality Policy and contributing to its success. We are committed to making a difference within the industries we operate in through our dedication to quality, innovation, and customer satisfaction. To learn more about our commitment to quality, please get in touch with us.</p>
+          </div>
+        </div>
+
+        <!-- 2 -->
+        <div class="pp-section" id="personal-information">
+          <h2 class="pp-section-heading"><span class="pp-section-num">2.</span> What &ldquo;Personal Information&rdquo; means</h2>
+          <div class="pp-section-body">
+            <p>In this Policy, &ldquo;<strong>Personal Information</strong>&rdquo; means any information relating to an identifiable natural person or an opinion that can reasonably identify you, whether the information or opinion is true or not, and whether the information or opinion is recorded in a material form or not. Except as described in this Policy, LnP will not give, sell, rent, or loan any Personal Information to any third party.</p>
+            <p>Personal Information does not include data or information collected, derived, or otherwise generated from the use of the Platform, provided that such data has been anonymised, de-identified, and/or aggregated so as not to identify or permit the identification of any individual (&ldquo;De-identified Data&rdquo;). De-identified Data helps us understand trends in usage of the Platform so that we can better consider new features or otherwise tailor the Platform. In addition to collecting and using De-identified Data ourselves, we may share De-identified Data with third parties, including our customers, partners and service providers, for various purposes, including to help us better understand our customers&rsquo; needs and improve the Platform as well as for advertising and marketing purposes.</p>
+          </div>
+        </div>
+
+        <!-- 3 -->
+        <div class="pp-section" id="what-we-collect">
+          <h2 class="pp-section-heading"><span class="pp-section-num">3.</span> What information we collect</h2>
+          <div class="pp-section-body">
+            <p>When you visit our websites or engage with our services, we may collect personal information that you voluntarily provide to us. This may include your name, email address, phone number, occupation, location, organisation, intellectual property around a project, and other contact information you submit through enquiry forms.</p>
+            <p>We may also automatically collect technical information about your device and how you use our website. This may include your IP address, browser type, device type, referring URL, pages visited, and similar usage information.</p>
+          </div>
+        </div>
+
+        <!-- 4 -->
+        <div class="pp-section" id="how-we-collect">
+          <h2 class="pp-section-heading"><span class="pp-section-num">4.</span> How we collect information</h2>
+          <div class="pp-section-body">
+            <p>We are bound by the Privacy Act 1988 (Cth) (Privacy Act), Australian Privacy Principles (APPs), and any registered privacy codes that apply to it. This Policy sets out how we collect personal information:</p>
+            <ul>
+              <li>directly from you when you submit a project enquiry, contact form, or partner enquiry through our website</li>
+              <li>from individuals who submit project enquiries on behalf of their clients</li>
+              <li>from word of mouth referrals or deep links from social media or web campaigns</li>
+              <li>through cookies and analytics tools when you browse our website</li>
+              <li>through direct email and telephone communications</li>
+            </ul>
+            <p>If you provide us with personal information about another individual (for example, a client you represent as their logistics partner), you should ensure that individual is aware of and consents to the collection and use of their personal information as described in this Policy.</p>
+          </div>
+        </div>
+
+        <!-- 5 -->
+        <div class="pp-section" id="how-we-use">
+          <h2 class="pp-section-heading"><span class="pp-section-num">5.</span> How we use your information</h2>
+          <div class="pp-section-body">
+            <p>We may use your personal information to respond to your enquiries, deliver requested information about our services, product offerings, communicate with you in relation to engagements or partnerships, improve our website and services, and meet our legal and regulatory obligations under Australian law.</p>
+            <p>We may also use your personal information for the direct marketing of products and services offered by LnP and its entities or an organisation we are affiliated with or represent. If you do not wish to receive direct marketing information, please contact us at any time to opt out. We will not charge you for giving effect to your request.</p>
+            <p>We do not sell, trade, or rent your personal information to third parties for marketing purposes.</p>
+          </div>
+        </div>
+
+        <!-- 6 -->
+        <div class="pp-section" id="disclosure">
+          <h2 class="pp-section-heading"><span class="pp-section-num">6.</span> Disclosure of your information</h2>
+          <div class="pp-section-body">
+            <p>We may disclose your information between Life And Passing Digital Pty Ltd and Gaia Digital Pty Ltd as part of our group operations, and to trusted service providers who assist us in operating our website, conducting our business, or servicing you, provided those parties agree to keep this information confidential. We may also disclose information where required by Australian law, regulation, or legal process.</p>
+          </div>
+        </div>
+
+        <!-- 7 -->
+        <div class="pp-section" id="overseas-disclosure">
+          <h2 class="pp-section-heading"><span class="pp-section-num">7.</span> Overseas disclosure</h2>
+          <div class="pp-section-body">
+            <p>We may disclose your personal information (including any credit information we hold about you) to overseas entities that provide support functions to us. Recipients may be located in New Zealand, the Philippines, the United Kingdom, India, the United Arab Emirates, Italy, Canada, and the United States.</p>
+            <p>Before we disclose any of your personal information to another entity, we take all reasonable steps to satisfy ourselves that the entity has a commitment to protecting your personal information at least equal to our commitment, or that you have consented to us making the disclosure.</p>
+            <p>The personal information we hold about you may be held by us in electronic form on our secure servers and may also be held in paper form. We may use cloud storage to store personal information, including credit information. The cloud storage and IT servers may be located outside Australia. We will not disclose any consumer credit information obtained about an individual under section 21G of the Privacy Act 1988 (Cth) to a recipient that does not have business operations in Australia.</p>
+          </div>
+        </div>
+
+        <!-- 8 -->
+        <div class="pp-section" id="storage-security">
+          <h2 class="pp-section-heading"><span class="pp-section-num">8.</span> Storage and security</h2>
+          <div class="pp-section-body">
+            <p>We take reasonable technical and organisational measures to protect your personal information from misuse, interference, loss, unauthorised access, modification, or disclosure. However, no method of internet transmission or electronic storage is completely secure, and we cannot guarantee absolute security.</p>
+            <p>Personal information is stored on secure servers located in Australia or with reputable cloud providers. Where information is transferred or stored overseas, we take reasonable steps to ensure recipients comply with the Australian Privacy Principles.</p>
+          </div>
+        </div>
+
+        <!-- 9 -->
+        <div class="pp-section" id="links-other-websites">
+          <h2 class="pp-section-heading"><span class="pp-section-num">9.</span> Links to other websites</h2>
+          <div class="pp-section-body">
+            <p>The Platform contains links to websites and applications other than the Platform, including websites and applications operated by affiliates and other third parties. This Policy applies only to information collected by the Platform.</p>
+            <p>LnP does not endorse and is not responsible for the practices of third parties or their websites or applications. We do not determine and are not responsible for the privacy practices or the content of websites or applications operated by third parties. Your browsing and interaction on any third-party website or service, including those that have a link on our website, are subject to that third party&rsquo;s own rules and policies.</p>
+            <p>We are not responsible for and we do not control any third parties that you authorise to access your Website Content. If you are using a third-party website or service and you allow such a third-party access to your Website Content, you do so at your own risk.</p>
+          </div>
+        </div>
+
+        <!-- 10 -->
+        <div class="pp-section" id="reservation-rights">
+          <h2 class="pp-section-heading"><span class="pp-section-num">10.</span> Reservation of rights</h2>
+          <div class="pp-section-body">
+            <p>You have the right to access the personal information we hold about you and to request that we correct any information that is inaccurate, out of date, incomplete, irrelevant, or misleading. To exercise these rights, please contact us using the details below.</p>
+            <p>You may also lodge a complaint with the Office of the Australian Information Commissioner (OAIC) at <a href="https://www.oaic.gov.au/" target="_blank" rel="noopener">www.oaic.gov.au</a> if you believe we have breached the Australian Privacy Principles.</p>
+          </div>
+        </div>
+
+        <!-- 11 -->
+        <div class="pp-section" id="cookies">
+          <h2 class="pp-section-heading"><span class="pp-section-num">11.</span> Cookies</h2>
+          <div class="pp-section-body">
+            <p>We may collect your personal information through cookies and other tracking devices. When you access our websites, we may send your device a &ldquo;cookie&rdquo; (a small summary file containing a unique ID number). This enables us to recognise your device each time you visit our websites, without requesting you to register or log-in. It also helps us keep track of products or services you view, so we can send you news about them.</p>
+            <p>We use cookies to measure traffic patterns, determine which areas of our websites have been visited, and measure aggregate transaction patterns. We use this to research our users&rsquo; habits so that we can improve our online products and services. If you do not wish to receive cookies, you can set your browser, so your device does not accept them. We may also log IP addresses to analyse trends, administer the website, track user movements, and gather broad demographic information.</p>
+            <p>We may also collect anonymous data (not personal information) relating to your activity on our websites (including IP addresses) via cookies or collect information from you in response to a survey. We generally use this information to report statistics, analyse trends, administer our services, diagnose problems, and target and improve the quality of our products and services. To the extent this information does not constitute personal information because it does not identify you or anyone else, the Australian Privacy Principles do not apply, and we may use this information for any purpose and by any means whatsoever.</p>
+            <p>We may combine the information that we have collected about you. If you have registered for secure access to our websites or accessed an email, we have sent you that includes a web beacon or sets a cookie, we are able to combine the information we collect about your usage of our websites with other information we know about you, such as any searches you conduct or information you request during your web session. We can also identify your computer or device on each visit to our websites, even if you do not log on, and determine whether you came to our websites by clicking on an email link. This enables us to link information about your website&rsquo;s visits, as well as about our ads that you may have viewed on other websites to you. We may use this combined information to assess the appeal and usefulness of the information and tools offered on our websites and the effectiveness of our email communications and online advertising, as well as to identify our products and services that may be of interest to you. For more information about how we and our service providers use information for analytics and advertising purposes, please see the &ldquo;Website Analytics and Interest-Based Advertising.&rdquo;</p>
+          </div>
+        </div>
+
+        <!-- 12 -->
+        <div class="pp-section" id="analytics-advertising">
+          <h2 class="pp-section-heading"><span class="pp-section-num">12.</span> Website analytics and interest-based advertising</h2>
+          <div class="pp-section-body">
+            <p>We partner with third parties to collect the information discussed in this Policy to engage in analysis, auditing, research, and reporting. These third parties may set and access cookies on your computer or other devices and may use web beacons to collect information about your activity on our websites. In particular, our websites use Adobe Analytics and Google Analytics to help collect and analyse certain information for the purposes discussed in this Policy. The information generated about your use of the websites may be transmitted to and stored by Adobe Analytics and Google Analytics on servers outside your country of residence. You may opt out of the use of cookies by Adobe Analytics here. You may opt out of the use of cookies by Google Analytics here.</p>
+            <p>We also partner with third parties to provide targeted advertising services through digital channels and social media that are customised based on your online activities over time and across unaffiliated websites (&ldquo;Interest-Based Advertising&rdquo;). These third parties may use cookies and web beacons (and other storage technologies) to collect or receive information about your activity on our websites, and they may combine it with information about your activity on other unaffiliated websites. In addition, our third-party advertising providers might use information about your use of our websites to help target interest-based advertisements based on your online activity in general. This means that you may see our banners and ads when you are on other websites and apps, such as social media.</p>
+            <p>For more information about Interest-Based Advertising and how to opt-out, please visit the Australian Digital Advertising Alliance (ADAA) opt-out page, available at <a href="http://www.youronlinechoices.com.au/opt-out/" target="_blank" rel="noopener">http://www.youronlinechoices.com.au/opt-out/</a>.</p>
+            <p>Although our websites do not respond to &ldquo;do not track&rdquo; browser headers, you can limit tracking by taking the above mentioned steps. The use of online tracking mechanisms by third parties is subject to those third parties&rsquo; own privacy policies and not this Policy.</p>
+          </div>
+        </div>
+
+        <!-- 13 -->
+        <div class="pp-section" id="limitation-liability">
+          <h2 class="pp-section-heading"><span class="pp-section-num">13.</span> Limitation of liability</h2>
+          <div class="pp-section-body">
+            <p>You expressly understand and agree that LnP shall not be liable for any direct, indirect, special, incidental, consequential, or exemplary damages incurred by you, including, but not limited to, damages for loss of profits, goodwill, use, data, or other intangible losses (even if LnP Digital has been advised of the possibility of such damages), resulting from a) the use or the inability to use the Services; b) the cost of procurement of substitute goods and/or services resulting from any goods, data, information, or services purchased or obtained or messages received or transactions entered into through or from the Services; c) unauthorised access to or alteration of your transmissions or data; d) statements or conduct of any third party on the Services; or e) any other matter relating to the Services.</p>
+            <p>The content of this platform is provided for general informational purposes only and should not be construed as legal, financial, or any other type of professional advice. The information contained herein is not a substitute for obtaining professional advice from a qualified person or entity.</p>
+            <p>Use of this website does not create a professional relationship of any kind between the user and LnP.</p>
+            <p>To the extent permitted by law, Life And Passing Digital Pty Ltd and its entities disclaim all liability for any damages arising out of or in connection with the use or inability to use this website, including but not limited to direct, indirect, special, incidental, consequential, or punitive damages, even if LnP has been advised of the possibility of such damages.</p>
+            <p>This platform includes materials that are owned by or licensed to us. These materials encompass, but are not limited to, the design, layout, look, appearance, and graphics. Reproduction is prohibited. Except as permitted under the fair dealing provisions of intellectual property law, you may not use, copy, reproduce, publish, store, alter, or transmit any part of the contents of this website. All rights not expressly granted to you under these terms of use are reserved by LnP Digital.</p>
+          </div>
+        </div>
+
+        <!-- 14 -->
+        <div class="pp-section" id="contact-complaints">
+          <h2 class="pp-section-heading"><span class="pp-section-num">14.</span> Contacting Us, Complaints, and Feedback</h2>
+          <div class="pp-section-body">
+            <p>If you would like to seek access to the personal information we hold about you, or if you have any questions or complaints about how we collect, use, disclose, manage, or store your personal information, you can contact us via the below channels:</p>
+            <ul>
+              <li><strong>Postal Address:</strong><br>Life And Passing Digital Pty Ltd<br>G02/7 Smith Street<br>Epping, NSW 2121, Australia</li>
+              <li><strong>Phone:</strong> <a href="tel:+61449990737">+61 449 990 737</a></li>
+              <li><strong>Email:</strong> <a href="mailto:info@gaiaapp.net">info@gaiaapp.net</a></li>
+            </ul>
+            <p>If you make a complaint, we will take reasonable steps to investigate the complaint and respond to you within a reasonable time. If you are not happy with our response, you may complain directly to the Office of the Australian Information Commissioner at <a href="https://www.oaic.gov.au/" target="_blank" rel="noopener">www.oaic.gov.au</a>.</p>
+            <p>For more information about privacy in general, or if you are dissatisfied with our response to your complaint, you can contact the Office of the Australian Information Commissioner at <a href="https://www.oaic.gov.au/" target="_blank" rel="noopener">www.oaic.gov.au</a>.</p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- TABLE OF CONTENTS -->
+      <aside class="pp-toc" aria-label="Table of contents">
+        <h2 class="pp-toc-title">Table of contents</h2>
+        <ol class="pp-toc-list">
+          <li><a href="#introduction" class="active">Introduction</a></li>
+          <li><a href="#quality-policy">1. Quality policy</a></li>
+          <li><a href="#personal-information">2. What &ldquo;Personal Information&rdquo; means</a></li>
+          <li><a href="#what-we-collect">3. What information we collect</a></li>
+          <li><a href="#how-we-collect">4. How we collect information</a></li>
+          <li><a href="#how-we-use">5. How we use your information</a></li>
+          <li><a href="#disclosure">6. Disclosure of your information</a></li>
+          <li><a href="#overseas-disclosure">7. Overseas disclosure</a></li>
+          <li><a href="#storage-security">8. Storage and security</a></li>
+          <li><a href="#links-other-websites">9. Links to other websites</a></li>
+          <li><a href="#reservation-rights">10. Reservation of rights</a></li>
+          <li><a href="#cookies">11. Cookies</a></li>
+          <li><a href="#analytics-advertising">12. Website analytics and interest-based advertising</a></li>
+          <li><a href="#limitation-liability">13. Limitation of liability</a></li>
+          <li><a href="#contact-complaints">14. Contacting Us, Complaints, and Feedback</a></li>
+        </ol>
+      </aside>
+
+    </div>
+  </div>
+</main>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <a class="brand foot-brand" href="/" aria-label="Life and Passing Digital — home">
+      <img src="../assets/LNP%20Full%20Logo%20Light.svg" alt="Life and Passing Digital" class="foot-full-logo" width="954" height="408" />
+    </a>
+    <div class="foot-bottom">
+      <span>&copy; 2026 Life And Passing Digital Pty Ltd. All rights reserved.</span>
+      <div class="foot-bottom-links">
+        <a href="/fit-check">Run the fit check</a>
+        <a href="/privacy">Privacy Policy</a>
+        <a href="/">Back to top &uarr;</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var tocLinks = document.querySelectorAll('.pp-toc-list a');
+  var sections = [];
+  tocLinks.forEach(function(link){
+    var id = link.getAttribute('href').slice(1);
+    var el = document.getElementById(id);
+    if(el) sections.push({el:el, link:link});
+  });
+
+  function onScroll(){
+    var scrollY = window.scrollY + 160;
+    var active = sections[0];
+    for(var i = 0; i < sections.length; i++){
+      if(sections[i].el.offsetTop <= scrollY) active = sections[i];
+    }
+    tocLinks.forEach(function(l){ l.classList.remove('active'); });
+    if(active) active.link.classList.add('active');
+  }
+
+  if(sections.length){
+    window.addEventListener('scroll', onScroll, {passive:true});
+    onScroll();
+  }
+})();
+</script>
+
+</body>
+</html>
