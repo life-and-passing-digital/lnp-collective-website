@@ -98,22 +98,20 @@ img{display:block;max-width:100%;}
 
 /* HERO */
 .fc-hero{
-  display:flex;align-items:center;
-  gap:clamp(40px,6.7vw,96px);
-  padding-right:clamp(20px,5.5vw,80px);
+  display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);
+  min-height:clamp(520px,70vh,860px);
   background:#fff;
 }
 .fc-hero-img{
-  flex:none;
-  width:min(50%,720px);
-  height:clamp(440px,64vh,820px);
+  position:relative;
   overflow:hidden;
 }
-.fc-hero-img img{width:100%;height:100%;object-fit:cover;}
+.fc-hero-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .7s cubic-bezier(.25,.46,.45,.94);will-change:transform;}
+.fc-hero-img:hover img{transform:scale(1.07);}
 .fc-hero-content{
-  flex:1;min-width:0;
-  display:flex;flex-direction:column;gap:clamp(28px,3vw,40px);
-  padding-block:clamp(40px,5vw,80px);
+  display:flex;flex-direction:column;justify-content:center;gap:clamp(28px,3vw,40px);
+  padding:clamp(60px,8vw,120px) clamp(48px,5.56vw,96px);
 }
 .fc-hero-heading{
   font-family:var(--display);font-weight:400;
@@ -224,11 +222,15 @@ img{display:block;max-width:100%;}
 .foot-bottom a{color:#180026;}
 .foot-bottom a:hover{color:#180026;text-decoration:underline;}
 
+/* reveal */
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .8s var(--ease-out), transform .8s var(--ease-out);}
+.reveal.in{opacity:1;transform:none;}
+
 /* RESPONSIVE */
 @media (max-width:860px){
-  .fc-hero{flex-direction:column;gap:0;padding-right:0;align-items:stretch;}
-  .fc-hero-img{width:100%;height:clamp(300px,52vh,460px);}
-  .fc-hero-content{padding:clamp(32px,8vw,56px) clamp(20px,5.5vw,40px);}
+  .fc-hero{grid-template-columns:1fr;min-height:auto;}
+  .fc-hero-img{height:clamp(300px,52vh,460px);}
+  .fc-hero-content{padding:clamp(40px,7vw,64px) clamp(20px,5vw,40px);}
   .foot-bottom{flex-direction:column;align-items:flex-start;}
   .foot-bottom-links{flex-direction:column;align-items:flex-start;gap:16px;}
 }
@@ -262,7 +264,7 @@ img{display:block;max-width:100%;}
 
   <!-- HERO -->
   <section class="fc-hero">
-    <div class="fc-hero-img">
+    <div class="fc-hero-img reveal">
       <img src="../assets/img_light_bulb.webp" alt="A glowing light bulb resting on sand at the shoreline" width="720" height="912" />
     </div>
     <div class="fc-hero-content">
@@ -574,6 +576,20 @@ img{display:block;max-width:100%;}
     window.location.href = href;
     document.getElementById('fcThanks').classList.add('show');
   });
+
+  /* scroll reveal */
+  var reveals = document.querySelectorAll('.reveal');
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(reduce || !('IntersectionObserver' in window)){
+    reveals.forEach(function(el){ el.classList.add('in'); });
+  } else {
+    var ioReveal = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){ e.target.classList.add('in'); ioReveal.unobserve(e.target); }
+      });
+    }, {rootMargin:'0px 0px -10% 0px', threshold:.12});
+    reveals.forEach(function(el){ ioReveal.observe(el); });
+  }
 })();
 </script>
 
