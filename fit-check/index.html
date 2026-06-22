@@ -140,7 +140,8 @@ img{display:block;max-width:100%;}
 
 /* QUESTIONS */
 .fc-quiz{display:flex;flex-direction:column;gap:clamp(40px,4.5vw,56px);}
-.fc-question{border:0;padding:0;margin:0;min-inline-size:0;}
+.fc-question{border:0;padding:0;margin:0;min-inline-size:0;opacity:0;transform:translateY(28px);transition:opacity .55s var(--ease-out),transform .55s var(--ease-out);pointer-events:none;}
+.fc-question--visible{opacity:1;transform:none;pointer-events:auto;}
 .fc-q-heading{
   display:flex;align-items:flex-start;gap:0;
   font-family:var(--uncut);font-weight:700;
@@ -440,6 +441,14 @@ img{display:block;max-width:100%;}
   // answers[q] = {score, label, value}
   var answers = {};
 
+  // Show first question immediately; rest reveal on answer
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+  if(reduceMotion){
+    fieldsets.forEach(function(fs){ fs.classList.add('fc-question--visible'); });
+  } else {
+    fieldsets[0].classList.add('fc-question--visible');
+  }
+
   // Chip selection (single-select within each question)
   fieldsets.forEach(function(fs){
     var q = fs.getAttribute('data-q');
@@ -457,6 +466,15 @@ img{display:block;max-width:100%;}
         fs.classList.remove('missing');
         if(errorEl.classList.contains('show') && Object.keys(answers).length === QUESTIONS.length){
           errorEl.classList.remove('show');
+        }
+        // Reveal the next question
+        var nextIdx = parseInt(q, 10) + 1;
+        if(nextIdx < fieldsets.length){
+          var next = fieldsets[nextIdx];
+          if(!next.classList.contains('fc-question--visible')){
+            next.classList.add('fc-question--visible');
+            setTimeout(function(){ next.scrollIntoView({behavior:'smooth', block:'nearest'}); }, 80);
+          }
         }
       });
     });
@@ -544,6 +562,10 @@ img{display:block;max-width:100%;}
     results.classList.remove('show');
     document.getElementById('fcThanks').classList.remove('show');
     quiz.style.display = 'flex';
+    // Ensure all previously answered questions are still visible
+    fieldsets.forEach(function(fs, i){
+      if(answers[i] !== undefined){ fs.classList.add('fc-question--visible'); }
+    });
     document.getElementById('fit-check').scrollIntoView({behavior:'smooth', block:'start'});
   });
 
