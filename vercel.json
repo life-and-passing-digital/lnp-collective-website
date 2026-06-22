@@ -2,6 +2,9 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "cleanUrls": true,
   "trailingSlash": false,
+  "redirects": [
+    { "source": "/privacy", "destination": "/privacy-policy", "permanent": true }
+  ],
   "headers": [
     {
       "source": "/(.*)",
@@ -19,7 +22,7 @@
       ]
     },
     {
-      "source": "/privacy",
+      "source": "/privacy-policy",
       "headers": [
         { "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }
       ]
