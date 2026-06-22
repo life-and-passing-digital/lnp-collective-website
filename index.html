@@ -386,7 +386,7 @@ h1,h2,h3{font-family:var(--head);font-weight:600;letter-spacing:-.02em;line-heig
    ========================================================= */
 .projects{position:relative;z-index:2;background:#fff;padding:16px;}
 .project{position:sticky;top:16px;height:calc(100vh - 32px);overflow:hidden;display:flex;border-radius:56px;}
-.project-bg{position:absolute;inset:0;background-size:cover;background-position:center;transform:scale(1.04);}
+.project-bg{position:absolute;inset:0;background-image:var(--bg);background-size:cover;background-position:center;transform:scale(1.04);}
 .project-scrim{position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,0,12,.28) 0%,rgba(8,0,12,0) 26%,rgba(8,0,12,0) 52%,rgba(8,0,12,.62) 100%);}
 .project-inner{position:relative;z-index:2;width:100%;display:grid;grid-template-rows:auto 1fr auto;padding-block:clamp(92px,12vh,132px);}
 .project-tags{justify-self:start;display:flex;flex-direction:column;align-items:flex-start;gap:10px;}
@@ -401,6 +401,10 @@ h1,h2,h3{font-family:var(--head);font-weight:600;letter-spacing:-.02em;line-heig
 .project--link{cursor:pointer;}
 .project--light .project-scrim{display:none;}
 .project--light .project-title{color:var(--ink);}
+/* below 768px: swap to portrait mobile project artwork */
+@media (max-width:767px){
+  .project-bg{background-image:var(--bg-m);}
+}
 @media (max-width:620px){
   .project-title{font-size:clamp(2rem,9.5vw,3rem);}
   .project-rail-dots span{width:10px;height:10px;}
@@ -877,7 +881,7 @@ html.js .rise,html.js .reveal{opacity:1 !important;transform:none !important;}
     </div>
 
     <article class="project project--link" data-href-ios="https://apps.apple.com/au/app/westpac/id299111811" data-href-android="https://play.google.com/store/apps/details?id=org.westpac.bank&amp;hl=en_AU" data-href-web="https://www.westpac.com.au/personal-banking/online-banking/mobile-app/">
-      <div class="project-bg" style="background-image:url(assets/img_westpac.webp)"></div>
+      <div class="project-bg" style="--bg:url(assets/img_westpac.webp);--bg-m:url(assets/img_westpac_mobile.webp)"></div>
       <div class="project-scrim"></div>
       <div class="project-inner container">
         <div class="project-tags"><span class="ptag">UX / UI</span><span class="ptag">Design systems &amp; accessibility</span><span class="ptag">Product strategy</span><span class="ptag">Market research &amp; positioning</span></div>
@@ -886,7 +890,7 @@ html.js .rise,html.js .reveal{opacity:1 !important;transform:none !important;}
     </article>
 
     <article class="project project--light project--link" data-href="http://taste.com.au/">
-      <div class="project-bg" style="background-image:url(assets/img_taste_news.webp)"></div>
+      <div class="project-bg" style="--bg:url(assets/img_taste_news.webp);--bg-m:url(assets/img_taste_news_mobile.webp)"></div>
       <div class="project-scrim"></div>
       <div class="project-inner container">
         <div class="project-tags"><span class="ptag">Web design</span><span class="ptag">Rapid prototyping &amp; testing</span><span class="ptag">SEO &amp; AEO</span></div>
@@ -895,7 +899,7 @@ html.js .rise,html.js .reveal{opacity:1 !important;transform:none !important;}
     </article>
 
     <article class="project project--link" data-href="https://oroxglobal.com/">
-      <div class="project-bg" style="background-image:url(assets/img_orox.webp)"></div>
+      <div class="project-bg" style="--bg:url(assets/img_orox.webp);--bg-m:url(assets/img_orox_mobile.webp)"></div>
       <div class="project-scrim"></div>
       <div class="project-inner container">
         <div class="project-tags"><span class="ptag">UX / UI</span><span class="ptag">Content creation</span><span class="ptag">Web &amp; app development</span></div>
@@ -904,7 +908,7 @@ html.js .rise,html.js .reveal{opacity:1 !important;transform:none !important;}
     </article>
 
     <article class="project project--link" data-href="https://apps.apple.com/au/app/dehancer-film-emulation/id6443648413">
-      <div class="project-bg" style="background-image:url(assets/img_dehancer.webp)"></div>
+      <div class="project-bg" style="--bg:url(assets/img_dehancer.webp);--bg-m:url(assets/img_dehancer_mobile.webp)"></div>
       <div class="project-scrim"></div>
       <div class="project-inner container">
         <div class="project-tags"><span class="ptag">UX / UI</span><span class="ptag">Design systems</span><span class="ptag">Product strategy</span></div>
@@ -913,7 +917,7 @@ html.js .rise,html.js .reveal{opacity:1 !important;transform:none !important;}
     </article>
 
     <article class="project project--link" data-href="https://buysecure.com.au/">
-      <div class="project-bg" style="background-image:url(assets/img_buysecure.webp)"></div>
+      <div class="project-bg" style="--bg:url(assets/img_buysecure.webp);--bg-m:url(assets/img_buysecure_mobile.webp)"></div>
       <div class="project-scrim"></div>
       <div class="project-inner container">
         <div class="project-tags"><span class="ptag">UX / UI &amp; Branding</span><span class="ptag">AI automation</span></div>
