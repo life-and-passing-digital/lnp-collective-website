@@ -202,7 +202,7 @@ h1,h2,h3{font-family:var(--head);font-weight:600;letter-spacing:-.02em;line-heig
 .nav-inner{display:flex;align-items:center;justify-content:space-between;height:104px;}
 .brand{display:inline-flex;align-items:center;gap:12px;font-family:var(--head);font-weight:600;letter-spacing:-.01em;font-size:18px;color:var(--paper);}
 .brand .logo{width:72px;height:72px;flex:none;display:block;}
-.brand .logo svg{display:block;width:100%;height:100%;}
+.brand .logo img,.brand .logo svg{display:block;width:100%;height:100%;}
 .brand .brand-name{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;}
 /* desktop header matches Figma: logo mark + single CTA (links live in the mobile menu) */
 .nav-links{display:none;}
@@ -529,7 +529,8 @@ h1,h2,h3{font-family:var(--head);font-weight:600;letter-spacing:-.02em;line-heig
 .faq-item.open .faq-icon::after{transform:translateX(-50%) rotate(90deg);opacity:0;}
 .faq-a{position:relative;z-index:1;display:grid;grid-template-rows:0fr;transition:grid-template-rows .45s var(--ease);}
 .faq-item.open .faq-a{grid-template-rows:1fr;}
-.faq-a-inner{overflow:hidden;padding-bottom:clamp(24px,2.6vw,32px);}
+.faq-a-inner{overflow:hidden;min-height:0;padding-bottom:0;}
+.faq-item.open .faq-a-inner{padding-bottom:clamp(24px,2.6vw,32px);}
 .faq-a p{margin:0 0 1.05em;color:var(--mist);font-family:var(--uncut);font-size:clamp(15px,1.15vw,17px);line-height:1.62;max-width:56ch;}
 .faq-a p:last-child{margin-bottom:0;}
 .faq-a strong{color:var(--ink);font-weight:600;}
