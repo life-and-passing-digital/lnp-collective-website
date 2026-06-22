@@ -1158,10 +1158,12 @@ html.js .rise,html.js .reveal{opacity:1 !important;transform:none !important;}
         dots[j].classList.toggle('on', j===idx);
       }
       rail.classList.toggle('on-light', panels[idx].classList.contains('project--light'));
-      /* fade out dots as the section bottom scrolls into view */
+      /* fade out dots as the section's bottom edge rises to meet them */
+      var dotsRect = rail.getBoundingClientRect();
+      var dotsCenter = dotsRect.top + dotsRect.height / 2;
       var sectionBottom = section.getBoundingClientRect().bottom;
-      var vh = window.innerHeight;
-      rail.style.opacity = String(Math.min(1, Math.max(0, (sectionBottom - (vh - 120)) / 120)));
+      var gap = sectionBottom - dotsCenter; /* px from dots up to section bottom */
+      rail.style.opacity = String(Math.min(1, Math.max(0, (gap - 40) / 160)));
     }
     var queue = function(){ if(!raf) raf = requestAnimationFrame(apply); };
     window.addEventListener('scroll', queue, {passive:true});
