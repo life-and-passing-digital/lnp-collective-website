@@ -674,7 +674,8 @@ img{display:block;max-width:100%;}
     modal.hidden = true;
     document.body.style.overflow = '';
     document.removeEventListener('keydown', onModalKey);
-    if(lastFocus && lastFocus.focus) lastFocus.focus();
+    document.getElementById('fcLead').reset();
+    document.getElementById('fcResults').scrollIntoView({behavior:'smooth', block:'start'});
   }
   function onModalKey(e){ if(e.key === 'Escape') closeModal(); }
   document.getElementById('fcModalOk').addEventListener('click', closeModal);
