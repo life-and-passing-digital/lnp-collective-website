@@ -460,8 +460,12 @@ h1,h2,h3{font-family:var(--head);font-weight:600;letter-spacing:-.02em;line-heig
   .approach{height:auto;}
   .approach-sticky{position:static;height:auto;min-height:0;}
   .approach-grid{grid-template-columns:1fr;}
-  .approach-content{padding:clamp(48px,9vw,72px) clamp(20px,6vw,40px);}
+  .approach-content{padding:clamp(48px,9vw,72px) 24px 56px;}
   .approach-media{order:-1;height:78vw;min-height:320px;}
+  .approach-steps{--num-col:24px;--num-gap:12px;}
+  .approach-steps::before,.approach-steps::after{display:none;}
+  .astep-main{padding:0 0 32px;border-left:none;}
+  .astep:last-child .astep-main{padding-bottom:0;}
   .astep-no{color:var(--ink);opacity:1;}
   .astep-main h3{color:var(--ink);opacity:1;}
   .astep-main p{opacity:.7;}
