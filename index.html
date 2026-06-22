@@ -482,6 +482,7 @@ h1,h2,h3{font-family:var(--head);font-weight:600;letter-spacing:-.02em;line-heig
 .cta-body{position:relative;z-index:3;display:flex;flex-direction:column;align-items:center;text-align:center;
   gap:18px;padding-inline:416px;width:100%;}
 .cta .btn-pill{flex-shrink:0;margin-top:clamp(2px,2vw,16px);}
+.cta-mobile-img{display:none;}
 .cta h2{
   margin:0;
   font-family:var(--display);font-weight:400;font-size:min(104px,7.8vw);line-height:.8;letter-spacing:.01em;text-transform:uppercase;
@@ -496,8 +497,11 @@ h1,h2,h3{font-family:var(--head);font-weight:600;letter-spacing:-.02em;line-heig
 .cta-sub{max-width:42ch;margin:0;color:#fff;font-family:var(--uncut);font-size:clamp(16px,1.4vw,20px);line-height:1.62;}
 
 @media (max-width:860px){
+  .cta{flex-direction:column;align-items:stretch;min-height:0;padding:48px 24px 56px;gap:0;}
   .cta-portrait{display:none;}
-  .cta-body{padding-inline:clamp(20px,5vw,40px);}
+  .cta-mobile-img{display:block;border-radius:24px;overflow:hidden;margin-bottom:40px;width:100%;}
+  .cta-mobile-img img{display:block;width:100%;height:auto;}
+  .cta-body{padding-inline:0;align-items:center;text-align:center;gap:24px;}
   .cta h2{font-size:clamp(3.4rem,12vw,72px);}
   .cta .btn-pill,.team-cta .btn-pill{width:100%;}
 }
@@ -1009,6 +1013,9 @@ html.js .rise,html.js .reveal{opacity:1 !important;transform:none !important;}
       <img src="assets/img_dan_on_table.webp" alt="Dan, co-founder of Life and Passing Digital" loading="lazy" />
     </div>
     <div class="cta-body">
+      <div class="cta-mobile-img">
+        <img src="assets/img_dan_agam.webp" alt="Dan and Agam, co-founders of Life and Passing Digital" loading="lazy" />
+      </div>
       <h2 class="reveal">Let's build<br>something<br>worth keeping.</h2>
       <p class="cta-sub reveal">From the first sketch to the millionth tap, we build digital products people return to and keep.</p>
       <a class="btn-pill reveal" href="mailto:hello@lnpcollective.com">Start a project</a>
