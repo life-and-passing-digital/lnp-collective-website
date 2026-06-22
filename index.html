@@ -1281,25 +1281,6 @@ html.js .rise,html.js .reveal{opacity:1 !important;transform:none !important;}
   var onScroll = function(){ nav.classList.toggle('scrolled', window.scrollY > 8); };
   onScroll(); window.addEventListener('scroll', onScroll, {passive:true});
 
-  /* hero parallax — "Your vision." drifts left, "Through us." drifts right; band stays fixed */
-  if(!reduce){
-    var heroParallax = [
-      { el: document.querySelector('.hero-row-top .hero-word'), dir: -1, speed: 0.12 },
-      { el: document.querySelector('.hero-word-end'),           dir:  1, speed: 0.12 }
-    ].filter(function(r){ return r.el; });
-    var heroRaf = null;
-    var heroScroll = function(){
-      heroRaf = null;
-      var y = window.scrollY;
-      heroParallax.forEach(function(r){
-        r.el.style.transform = 'translateX('+(y * r.speed * r.dir)+'px)';
-      });
-    };
-    window.addEventListener('scroll', function(){
-      if(!heroRaf) heroRaf = requestAnimationFrame(heroScroll);
-    }, {passive:true});
-  }
-
   /* process scroll-zoom words (eldiora-style) */
   var zoomSection = document.querySelector('.zoomwords');
   if(zoomSection && !reduce){
