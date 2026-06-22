@@ -243,6 +243,28 @@ img{display:block;max-width:100%;}
 
 /* RESPONSIVE */
 @media (max-width:860px){
+  .nav-links{display:none;}
+  .nav-cta .btn-pill{display:none;}
+  .menu-btn{
+    display:inline-flex;align-items:center;justify-content:center;
+    width:44px;height:44px;border-radius:10px;border:1px solid rgba(244,236,251,.25);background:transparent;cursor:pointer;
+    transition:border-color .4s var(--ease);
+  }
+  .menu-btn span{position:relative;width:18px;height:1.5px;background:var(--paper);display:block;transition:transform .35s var(--ease),opacity .2s;}
+  .menu-btn span::before,.menu-btn span::after{content:"";position:absolute;left:0;width:18px;height:1.5px;background:var(--paper);transition:transform .35s var(--ease);}
+  .menu-btn span::before{top:-6px;}.menu-btn span::after{top:6px;}
+  body.menu-open .menu-btn span{background:transparent;}
+  body.menu-open .menu-btn span::before{transform:translateY(6px) rotate(45deg);}
+  body.menu-open .menu-btn span::after{transform:translateY(-6px) rotate(-45deg);}
+  .m-menu{
+    display:block;position:fixed;inset:104px 0 auto 0;z-index:49;
+    background:var(--ink);border-bottom:1px solid rgba(244,236,251,.1);
+    transform:translateY(-12px);opacity:0;pointer-events:none;
+    transition:transform .4s var(--ease),opacity .3s var(--ease);
+  }
+  body.menu-open .m-menu{transform:none;opacity:1;pointer-events:auto;}
+  .m-menu a{display:block;padding:16px clamp(20px,5vw,64px);font-size:18px;border-top:1px solid rgba(244,236,251,.1);font-family:var(--display);font-weight:500;letter-spacing:-.02em;color:var(--paper);}
+  .m-menu a:first-child{border-top:0;}
   .fc-hero{grid-template-columns:1fr;min-height:auto;}
   .fc-hero-img{height:calc(100vh - 104px);height:calc(100dvh - 104px);min-height:360px;}
   .fc-hero-content{padding:clamp(40px,7vw,64px) clamp(20px,5vw,40px);}
@@ -269,11 +291,25 @@ img{display:block;max-width:100%;}
       </span>
       <span class="brand-name">Life&nbsp;and&nbsp;Passing&nbsp;Digital</span>
     </a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="/#capabilities">Capabilities</a>
+      <a href="/#work">Work</a>
+      <a href="/#approach">Approach</a>
+      <a href="/#studio">Studio</a>
+    </nav>
     <div class="nav-cta">
       <a class="btn-pill" href="/#contact">Start a project</a>
+      <button class="menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false"><span></span></button>
     </div>
   </div>
 </header>
+<nav class="m-menu" id="mMenu" aria-label="Mobile">
+  <a href="/#capabilities">Capabilities</a>
+  <a href="/#work">Work</a>
+  <a href="/#approach">Approach</a>
+  <a href="/#studio">Studio</a>
+  <a href="/#contact">Start a project</a>
+</nav>
 
 <main>
 
@@ -747,6 +783,18 @@ img{display:block;max-width:100%;}
       else { alert('Something went wrong — please try again or email us directly at info@gaiaapp.net.'); }
     });
   });
+
+  /* mobile menu */
+  var mb = document.getElementById('menuBtn');
+  if(mb){
+    mb.addEventListener('click', function(){
+      var open = document.body.classList.toggle('menu-open');
+      mb.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    document.querySelectorAll('#mMenu a').forEach(function(a){
+      a.addEventListener('click', function(){ document.body.classList.remove('menu-open'); mb.setAttribute('aria-expanded','false'); });
+    });
+  }
 
   /* scroll reveal */
   var reveals = document.querySelectorAll('.reveal');

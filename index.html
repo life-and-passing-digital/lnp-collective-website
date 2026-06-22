@@ -567,31 +567,6 @@ html.js .reveal.in{opacity:1;transform:none;}
   .work-grid{grid-template-columns:repeat(2,1fr);}
 }
 @media (max-width:860px){
-  .nav-links{display:none;}
-  .nav-cta .btn{display:none;}   /* CTA lives in the menu on mobile */
-  .menu-btn{
-    display:inline-flex;align-items:center;justify-content:center;
-    width:44px;height:44px;border-radius:10px;border:1px solid rgba(244,236,251,.25);background:transparent;cursor:pointer;
-    transition:border-color .4s var(--ease);
-  }
-  .nav.scrolled .menu-btn{border-color:var(--line-strong);}
-  .menu-btn span{position:relative;width:18px;height:1.5px;background:var(--paper);display:block;transition:transform .35s var(--ease),opacity .2s,background .4s var(--ease);}
-  .menu-btn span::before,.menu-btn span::after{content:"";position:absolute;left:0;width:18px;height:1.5px;background:var(--paper);transition:transform .35s var(--ease),background .4s var(--ease);}
-  .nav.scrolled .menu-btn span{background:var(--ink);}
-  .nav.scrolled .menu-btn span::before,.nav.scrolled .menu-btn span::after{background:var(--ink);}
-  .menu-btn span::before{top:-6px;} .menu-btn span::after{top:6px;}
-  body.menu-open .menu-btn span{background:transparent;}
-  body.menu-open .menu-btn span::before{transform:translateY(6px) rotate(45deg);}
-  body.menu-open .menu-btn span::after{transform:translateY(-6px) rotate(-45deg);}
-  .m-menu{
-    display:block;position:fixed;inset:104px 0 auto 0;z-index:49;
-    background:var(--ink);border-bottom:1px solid rgba(244,236,251,.1);
-    transform:translateY(-12px);opacity:0;pointer-events:none;
-    transition:transform .4s var(--ease),opacity .3s var(--ease);
-  }
-  body.menu-open .m-menu{transform:none;opacity:1;pointer-events:auto;}
-  .m-menu a{display:block;padding:16px clamp(20px,5vw,64px);font-size:18px;border-top:1px solid rgba(244,236,251,.1);font-family:var(--display);font-weight:500;letter-spacing:-.02em;color:var(--paper);}
-  .m-menu a:first-child{border-top:0;}
   .split{grid-template-columns:1fr;gap:clamp(28px,5vw,44px);}
   .split-head{position:static;}
 }
@@ -678,25 +653,11 @@ html.js .rise,html.js .reveal{opacity:1 !important;transform:none !important;}
       </span>
       <span class="brand-name">Life&nbsp;and&nbsp;Passing&nbsp;Digital</span>
     </a>
-    <nav class="nav-links" aria-label="Primary">
-      <a href="#capabilities">Capabilities</a>
-      <a href="#work">Work</a>
-      <a href="#approach">Approach</a>
-      <a href="#studio">Studio</a>
-    </nav>
     <div class="nav-cta">
       <a class="btn-pill" href="#contact">Start a project</a>
-      <button class="menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false"><span></span></button>
     </div>
   </div>
 </header>
-<nav class="m-menu" id="mMenu" aria-label="Mobile">
-  <a href="#capabilities">Capabilities</a>
-  <a href="#work">Work</a>
-  <a href="#approach">Approach</a>
-  <a href="#studio">Studio</a>
-  <a href="#contact">Start a project</a>
-</nav>
 
 <main id="top">
 
@@ -1292,18 +1253,6 @@ html.js .rise,html.js .reveal{opacity:1 !important;transform:none !important;}
   var nav = document.getElementById('nav');
   var onScroll = function(){ nav.classList.toggle('scrolled', window.scrollY > 8); };
   onScroll(); window.addEventListener('scroll', onScroll, {passive:true});
-
-  /* mobile menu */
-  var mb = document.getElementById('menuBtn');
-  if(mb){
-    mb.addEventListener('click', function(){
-      var open = document.body.classList.toggle('menu-open');
-      mb.setAttribute('aria-expanded', open ? 'true':'false');
-    });
-    document.querySelectorAll('#mMenu a').forEach(function(a){
-      a.addEventListener('click', function(){ document.body.classList.remove('menu-open'); mb.setAttribute('aria-expanded','false'); });
-    });
-  }
 
   /* hero parallax — "Your vision." drifts left, "Through us." drifts right; band stays fixed */
   if(!reduce){
