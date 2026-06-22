@@ -582,7 +582,7 @@ img{display:block;max-width:100%;}
     document.getElementById('fit-check').scrollIntoView({behavior:'smooth', block:'start'});
   });
 
-  // Lead form -> compose an email to our inbox with the answers + score.
+  // Lead form -> POST to Formsubmit.co which delivers to info@gaiaapp.net.
   document.getElementById('fcLead').addEventListener('submit', function(e){
     e.preventDefault();
     var email = document.getElementById('leadEmail').value.trim();
@@ -607,9 +607,29 @@ img{display:block;max-width:100%;}
       lines.push("   " + (answers[i] ? answers[i].label : "—"));
     }
     var subject = "Fit check — " + (company || name || email) + " (" + r.score + "/100)";
-    var href = "mailto:info@gaiaapp.net?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(lines.join("\n"));
-    window.location.href = href;
-    document.getElementById('fcThanks').classList.add('show');
+    var submitBtn = e.target.querySelector('[type=submit]');
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Sending…';
+    fetch('https://formsubmit.co/ajax/info@gaiaapp.net', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json', 'Accept': 'application/json'},
+      body: JSON.stringify({
+        name: name || '—',
+        email: email,
+        company: company || '—',
+        message: lines.join('\n'),
+        _subject: subject,
+        _captcha: 'false',
+        _template: 'table'
+      })
+    }).then(function(){
+      document.getElementById('fcThanks').classList.add('show');
+      submitBtn.textContent = 'Sent';
+    }).catch(function(){
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Submit';
+      alert('Something went wrong — please try again or email us directly at info@gaiaapp.net.');
+    });
   });
 
   /* scroll reveal */
