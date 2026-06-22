@@ -32,14 +32,16 @@
     '.sap-field textarea{resize:vertical;min-height:116px;}',
     '.sap-field input::placeholder,.sap-field textarea::placeholder{color:#807388;}',
     '.sap-field input:focus,.sap-field select:focus,.sap-field textarea:focus{outline:none;border-color:#7548FF;}',
-    '.sap-select{padding-right:44px;cursor:pointer;background-image:url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'20\' height=\'20\' viewBox=\'0 0 20 20\' fill=\'none\'%3E%3Cpath d=\'M5 7.5 10 12.5 15 7.5\' stroke=\'%23180026\' stroke-width=\'1.5\' stroke-linecap=\'round\' stroke-linejoin=\'round\'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 16px center;}',
+    '.sap-select-wrap{position:relative;}',
+    '.sap-chevron{position:absolute;right:16px;top:50%;transform:translateY(-50%);pointer-events:none;color:#180026;}',
+    '.sap-select{padding-right:44px;cursor:pointer;}',
     '.sap-select.sap-placeholder{color:#807388;}',
     '.sap-field.sap-invalid input,.sap-field.sap-invalid select,.sap-field.sap-invalid textarea{border-color:#DA1710;}',
     '.sap-error{display:none;font-size:13px;line-height:1.4;color:#DA1710;margin-top:2px;}',
     '.sap-field.sap-invalid .sap-error{display:block;}',
     '.sap-cta{display:flex;justify-content:flex-end;padding:8px 40px 32px;}',
-    '.sap-send{font-family:inherit;font-weight:600;font-size:16px;line-height:1;color:#180026;background:#fff;border:1.5px solid #180026;border-radius:999px;padding:12px 24px;min-height:44px;cursor:pointer;transition:background .25s,transform .25s,box-shadow .25s;}',
-    '.sap-send:hover{background:rgba(24,0,38,.05);transform:translateY(-1px);}',
+    '.sap-send{font-family:inherit;font-weight:600;font-size:16px;line-height:1;color:#fff;background:#180026;border:none;border-radius:999px;padding:14px 28px;min-height:48px;cursor:pointer;transition:transform .25s,box-shadow .25s;}',
+    '.sap-send:hover{transform:translateY(-1px);box-shadow:0 14px 34px -14px rgba(24,0,38,.6);}',
     '.sap-send:disabled{opacity:.6;cursor:default;transform:none;}',
     '.sap-send:focus-visible{outline:2px solid #7548FF;outline-offset:2px;}',
     '.sap-head--sm{padding:32px 32px 0;}',
@@ -70,6 +72,10 @@
   var CLOSE_ICON =
     '<svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">' +
     '<path d="M1 1 13 13M13 1 1 13" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>';
+
+  var CHEVRON_SVG =
+    '<svg class="sap-chevron" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">' +
+    '<path d="M5 7.5 10 12.5 15 7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
 
   var HTML =
     '<div class="sap-modal" id="sapModal" role="dialog" aria-modal="true" aria-labelledby="sapTitle" hidden>' +
@@ -106,22 +112,25 @@
             '</div>' +
             '<div class="sap-field">' +
               '<label for="sapSubject">Subject</label>' +
-              '<select class="sap-select sap-placeholder" id="sapSubject" name="subject">' +
-                '<option value="" disabled selected>Select an option</option>' +
-                '<option>Product strategy</option>' +
-                '<option>Design</option>' +
-                '<option>Engineering</option>' +
-                '<option>AI &amp; data</option>' +
-                '<option>Growth</option>' +
-                '<option>Other</option>' +
-              '</select>' +
+              '<div class="sap-select-wrap">' +
+                '<select class="sap-select sap-placeholder" id="sapSubject" name="subject">' +
+                  '<option value="" disabled selected>Select an option</option>' +
+                  '<option>Product strategy</option>' +
+                  '<option>Design</option>' +
+                  '<option>Engineering</option>' +
+                  '<option>AI &amp; data</option>' +
+                  '<option>Growth</option>' +
+                  '<option>Other</option>' +
+                '</select>' +
+                CHEVRON_SVG +
+              '</div>' +
             '</div>' +
             '<div class="sap-field sap-field--full">' +
               '<label for="sapMessage">Tell us about your project(s)</label>' +
               '<textarea id="sapMessage" name="message" rows="4" placeholder="Any information you share will not be shared per our privacy policy"></textarea>' +
             '</div>' +
           '</div>' +
-          '<div class="sap-cta"><button type="submit" class="sap-send">Send email</button></div>' +
+          '<div class="sap-cta"><button type="submit" class="sap-send">Submit enquiry</button></div>' +
         '</form>' +
       '</div>' +
     '</div>' +
