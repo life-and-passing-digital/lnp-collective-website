@@ -38,10 +38,11 @@
       return ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c];
     });
   }
-  function enquiryRow(label, valueHtml) {
+  function enquiryRow(label, valueHtml, last) {
+    var bb = last ? '' : 'border-bottom:1px solid #EAE3F2;';
     return '<tr>' +
-      '<td style="padding:14px 0;border-bottom:1px solid #EAE3F2;font-size:13px;line-height:1.5;color:#6A5B7A;width:34%;vertical-align:top;">' + label + '</td>' +
-      '<td style="padding:14px 0;border-bottom:1px solid #EAE3F2;font-size:15px;line-height:1.5;color:#180026;vertical-align:top;">' + valueHtml + '</td>' +
+      '<td style="padding:14px 0;' + bb + 'font-size:13px;line-height:1.5;color:#6A5B7A;width:34%;vertical-align:top;">' + label + '</td>' +
+      '<td style="padding:14px 0;' + bb + 'font-size:15px;line-height:1.5;color:#180026;vertical-align:top;">' + valueHtml + '</td>' +
     '</tr>';
   }
   function buildEnquiryHtml(d) {
@@ -52,7 +53,7 @@
       enquiryRow('Company', escHtml(d.company)) +
       enquiryRow('Location', escHtml(d.location)) +
       enquiryRow('Subject', escHtml(d.subject)) +
-      enquiryRow('Message', escHtml(d.message).replace(/\n/g, '<br>'));
+      enquiryRow('Message', escHtml(d.message).replace(/\n/g, '<br>'), true);
     return '' +
       '<div style="font-family:Arial,Helvetica,sans-serif;max-width:640px;margin:0 auto;padding:8px;color:#180026;">' +
         '<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border-collapse:separate;border:1px solid #EAE3F2;border-radius:24px;overflow:hidden;">' +
@@ -64,7 +65,7 @@
             '<table role="presentation" width="100%" cellpadding="0" cellspacing="0">' + rows + '</table>' +
           '</td></tr>' +
         '</table>' +
-        '<p style="font-size:13px;line-height:1.6;color:#807388;margin:20px 0 0;text-align:center;">Life and Passing Digital</p>' +
+        '<p style="font-size:13px;line-height:1.6;color:#807388;margin:20px 0 0;text-align:center;">&copy; 2026 Life And Passing Digital Pty Ltd. All rights reserved. Visit our website <a href="https://lifeandpassing.com" style="color:#7548FF;text-decoration:underline;">lifeandpassing.com</a></p>' +
       '</div>';
   }
 
