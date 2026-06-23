@@ -19,9 +19,9 @@
   // enquiries keep going to info@gaiaapp.net via Formsubmit exactly as before.
   // EmailJS template must use: To Email = {{to_email}}, Subject = {{subject}},
   // content = a code block containing {{{content}}} (triple braces = raw HTML).
-  var EMAILJS_PUBLIC_KEY  = '';  // TODO
-  var EMAILJS_SERVICE_ID  = '';  // TODO
-  var EMAILJS_TEMPLATE_ID = '';  // TODO
+  var EMAILJS_PUBLIC_KEY  = 'ATIF7N2FVkzlDM9Tv';
+  var EMAILJS_SERVICE_ID  = 'service_zpnv5be';
+  var EMAILJS_TEMPLATE_ID = 'template_kn92476';
   var emailjsConfigured = !!(EMAILJS_PUBLIC_KEY && EMAILJS_SERVICE_ID && EMAILJS_TEMPLATE_ID);
 
   function ensureEmailjs() {
