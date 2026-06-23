@@ -738,6 +738,48 @@ img{display:block;max-width:100%;}
     '</div>';
   }
 
+  // Brand-styled internal notification for a fit-check submission: detail rows
+  // on top, then every question in bold with its answer below and a line break
+  // (spacing) after each so the thread is easy to scan.
+  function buildFitInternalHtml(r, name, email, company){
+    function row(label, valueHtml){
+      return '<tr>' +
+        '<td style="padding:14px 0;border-bottom:1px solid #EAE3F2;font-size:13px;line-height:1.5;color:#6A5B7A;width:34%;vertical-align:top;">' + label + '</td>' +
+        '<td style="padding:14px 0;border-bottom:1px solid #EAE3F2;font-size:15px;line-height:1.5;color:#180026;vertical-align:top;">' + valueHtml + '</td>' +
+      '</tr>';
+    }
+    var info =
+      row('Name', esc(name || '—')) +
+      row('Email', '<a href="mailto:' + esc(email) + '" style="color:#7548FF;text-decoration:underline;">' + esc(email) + '</a>') +
+      row('Company', esc(company || '—')) +
+      row('Score', esc(r.score) + '/100') +
+      row('Action', esc(r.action)) +
+      row('Suggested pricing', esc(r.pricing));
+    var qa = '';
+    for(var i = 0; i < QUESTIONS.length; i++){
+      qa +=
+        '<div style="margin:0 0 18px;">' +
+          '<div style="font-size:15px;font-weight:700;line-height:1.5;color:#180026;">' + (i + 1) + '. ' + esc(QUESTIONS[i]) + '</div>' +
+          '<div style="font-size:15px;line-height:1.5;color:#463351;margin-top:4px;">' + esc(answers[i] ? answers[i].label : '—') + '</div>' +
+        '</div>';
+    }
+    return '' +
+      '<div style="font-family:Arial,Helvetica,sans-serif;max-width:640px;margin:0 auto;padding:8px;color:#180026;">' +
+        '<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border-collapse:separate;border:1px solid #EAE3F2;border-radius:24px;overflow:hidden;">' +
+          '<tr><td style="background:#180026;padding:22px 28px;">' +
+            '<div style="font-size:18px;font-weight:700;color:#ffffff;line-height:1.2;">New fit check submission</div>' +
+            '<div style="font-size:13px;color:#C9BEDA;margin-top:3px;">via lifeandpassing.com/fit-check</div>' +
+          '</td></tr>' +
+          '<tr><td style="padding:4px 28px 8px;background:#ffffff;">' +
+            '<table role="presentation" width="100%" cellpadding="0" cellspacing="0">' + info + '</table>' +
+            '<h3 style="font-size:16px;line-height:1.2;color:#180026;margin:24px 0 14px;">Answers</h3>' +
+            qa +
+          '</td></tr>' +
+        '</table>' +
+        '<p style="font-size:13px;line-height:1.6;color:#807388;margin:20px 0 0;text-align:center;">Life and Passing Digital</p>' +
+      '</div>';
+  }
+
   // Submit confirmation modal
   var modal = document.getElementById('fcModal');
   var lastFocus = null;
@@ -767,54 +809,59 @@ img{display:block;max-width:100%;}
     var name = document.getElementById('leadName').value.trim();
     var company = document.getElementById('leadCompany').value.trim();
     var r = compute();
-    var lines = [];
-    lines.push("Fit check submission");
-    lines.push("");
-    lines.push("Name: " + (name || "—"));
-    lines.push("Email: " + email);
-    lines.push("Company: " + (company || "—"));
-    lines.push("");
-    lines.push("Score: " + r.score + "/100");
-    lines.push("Action: " + r.action);
-    lines.push("Suggested pricing: " + r.pricing);
-    lines.push("");
-    lines.push("Answers:");
-    for(var i = 0; i < QUESTIONS.length; i++){
-      lines.push((i + 1) + ". " + QUESTIONS[i]);
-      lines.push("   " + (answers[i] ? answers[i].label : "—"));
-    }
     var subject = "Fit check — " + (company || name || email) + " (" + r.score + "/100)";
     var submitBtn = e.target.querySelector('[type=submit]');
     submitBtn.disabled = true;
     submitBtn.textContent = 'Sending…';
 
+    // Plain-text fallback to Formsubmit — used only if EmailJS is unset or
+    // errors, so an internal lead notification is never lost.
+    function viaFormsubmit(){
+      var lines = [];
+      lines.push("Fit check submission");
+      lines.push("");
+      lines.push("Name: " + (name || "—"));
+      lines.push("Email: " + email);
+      lines.push("Company: " + (company || "—"));
+      lines.push("");
+      lines.push("Score: " + r.score + "/100");
+      lines.push("Action: " + r.action);
+      lines.push("Suggested pricing: " + r.pricing);
+      lines.push("");
+      lines.push("Answers:");
+      for(var i = 0; i < QUESTIONS.length; i++){
+        lines.push((i + 1) + ". " + QUESTIONS[i]);
+        lines.push("   " + (answers[i] ? answers[i].label : "—"));
+      }
+      return fetch('https://formsubmit.co/ajax/info@gaiaapp.net', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json', 'Accept': 'application/json'},
+        body: JSON.stringify({
+          name: name || '—', email: email, company: company || '—',
+          message: lines.join('\n'), _subject: subject, _captcha: 'false', _template: 'table'
+        })
+      }).then(function(res){ if(!res.ok) throw new Error('Bad status ' + res.status); return res.json(); });
+    }
+
     var tasks = [];
-    // Internal lead notification — reliable, needs no extra setup.
-    tasks.push(fetch('https://formsubmit.co/ajax/info@gaiaapp.net', {
-      method: 'POST',
-      headers: {'Content-Type': 'application/json', 'Accept': 'application/json'},
-      body: JSON.stringify({
-        name: name || '—',
-        email: email,
-        company: company || '—',
-        message: lines.join('\n'),
-        _subject: subject,
-        _captcha: 'false',
-        _template: 'table'
-      })
-    }));
-    // Website-matching copy to the user — only when EmailJS is configured.
     if(emailjsReady){
+      // Brand-styled internal notification (falls back to Formsubmit on error).
+      tasks.push(
+        emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
+          to_email: 'info@gaiaapp.net',
+          subject: subject,
+          content: buildFitInternalHtml(r, name, email, company)
+        }).catch(function(){ return viaFormsubmit(); })
+      );
+      // Brand-styled copy to the person who filled it in.
       tasks.push(emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
         to_email: email,
         subject: "Your Life and Passing Digital fit check results (" + r.score + "/100)",
-        content: buildEmailHtml(r, name, company),
-        name: name || '—',
-        company: company || '—',
-        score: r.score,
-        action: r.action,
-        pricing: r.pricing
+        content: buildEmailHtml(r, name, company)
       }));
+    } else {
+      // No EmailJS yet — internal notification via Formsubmit only.
+      tasks.push(viaFormsubmit());
     }
 
     Promise.allSettled(tasks).then(function(results){

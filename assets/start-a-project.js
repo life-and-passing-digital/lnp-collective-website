@@ -12,6 +12,62 @@
   if (window.__sapInit) return;
   window.__sapInit = true;
 
+  // ---- EmailJS: brand-styled HTML notification -------------------------------
+  // Paste the SAME three values here AND in fit-check/index.html to switch the
+  // enquiry email from Formsubmit's plain table to a brand-styled HTML email.
+  // The public key is safe to expose client-side. Until all three are filled,
+  // enquiries keep going to info@gaiaapp.net via Formsubmit exactly as before.
+  // EmailJS template must use: To Email = {{to_email}}, Subject = {{subject}},
+  // content = a code block containing {{{content}}} (triple braces = raw HTML).
+  var EMAILJS_PUBLIC_KEY  = '';  // TODO
+  var EMAILJS_SERVICE_ID  = '';  // TODO
+  var EMAILJS_TEMPLATE_ID = '';  // TODO
+  var emailjsConfigured = !!(EMAILJS_PUBLIC_KEY && EMAILJS_SERVICE_ID && EMAILJS_TEMPLATE_ID);
+
+  function ensureEmailjs() {
+    if (!emailjsConfigured || window.emailjs) return;
+    var s = document.createElement('script');
+    s.src = 'https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js';
+    s.onload = function () { try { emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY }); } catch (e) {} };
+    document.head.appendChild(s);
+  }
+  function emailjsReady() { return emailjsConfigured && !!window.emailjs; }
+
+  function escHtml(s) {
+    return String(s == null ? '' : s).replace(/[&<>"]/g, function (c) {
+      return ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c];
+    });
+  }
+  function enquiryRow(label, valueHtml) {
+    return '<tr>' +
+      '<td style="padding:14px 0;border-bottom:1px solid #EAE3F2;font-size:13px;line-height:1.5;color:#6A5B7A;width:34%;vertical-align:top;">' + label + '</td>' +
+      '<td style="padding:14px 0;border-bottom:1px solid #EAE3F2;font-size:15px;line-height:1.5;color:#180026;vertical-align:top;">' + valueHtml + '</td>' +
+    '</tr>';
+  }
+  function buildEnquiryHtml(d) {
+    var rows =
+      enquiryRow('Name', escHtml(d.name)) +
+      enquiryRow('Email', '<a href="mailto:' + escHtml(d.email) + '" style="color:#7548FF;text-decoration:underline;">' + escHtml(d.email) + '</a>') +
+      enquiryRow('Mobile', escHtml(d.mobile)) +
+      enquiryRow('Company', escHtml(d.company)) +
+      enquiryRow('Location', escHtml(d.location)) +
+      enquiryRow('Subject', escHtml(d.subject)) +
+      enquiryRow('Message', escHtml(d.message).replace(/\n/g, '<br>'));
+    return '' +
+      '<div style="font-family:Arial,Helvetica,sans-serif;max-width:640px;margin:0 auto;padding:8px;color:#180026;">' +
+        '<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border-collapse:separate;border:1px solid #EAE3F2;border-radius:24px;overflow:hidden;">' +
+          '<tr><td style="background:#180026;padding:22px 28px;">' +
+            '<div style="font-size:18px;font-weight:700;color:#ffffff;line-height:1.2;">New project enquiry</div>' +
+            '<div style="font-size:13px;color:#C9BEDA;margin-top:3px;">via lifeandpassing.com</div>' +
+          '</td></tr>' +
+          '<tr><td style="padding:4px 28px 22px;background:#ffffff;">' +
+            '<table role="presentation" width="100%" cellpadding="0" cellspacing="0">' + rows + '</table>' +
+          '</td></tr>' +
+        '</table>' +
+        '<p style="font-size:13px;line-height:1.6;color:#807388;margin:20px 0 0;text-align:center;">Life and Passing Digital</p>' +
+      '</div>';
+  }
+
   var STYLE = [
     '.sap-modal{position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;padding:20px;overflow-y:auto;font-family:"Uncut Sans","Inter",ui-sans-serif,system-ui,sans-serif;}',
     '.sap-modal[hidden]{display:none;}',
@@ -154,6 +210,7 @@
     style.id = 'sap-styles';
     style.textContent = STYLE;
     document.head.appendChild(style);
+    ensureEmailjs();
 
     var holder = document.createElement('div');
     holder.innerHTML = HTML;
@@ -275,27 +332,47 @@
       var name = fields.name.input.value.trim();
       var email = fields.email.input.value.trim();
       var company = document.getElementById('sapCompany').value.trim();
-      var payload = {
+      var data = {
         name: name,
         email: email,
         mobile: fields.mobile.input.value.trim() || '—',
         company: company || '—',
         location: document.getElementById('sapLocation').value.trim() || '—',
         subject: subjectEl.value || '—',
-        message: document.getElementById('sapMessage').value.trim() || '—',
-        _subject: 'New project enquiry — ' + (company || name || email),
-        _captcha: 'false',
-        _template: 'table'
+        message: document.getElementById('sapMessage').value.trim() || '—'
       };
+      var subjectLine = 'New project enquiry — ' + (company || name || email);
 
-      fetch('https://formsubmit.co/ajax/info@gaiaapp.net', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-        body: JSON.stringify(payload)
-      }).then(function (res) {
-        if (!res.ok) throw new Error('Bad status ' + res.status);
-        return res.json();
-      }).then(function () {
+      function viaFormsubmit() {
+        return fetch('https://formsubmit.co/ajax/info@gaiaapp.net', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify({
+            name: data.name, email: data.email, mobile: data.mobile,
+            company: data.company, location: data.location,
+            subject: data.subject, message: data.message,
+            _subject: subjectLine, _captcha: 'false', _template: 'table'
+          })
+        }).then(function (res) {
+          if (!res.ok) throw new Error('Bad status ' + res.status);
+          return res.json();
+        });
+      }
+
+      // Prefer the brand-styled EmailJS email; fall back to Formsubmit so a
+      // lead is never lost if EmailJS is unset or errors at send time.
+      var send;
+      if (emailjsReady()) {
+        send = emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
+          to_email: 'info@gaiaapp.net',
+          subject: subjectLine,
+          content: buildEnquiryHtml(data)
+        }).catch(function () { return viaFormsubmit(); });
+      } else {
+        send = viaFormsubmit();
+      }
+
+      send.then(function () {
         sendBtn.disabled = false;
         sendBtn.textContent = label;
         toSuccess();
