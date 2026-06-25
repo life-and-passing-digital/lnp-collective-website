@@ -1,0 +1,71 @@
+<!--
+  ============================================================================
+  EmailJS template for the "Start a project" enquiry email.
+
+  HOW TO INSTALL (one time, ~60 seconds):
+  1. Go to https://dashboard.emailjs.com  →  Email Templates  →  open your
+     template (template_kn92476).
+  2. In the "Content" box, click the  </>  (Code Editor) button so you can
+     paste raw HTML.
+  3. DELETE everything in there and paste the entire block below
+     (everything between <!-- TEMPLATE START --> and <!-- TEMPLATE END -->).
+  4. Set the fields at the top of the template:
+        To Email     {{to_email}}
+        From Name    {{from_name}}
+        Reply To     {{reply_to}}
+        Subject      {{subject}}
+  5. Save.
+
+  That's it — every field the visitor enters will now appear in the email.
+  (If you ever prefer the one-line route instead, you can just put
+   {{{content}}} — triple braces — in the Content box and skip this file.)
+  ============================================================================
+-->
+
+<!-- TEMPLATE START -->
+<div style="font-family:Arial,Helvetica,sans-serif;max-width:640px;margin:0 auto;padding:8px;color:#180026;">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border-collapse:separate;border:1px solid #EAE3F2;border-radius:24px;overflow:hidden;">
+    <tr>
+      <td style="background:#180026;padding:22px 28px;">
+        <div style="font-size:18px;font-weight:700;color:#ffffff;line-height:1.2;">New project enquiry</div>
+        <div style="font-size:13px;color:#C9BEDA;margin-top:3px;">via lifeandpassing.com</div>
+      </td>
+    </tr>
+    <tr>
+      <td style="padding:4px 28px 22px;background:#ffffff;">
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
+          <tr>
+            <td style="padding:14px 0;border-bottom:1px solid #EAE3F2;font-size:13px;line-height:1.5;color:#6A5B7A;width:34%;vertical-align:top;">Name</td>
+            <td style="padding:14px 0;border-bottom:1px solid #EAE3F2;font-size:15px;line-height:1.5;color:#180026;vertical-align:top;">{{p_name}}</td>
+          </tr>
+          <tr>
+            <td style="padding:14px 0;border-bottom:1px solid #EAE3F2;font-size:13px;line-height:1.5;color:#6A5B7A;width:34%;vertical-align:top;">Email</td>
+            <td style="padding:14px 0;border-bottom:1px solid #EAE3F2;font-size:15px;line-height:1.5;color:#180026;vertical-align:top;"><a href="mailto:{{p_email}}" style="color:#7548FF;text-decoration:underline;">{{p_email}}</a></td>
+          </tr>
+          <tr>
+            <td style="padding:14px 0;border-bottom:1px solid #EAE3F2;font-size:13px;line-height:1.5;color:#6A5B7A;width:34%;vertical-align:top;">Mobile</td>
+            <td style="padding:14px 0;border-bottom:1px solid #EAE3F2;font-size:15px;line-height:1.5;color:#180026;vertical-align:top;">{{p_mobile}}</td>
+          </tr>
+          <tr>
+            <td style="padding:14px 0;border-bottom:1px solid #EAE3F2;font-size:13px;line-height:1.5;color:#6A5B7A;width:34%;vertical-align:top;">Company</td>
+            <td style="padding:14px 0;border-bottom:1px solid #EAE3F2;font-size:15px;line-height:1.5;color:#180026;vertical-align:top;">{{p_company}}</td>
+          </tr>
+          <tr>
+            <td style="padding:14px 0;border-bottom:1px solid #EAE3F2;font-size:13px;line-height:1.5;color:#6A5B7A;width:34%;vertical-align:top;">Location</td>
+            <td style="padding:14px 0;border-bottom:1px solid #EAE3F2;font-size:15px;line-height:1.5;color:#180026;vertical-align:top;">{{p_location}}</td>
+          </tr>
+          <tr>
+            <td style="padding:14px 0;border-bottom:1px solid #EAE3F2;font-size:13px;line-height:1.5;color:#6A5B7A;width:34%;vertical-align:top;">Subject</td>
+            <td style="padding:14px 0;border-bottom:1px solid #EAE3F2;font-size:15px;line-height:1.5;color:#180026;vertical-align:top;">{{p_subject}}</td>
+          </tr>
+          <tr>
+            <td style="padding:14px 0;font-size:13px;line-height:1.5;color:#6A5B7A;width:34%;vertical-align:top;">Message</td>
+            <td style="padding:14px 0;font-size:15px;line-height:1.5;color:#180026;vertical-align:top;white-space:pre-line;">{{p_message}}</td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+  <p style="font-size:13px;line-height:1.6;color:#807388;margin:20px 0 0;text-align:center;">&copy; 2026 Life And Passing Digital Pty Ltd. All rights reserved. Visit our website <a href="https://lifeandpassing.com" style="color:#7548FF;text-decoration:underline;">lifeandpassing.com</a></p>
+</div>
+<!-- TEMPLATE END -->

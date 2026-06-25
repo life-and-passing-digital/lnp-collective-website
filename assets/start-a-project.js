@@ -499,9 +499,21 @@
         var send;
         if (ready) {
           send = emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
-            to_email: 'info@gaiaapp.net',
-            subject: subjectLine,
-            content: buildEnquiryHtml(data)
+            // routing
+            to_email:   'info@gaiaapp.net',
+            subject:    subjectLine,
+            reply_to:   email,
+            from_name:  name,
+            // one-line route: template Content = {{{content}}}
+            content:    buildEnquiryHtml(data),
+            // robust route: template uses these individual fields
+            p_name:     data.name,
+            p_email:    data.email,
+            p_mobile:   data.mobile,
+            p_company:  data.company,
+            p_location: data.location,
+            p_subject:  data.subject,
+            p_message:  data.message
           }).catch(function () { return viaFormsubmit(); });
         } else {
           send = viaFormsubmit();
