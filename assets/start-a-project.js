@@ -19,14 +19,28 @@
   var EMAILJS_TEMPLATE_ID = 'template_kn92476';
   var emailjsConfigured = !!(EMAILJS_PUBLIC_KEY && EMAILJS_SERVICE_ID && EMAILJS_TEMPLATE_ID);
 
-  function ensureEmailjs() {
-    if (!emailjsConfigured || window.emailjs) return;
-    var s = document.createElement('script');
-    s.src = 'https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js';
-    s.onload = function () { try { emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY }); } catch (e) {} };
-    document.head.appendChild(s);
+  // Load the EmailJS SDK immediately so it is ready by the time the user opens
+  // and submits the form — not lazily inside init().
+  if (emailjsConfigured && !window.emailjs) {
+    var _ejs = document.createElement('script');
+    _ejs.src = 'https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js';
+    _ejs.onload = function () { try { emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY }); } catch (e) {} };
+    document.head.appendChild(_ejs);
   }
+
   function emailjsReady() { return emailjsConfigured && !!window.emailjs; }
+
+  // Wait up to 4 s for the SDK to finish loading, then call cb(true/false).
+  function withEmailjs(cb) {
+    if (emailjsReady()) return cb(true);
+    if (!emailjsConfigured) return cb(false);
+    var attempts = 0;
+    var poll = setInterval(function () {
+      attempts++;
+      if (emailjsReady()) { clearInterval(poll); cb(true); }
+      else if (attempts >= 40) { clearInterval(poll); cb(false); }
+    }, 100);
+  }
 
   function escHtml(s) {
     return String(s == null ? '' : s).replace(/[&<>"]/g, function (c) {
@@ -237,7 +251,6 @@
     style.id = 'sap-styles';
     style.textContent = STYLE;
     document.head.appendChild(style);
-    ensureEmailjs();
 
     var holder = document.createElement('div');
     holder.innerHTML = HTML;
@@ -482,25 +495,27 @@
         });
       }
 
-      var send;
-      if (emailjsReady()) {
-        send = emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
-          to_email: 'info@gaiaapp.net',
-          subject: subjectLine,
-          content: buildEnquiryHtml(data)
-        }).catch(function () { return viaFormsubmit(); });
-      } else {
-        send = viaFormsubmit();
-      }
+      withEmailjs(function (ready) {
+        var send;
+        if (ready) {
+          send = emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
+            to_email: 'info@gaiaapp.net',
+            subject: subjectLine,
+            content: buildEnquiryHtml(data)
+          }).catch(function () { return viaFormsubmit(); });
+        } else {
+          send = viaFormsubmit();
+        }
 
-      send.then(function () {
-        sendBtn.disabled = false;
-        sendBtn.textContent = label;
-        toSuccess();
-      }).catch(function () {
-        sendBtn.disabled = false;
-        sendBtn.textContent = label;
-        alert('Something went wrong — please try again, or email us directly at info@gaiaapp.net.');
+        send.then(function () {
+          sendBtn.disabled = false;
+          sendBtn.textContent = label;
+          toSuccess();
+        }).catch(function () {
+          sendBtn.disabled = false;
+          sendBtn.textContent = label;
+          alert('Something went wrong — please try again, or email us directly at info@gaiaapp.net.');
+        });
       });
     });
 
