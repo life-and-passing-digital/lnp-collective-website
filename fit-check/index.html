@@ -608,7 +608,13 @@ img{display:block;max-width:100%;}
         var nextEl = nextIdx < fieldsets.length ? fieldsets[nextIdx] : cta;
         if(nextEl && nextEl.classList.contains('is-hidden')){
           reveal(nextEl);
-          setTimeout(function(){ nextEl.scrollIntoView({behavior:'smooth', block:'nearest'}); }, 80);
+          // Bring the next question high into the fold (not pinned to the bottom),
+          // so its options are immediately tappable without scrolling back up.
+          setTimeout(function(){
+            var offset = window.innerWidth <= 700 ? 72 : 104;
+            var target = nextEl.getBoundingClientRect().top + window.pageYOffset - offset;
+            window.scrollTo({ top: Math.max(0, target), behavior: reduceMotion ? 'auto' : 'smooth' });
+          }, 80);
         }
       });
     });
