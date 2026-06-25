@@ -2,23 +2,29 @@
   ============================================================================
   EmailJS template for the "Start a project" enquiry email.
 
-  HOW TO INSTALL (one time, ~60 seconds):
-  1. Go to https://dashboard.emailjs.com  →  Email Templates  →  open your
-     template (template_kn92476).
-  2. In the "Content" box, click the  </>  (Code Editor) button so you can
-     paste raw HTML.
-  3. DELETE everything in there and paste the entire block below
-     (everything between <!-- TEMPLATE START --> and <!-- TEMPLATE END -->).
-  4. Set the fields at the top of the template:
-        To Email     {{to_email}}
-        From Name    {{from_name}}
-        Reply To     {{reply_to}}
-        Subject      {{subject}}
-  5. Save.
+  ✅ RECOMMENDED — the one-line route (works even before a redeploy):
+     In the template "Content" box, click </> (Code Editor), delete
+     everything, and put just:
+            {{{content}}}            <-- THREE braces (raw HTML)
+     Then set the fields at the top:
+            To Email     {{to_email}}
+            From Name    {{from_name}}
+            Reply To     {{reply_to}}
+            Subject      {{subject}}
+     Save. The website builds the whole styled table and passes it in
+     `content`, so all values appear immediately. This is the safest option
+     because `content` is sent by every version of the site's JavaScript.
 
-  That's it — every field the visitor enters will now appear in the email.
-  (If you ever prefer the one-line route instead, you can just put
-   {{{content}}} — triple braces — in the Content box and skip this file.)
+  ----------------------------------------------------------------------------
+  ALTERNATIVE — paste the full template below (per-field variables).
+  NOTE: this only works once the LATEST start-a-project.js (which sends
+  p_name, p_email, … ) is deployed live. If values come through blank, the
+  live build is older than these fields — use the {{{content}}} route above.
+
+  1. Content box → </> (Code Editor) → delete everything → paste the block
+     between <!-- TEMPLATE START --> and <!-- TEMPLATE END -->.
+  2. Set the same To Email / From Name / Reply To / Subject fields as above.
+  3. Save.
   ============================================================================
 -->
 
