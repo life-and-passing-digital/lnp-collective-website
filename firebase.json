@@ -1,5 +1,6 @@
 {
   "hosting": {
+    "site": "life-and-passing",
     "public": ".",
     "ignore": [
       "firebase.json",
