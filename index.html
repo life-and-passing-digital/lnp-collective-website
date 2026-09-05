@@ -647,13 +647,13 @@ html.js .reveal.in{opacity:1;transform:none;}
 .team-name{margin:22px 0 0;text-align:center;font-family:var(--head);font-weight:700;font-size:clamp(20px,1.5vw,24px);letter-spacing:-.01em;color:var(--ink);}
 .team-role{margin:8px 0 0;text-align:center;font-family:var(--uncut);font-size:clamp(14px,1.05vw,16px);color:var(--mist);}
 
-@media(min-width:701px){.team-arrow{display:none;}}
 .team-arrow{position:absolute;top:40%;transform:translateY(-50%);display:grid;place-items:center;width:clamp(46px,4vw,56px);height:clamp(46px,4vw,56px);border:none;border-radius:50%;background:var(--ink);color:#fff;cursor:pointer;z-index:4;transition:transform .3s var(--ease),background .3s var(--ease),opacity .3s var(--ease);}
 .team-arrow svg{width:44%;height:44%;}
 .team-arrow:hover:not(:disabled){transform:translateY(-50%) scale(1.08);background:var(--ink-3);}
 .team-arrow:disabled{opacity:.26;cursor:default;}
 .team-arrow--prev{left:clamp(4px,1.4vw,28px);}
 .team-arrow--next{right:clamp(4px,1.4vw,28px);}
+@media(min-width:701px){.team-arrow{display:none;}}
 
 .team-carousel.js-reveal .team-card{opacity:0;transform:translateY(28px);transition:opacity .7s var(--ease-out),transform .7s var(--ease-out);}
 .team-carousel.js-reveal.in .team-card{opacity:1;transform:none;}
