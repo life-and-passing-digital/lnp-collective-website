@@ -85,7 +85,7 @@
     'Web design',
     'Engineering',
     'AI & data',
-    'Marketing and Growth',
+    'Marketing & Growth',
     'Other'
   ];
 
