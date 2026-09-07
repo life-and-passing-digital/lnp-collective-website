@@ -81,10 +81,11 @@
   // ---- Subject options -------------------------------------------------------
   var SUBJECT_OPTIONS = [
     'Product strategy',
-    'Design',
+    'App design',
+    'Web design',
     'Engineering',
     'AI & data',
-    'Growth',
+    'Marketing and Growth',
     'Other'
   ];
 
